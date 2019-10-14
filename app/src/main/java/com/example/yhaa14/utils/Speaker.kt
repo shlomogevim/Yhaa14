@@ -1,4 +1,4 @@
-package com.example.yhaa14
+package com.example.yhaa14.utils
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -9,14 +9,16 @@ data class Speaker (
      var whoSpeake: String = "man",
      var taking: String = "tadam",
      var colorText: String = "#ffffff",
-     var colorBack: String = "#000000",
+     var colorBack: String = "none",
      var styleText: Int = 0,
      var sizeText: Float =20f,
-     var paddingLeft:Int=30,
+     var paddingLeft:Int=0,
      var paddingTop:Int=0,
-     var paddingRight:Int=30,
+     var paddingRight:Int=0,
      var paddingButton:Int=0
 
 ):Serializable
+
+
 
 

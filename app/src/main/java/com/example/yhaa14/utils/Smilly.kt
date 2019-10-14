@@ -1,4 +1,4 @@
-package com.example.yhaa14
+package com.example.yhaa14.utils
 
 import android.content.Context
 import android.graphics.*
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
+import com.example.yhaa14.R
 
 class Smilly(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
@@ -44,15 +45,31 @@ class Smilly(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private fun setupAttributes(attrs: AttributeSet?) {
         // Obtain a typed array of attributes
         val typedArray =
-            context.theme.obtainStyledAttributes(attrs, R.styleable.DrawAssitance, 0, 0)
+            context.theme.obtainStyledAttributes(attrs,
+                R.styleable.DrawAssitance, 0, 0)
 
         // Extract custom attributes into member variables
         happinessState = typedArray.getInt(R.styleable.DrawAssitance_state, HAPPY.toInt()).toLong()
-        faceColor = typedArray.getColor(R.styleable.DrawAssitance_color1, DEFAULT1)
-        eyesColor = typedArray.getColor(R.styleable.DrawAssitance_color2, DEFAULT2)
-        mouthColor = typedArray.getColor(R.styleable.DrawAssitance_color3, DEFAULT3)
-        borderColor = typedArray.getColor(R.styleable.DrawAssitance_color4, DEFAULT4)
-        borderWidth = typedArray.getDimension(R.styleable.DrawAssitance_borderWidth, DEFAULT_WIDTH)
+        faceColor = typedArray.getColor(
+            R.styleable.DrawAssitance_color1,
+            DEFAULT1
+        )
+        eyesColor = typedArray.getColor(
+            R.styleable.DrawAssitance_color2,
+            DEFAULT2
+        )
+        mouthColor = typedArray.getColor(
+            R.styleable.DrawAssitance_color3,
+            DEFAULT3
+        )
+        borderColor = typedArray.getColor(
+            R.styleable.DrawAssitance_color4,
+            DEFAULT4
+        )
+        borderWidth = typedArray.getDimension(
+            R.styleable.DrawAssitance_borderWidth,
+            DEFAULT_WIDTH
+        )
 
         typedArray.recycle()
     }
@@ -149,7 +166,9 @@ class Smilly(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
         var viewState = state
         if (viewState is Bundle) {
             // 5
-            happinessState = viewState.getLong("happinessState", HAPPY)
+            happinessState = viewState.getLong("happinessState",
+                HAPPY
+            )
             // 6
             viewState = viewState.getParcelable("superState")
         }

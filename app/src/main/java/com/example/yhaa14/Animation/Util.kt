@@ -1,12 +1,14 @@
-package com.example.yhaa14
+package com.example.yhaa14.Animation
 
 import android.content.res.Resources
 import android.widget.TextView
 import com.github.florent37.viewanimator.ViewAnimator
 
 object Util {
-    private var wi: Float = Resources.getSystem().displayMetrics.widthPixels.toFloat()
-    private var hi: Float = Resources.getSystem().displayMetrics.heightPixels.toFloat()
+    var wi: Float = Resources.getSystem().displayMetrics.widthPixels.toFloat()
+    var hi: Float = Resources.getSystem().displayMetrics.heightPixels.toFloat()
+
+
     private fun ttMove1(
         textView: TextView,
         x0: Float,
@@ -27,30 +29,51 @@ object Util {
     }
 
     fun move1(textView1: TextView, textView2: TextView) {
-        ttMove1(textView1, -wi / 2, 0f, -hi, 0f, 0f, 1f, 2000)
-        ttMove1(textView2, wi / 2, 0f, -hi, 0f, 0f, 1f, 2000)
+        ttMove1(
+            textView1, -wi / 2, 0f, -hi, 0f, 0f, 1f, 2000
+        )
+        ttMove1(
+            textView2, wi / 2, 0f, -hi, 0f, 0f, 1f, 2000
+        )
     }
 
     fun move1g(textView1: TextView, textView2: TextView) {
-        ttMove1(textView1, -wi / 2, 0f, hi, 0f, 0f, 2f, 2000)
-        ttMove1(textView2, wi / 2, 0f, hi, 0f, 0f, 2f, 2000)
+        ttMove1(
+            textView1,
+            -wi / 2,
+            0f,
+            hi,
+            0f,
+            0f,
+            2f,
+            2000
+        )
+        ttMove1(
+            textView2,
+            wi / 2,
+            0f,
+            hi,
+            0f,
+            0f,
+            2f,
+            2000
+        )
+    }
+
+    fun move1god(textView1: TextView, textView2: TextView, dur: Long) {
+      ttMove1(textView1, wi / 2, 0f, hi, 0f, 0f, 1f, dur)
+        ttMove1(textView2, -wi / 2, 0f, hi, 0f, 0f, 1f, dur)
     }
 
     private fun ttScale(textView: TextView, dur: Long) {
         ViewAnimator.animate(textView).scale(0f, 1f).duration(dur).start()
     }
-    fun scale10(
-        textView1: TextView,
-        dur: Long
-    ) {
+
+    fun scale10(textView1: TextView, dur: Long) {
         ttScale(textView1, dur)
     }
 
-
-    fun scale11(
-        textView1: TextView,
-        dur: Long
-    ) {
+    fun scale11(textView1: TextView, dur: Long) {
         ViewAnimator
             .animate(textView1)
             .scale(0f, 1f)
@@ -58,20 +81,14 @@ object Util {
             .swing()
             .start()
     }
-    fun scale20(
-        textView1: TextView,
-        textView2: TextView,
-        dur: Long
-    ) {
+
+
+    fun scale20(textView1: TextView, textView2: TextView, dur: Long) {
         ttScale(textView1, dur)
         ttScale(textView2, dur)
     }
 
-    fun scale21(
-        textView1: TextView,
-        textView2: TextView,
-        dur: Long
-    ) {
+    fun scale21(textView1: TextView, textView2: TextView, dur: Long) {
         ViewAnimator
             .animate(textView1)
             .scale(0f, 1f)
@@ -81,11 +98,8 @@ object Util {
             .duration(dur)
             .start()
     }
-    fun scale22(
-        textView1: TextView,
-        textView2: TextView,
-        dur: Long
-    ) {
+
+    fun scale22(textView1: TextView, textView2: TextView, dur: Long) {
         ViewAnimator
             .animate(textView1)
             .scale(0f, 1f)
@@ -97,23 +111,14 @@ object Util {
             .swing()
             .start()
     }
-    fun scale30(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        dur: Long
-    ) {
+
+    fun scale30(textView1: TextView, textView2: TextView, textView3: TextView, dur: Long) {
         ttScale(textView1, dur)
         ttScale(textView2, dur)
         ttScale(textView3, dur)
     }
 
-    fun scale31(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        dur: Long
-    ) {
+    fun scale31(textView1: TextView, textView2: TextView, textView3: TextView, dur: Long) {
         ViewAnimator
             .animate(textView1)
             .scale(0f, 1f)
@@ -126,12 +131,8 @@ object Util {
             .duration(dur)
             .start()
     }
-    fun scale32(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        dur: Long
-    ) {
+
+    fun scale32(textView1: TextView, textView2: TextView, textView3: TextView, dur: Long) {
         ViewAnimator
             .animate(textView1)
             .scale(0f, 1f)
@@ -148,11 +149,8 @@ object Util {
     }
 
     fun scale40(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        textView4: TextView,
-        dur: Long
+        textView1: TextView, textView2: TextView, textView3: TextView,
+        textView4: TextView, dur: Long
     ) {
         ttScale(textView1, dur)
         ttScale(textView2, dur)
@@ -161,11 +159,8 @@ object Util {
     }
 
     fun scale41(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        textView4: TextView,
-        dur: Long
+        textView1: TextView, textView2: TextView, textView3: TextView,
+        textView4: TextView, dur: Long
     ) {
         ViewAnimator
             .animate(textView1)
@@ -182,6 +177,7 @@ object Util {
             .duration(dur)
             .start()
     }
+
     fun scale42(
         textView1: TextView,
         textView2: TextView,
@@ -207,6 +203,15 @@ object Util {
             .start()
     }
 
+    fun scale43(
+        textView1: TextView, textView2: TextView, textView3: TextView, textView4: TextView,
+        dur: Long
+    ) {
+        rotateAndMove(1, textView1, 2000)
+        rotateAndMove(2, textView2, 2000)
+        rotateAndMove(3, textView3, 2000)
+        rotateAndMove(4, textView4, 2000)
+    }
 
     fun scale50(
         textView1: TextView,
@@ -284,6 +289,19 @@ object Util {
             .duration(dur)
             .start()
     }
+
+    fun scale53(
+        textView1: TextView, textView2: TextView, textView3: TextView, textView4: TextView,
+        textView5: TextView, dur: Long
+    ) {
+
+        rotateAndMove(1, textView1, 2000)
+        rotateAndMove(2, textView2, 2000)
+        rotateAndMove(3, textView3, 2000)
+        rotateAndMove(4, textView4, 2000)
+        rotateAndMove(5, textView5, 2000)
+    }
+
     fun scale60(
         textView1: TextView,
         textView2: TextView,
@@ -333,13 +351,8 @@ object Util {
     }
 
     fun scale62(
-        textView1: TextView,
-        textView2: TextView,
-        textView3: TextView,
-        textView4: TextView,
-        textView5: TextView,
-        textView6: TextView,
-        dur: Long
+        textView1: TextView, textView2: TextView, textView3: TextView, textView4: TextView,
+        textView5: TextView, textView6: TextView, dur: Long
     ) {
         ViewAnimator
             .animate(textView1)
@@ -368,6 +381,67 @@ object Util {
             }
             .duration(dur)
             .start()
+    }
+
+    fun scale63(
+        textView1: TextView, textView2: TextView, textView3: TextView, textView4: TextView,
+        textView5: TextView, textView6: TextView, dur: Long
+    ) {
+
+        rotateAndMove(1, textView1, 2000)
+        rotateAndMove(2, textView2, 2000)
+        rotateAndMove(3, textView3, 2000)
+        rotateAndMove(4, textView4, 2000)
+        rotateAndMove(5, textView5, 2000)
+        rotateAndMove(6, textView6, 2000)
+    }
+
+    fun rotateAndMove(ind: Int, textView: TextView, dur: Long) {
+        var x0 = 0f
+        var y0 = 0f
+        var rotate = 360f
+        when (ind) {
+            1 -> {
+                x0 = -wi / 2
+                y0 = -hi
+                rotate = 720f * 2
+            }
+            2 -> {
+                x0 = wi / 2
+                y0 = -hi
+                rotate = -720f * 2
+            }
+            3 -> {
+                x0 = -wi / 2
+                y0 = 0f
+                rotate = 360f
+            }
+            4 -> {
+                x0 = wi / 2
+                y0 = 0f
+                rotate = -360f
+            }
+            5 -> {
+                x0 = -wi / 2
+                y0 = hi
+                rotate = 720f * 2
+            }
+            6 -> {
+                x0 = wi / 2
+                y0 = hi
+                rotate = -720f * 2
+            }
+        }
+        ViewAnimator
+            .animate(textView)
+            .scale(0f, 1f)
+            .translationX(x0, 0f)
+            .translationY(y0, 0f)
+            .rotation(rotate)
+            .duration(dur)
+            .start()
+
+
     }
 
 }
