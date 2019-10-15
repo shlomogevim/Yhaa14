@@ -4,6 +4,68 @@ import com.example.yhaa14.utils.Speaker
 
 object StyleAnim {
 
+    fun updateNewStyle(counter: Int, speaker: Speaker): Speaker {
+        var speaker1 = Speaker()
+
+        if (speaker.whoSpeake == "god") {
+            speaker1 = updateGodStyle(counter, speaker)
+        } else {
+            speaker1 = updateManStyle(counter, speaker)
+
+        }
+
+
+        return speaker1
+    }
+
+
+    private fun updateGodStyle(counter: Int, speaker: Speaker): Speaker {
+        when (counter) {
+
+            12 -> makeStyle(speaker, "none", "#6ff9ff", 34f, 1, 10, 5, 10, 0)
+            14 -> makeStyle(speaker, "none", "#6ff9ff", 22f, 1, 10, 5, 10, 0)
+        }
+
+
+
+        return speaker
+    }
+
+
+    private fun updateManStyle(counter: Int, speaker: Speaker): Speaker {
+        when (counter) {
+
+            13 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+        }
+
+
+
+        return speaker
+    }
+
+    fun makeStyle(
+        speaker: Speaker,
+        colorBack: String,
+        colorText: String,
+        sizeText: Float,
+        styleText: Int,
+        paddingLeft: Int,
+        paddingTop: Int,
+        paddingRight: Int,
+        paddingButton: Int
+    ): Speaker {
+        speaker.colorBack = colorBack
+        speaker.colorText = colorText
+        speaker.sizeText = sizeText
+        speaker.styleText = styleText
+        speaker.paddingLeft = paddingLeft
+        speaker.paddingTop = paddingTop
+        speaker.paddingRight = paddingRight
+        speaker.paddingButton = paddingButton
+        return speaker
+    }
+
+
     fun updateSpeaker1(speaker: Speaker): Speaker {
         with(speaker) {
             colorText = "#bdbdbd"
@@ -86,6 +148,7 @@ object StyleAnim {
         }
         return speaker
     }
+
     fun updateSpeaker11(speaker: Speaker): Speaker {
         with(speaker) {
             colorBack = "#e3f2fd"
@@ -96,6 +159,34 @@ object StyleAnim {
             paddingButton = 0
             paddingRight = 10
             paddingLeft = 10
+        }
+        return speaker
+    }
+
+    fun updateSpeaker12(speaker: Speaker): Speaker {
+        with(speaker) {
+            //colorBack = "#e3f2fd"
+            colorText = "#6ff9ff"
+            sizeText = 34f
+            styleText = 1
+            paddingTop = 5
+            paddingButton = 0
+            paddingRight = 10
+            paddingLeft = 10
+        }
+        return speaker
+    }
+
+    fun updateSpeaker13(speaker: Speaker): Speaker {
+        with(speaker) {
+            colorText = "#bdbdbd"
+            colorBack = "#000000"
+            sizeText = 20f
+            styleText = 0
+            paddingLeft = 10
+            paddingTop = 0
+            paddingRight = 10
+            paddingButton = 0
         }
         return speaker
     }

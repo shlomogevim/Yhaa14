@@ -3,6 +3,7 @@ package com.example.yhaa14.step_2
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_3.AnimationAction
 import com.example.yhaa14.utils.Speaker
@@ -36,6 +37,7 @@ class AnimationScreen : AppCompatActivity() {
 
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
         counterStep = intent.getIntExtra(COUNTER, 0)
+        updateListSpeakerStyle()
         if (counterStep < 0) counterStep = 0
 
         animationInAction = AnimationAction(this, mainLayout)
@@ -60,12 +62,30 @@ class AnimationScreen : AppCompatActivity() {
         }
 
     }
+    private fun updateListSpeakerStyle() {
 
+        for (ind in 0 until speakList.size) {
+            when (ind) {
+                /*1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
+                2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
+                4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
+                5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
+                7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
+                8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
+                10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])*/
+                // 12 -> speakerList[ind] = StyleAnim.updateSpeaker12(speakerList[ind])
+               // 12,13,14 -> speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
+            }
+            if (ind>11){
+                speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
+            }
+        }
+    }
 
     private fun generalOperation() {
         counterStep++
 
-        counterStep = 12
+        counterStep = 14                //################################
 
         manMode = counterStep % 2 != 0
 
@@ -73,14 +93,13 @@ class AnimationScreen : AppCompatActivity() {
 
         val speaker = speakList[counterStep]
 
-        //  operatAnimation()
 
-        /* var arr1 = arrayListOf<Int>()
-         arr1 = arrayListOf(1, 2, 3,4,5,6,7,8)*/
 
         // if (speakList[counterStep].config) {
 
-        val st = speaker.taking
+        var st = speaker.taking
+
+
         val arr = st.split("\n")
         if (speaker.whoSpeake == "man") {
             manAnimations(speaker, arr)
@@ -107,7 +126,7 @@ class AnimationScreen : AppCompatActivity() {
                 else -> animationInAction.godSay20(0, speaker, 2000)
             }
             3 -> when (counterStep) {
-                11 -> animationInAction.godSay30(0, speaker, 4000)
+                12 -> animationInAction.godSay30(1, speaker, 4000)
                 else -> animationInAction.godSay30(0, speaker, 2000)
             }
             4 -> when (counterStep) {
@@ -122,7 +141,7 @@ class AnimationScreen : AppCompatActivity() {
             }
             6 -> when (counterStep) {
                 // -> animationInAction.godSay20(0, speaker, 4000)
-                else -> animationInAction.godSay60(0, speaker, 2000)
+                else -> animationInAction.godSay60(3, speaker, 4000)
             }
         }
     }
@@ -130,7 +149,7 @@ class AnimationScreen : AppCompatActivity() {
     private fun manAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
             1 -> when (counterStep) {
-                // -> animationInAction.manSay20(0, speaker, 1000)
+                13-> animationInAction.manSay10(2, speaker, 1000)
                 else -> animationInAction.manSay10(0, speaker, 2000)
 
             }

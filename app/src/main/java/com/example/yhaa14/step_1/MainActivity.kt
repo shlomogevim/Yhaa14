@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         getData()
-        updateListSpeakerStyle()
+       // updateListSpeakerStyle()
         sendData()
     }
 
@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun improveString(st: String) = st.substring(1, st.length - 1)
 
-    private fun updateListSpeakerStyle() {
-        /*var arr1 = arrayListOf<Int>()
-        arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8)*/
+   /* private fun updateListSpeakerStyle() {
+        *//*var arr1 = arrayListOf<Int>()
+        arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8)*//*
         for (ind in 0 until speakerList.size) {
             when (ind) {
                 1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
@@ -85,12 +85,14 @@ class MainActivity : AppCompatActivity() {
                 7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
                 8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
                 10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])
+               // 12 -> speakerList[ind] = StyleAnim.updateSpeaker12(speakerList[ind])
+                12,13 -> speakerList[ind] = StyleAnim.updateNewStyle(ind,speakerList[ind])
             }
-            /*if (arr1.contains(ind)) {
+            *//*if (arr1.contains(ind)) {
                 speakerList[ind].config = true
-            }*/
+            }*//*
         }
-    }
+    }*/
 }
 
 
