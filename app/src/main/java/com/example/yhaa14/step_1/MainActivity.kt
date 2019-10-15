@@ -1,19 +1,19 @@
 package com.example.yhaa14.step_1
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.yhaa14.Animation.StyleAnim
+import com.example.yhaa14.R
 import com.example.yhaa14.step_2.AnimationScreen
 import com.example.yhaa14.step_2.AnimationScreen.Companion.COUNTER
 import com.example.yhaa14.step_2.AnimationScreen.Companion.SPEAKER
-import com.example.yhaa14.R
 import com.example.yhaa14.utils.Speaker
-import com.example.yhaa14.Animation.StyleAnim
 
 class MainActivity : AppCompatActivity() {
 
 
-    val CURRENT_FILE="text30.txt"
+    val CURRENT_FILE = "text30.txt"
     val ADAM = "-אדם-"
     val GOD = "-אלוהים-"
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         getData()
-        updateListSpeaker()
+        updateListSpeakerStyle()
         sendData()
     }
 
@@ -73,17 +73,23 @@ class MainActivity : AppCompatActivity() {
 
     private fun improveString(st: String) = st.substring(1, st.length - 1)
 
-    private fun updateListSpeaker() {
-
-        for (ind in 0 until speakerList.size)
+    private fun updateListSpeakerStyle() {
+        /*var arr1 = arrayListOf<Int>()
+        arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8)*/
+        for (ind in 0 until speakerList.size) {
             when (ind) {
-                1,3->speakerList[ind]= StyleAnim.updateSpeaker1(speakerList[ind])
-                2 -> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
-                4,6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
+                1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
+                2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
+                4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
                 5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
                 7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
                 8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
+                10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])
             }
+            /*if (arr1.contains(ind)) {
+                speakerList[ind].config = true
+            }*/
+        }
     }
 }
 

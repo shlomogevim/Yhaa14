@@ -64,14 +64,41 @@ object StyleAnim {
     }
 
 
-fun updateSpeaker8(speaker: Speaker): Speaker {
-    speaker.colorText = "#44000D"
-    speaker.sizeText = 40f
-    speaker.styleText = 1
-    speaker.paddingTop = 20
-    speaker.paddingButton = 20
-    return speaker
-}
+    fun updateSpeaker8(speaker: Speaker): Speaker {
+        speaker.colorText = "#44000D"
+        speaker.sizeText = 40f
+        speaker.styleText = 1
+        speaker.paddingTop = 20
+        speaker.paddingButton = 20
+        return speaker
+    }
+
+    fun updateSpeaker10(speaker: Speaker): Speaker {
+        with(speaker) {
+            colorBack = "#e3f2fd"
+            colorText = "#1e88e5"
+            sizeText = 28f
+            styleText = 1
+            paddingTop = 5
+            paddingButton = 0
+            paddingRight = 10
+            paddingLeft = 10
+        }
+        return speaker
+    }
+    fun updateSpeaker11(speaker: Speaker): Speaker {
+        with(speaker) {
+            colorBack = "#e3f2fd"
+            colorText = "#1e88e5"
+            sizeText = 28f
+            styleText = 1
+            paddingTop = 5
+            paddingButton = 0
+            paddingRight = 10
+            paddingLeft = 10
+        }
+        return speaker
+    }
 
 
 /*  private fun updateSpeaker14(speaker: Speaker): Speaker {

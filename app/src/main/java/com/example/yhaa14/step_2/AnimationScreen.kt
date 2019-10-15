@@ -65,57 +65,98 @@ class AnimationScreen : AppCompatActivity() {
     private fun generalOperation() {
         counterStep++
 
-          counterStep = 8
+        counterStep = 12
 
         manMode = counterStep % 2 != 0
 
         updateTitleSituation()
 
+        val speaker = speakList[counterStep]
+
         //  operatAnimation()
 
-        var arr1 = arrayListOf<Int>()
-        arr1 = arrayListOf(1, 2, 3,4,5,6,7,8)
-        if (arr1.contains(counterStep)) {
-            val speaker = speakList[counterStep]
-            val st = speaker.taking
-            val arr = st.split("\n")
-            if (speaker.whoSpeake == "man") {
-                manAnimations(speaker, arr)
-            } else {
-                godAnimations(speaker, arr)
-            }
+        /* var arr1 = arrayListOf<Int>()
+         arr1 = arrayListOf(1, 2, 3,4,5,6,7,8)*/
+
+        // if (speakList[counterStep].config) {
+
+        val st = speaker.taking
+        val arr = st.split("\n")
+        if (speaker.whoSpeake == "man") {
+            manAnimations(speaker, arr)
         } else {
-            regularAnimation()
+            godAnimations(speaker, arr)
         }
+        /* } else {
+             regularAnimation()
+         }*/
 
         manMode = !manMode
-    }
-
-
-    private fun manAnimations(speaker: Speaker, arr: List<String>) {
-        when (arr.size) {
-            4 -> when (counterStep) {
-                5 -> animationInAction.manSay40(3, speaker, 1000)
-                7 -> animationInAction.manSay40(1, speaker, 1000)
-            }
-            5 -> when (counterStep) {
-                3 -> animationInAction.manSay50(3, speaker, 2000)
-            }
-            6 -> when (counterStep) {
-                1 -> animationInAction.manSay60(3, speaker, 2000)
-            }
-        }
     }
 
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
             1 -> when (counterStep) {
-                2 -> animationInAction.godSay10(2, speaker, 4000)
+                2, 4 -> animationInAction.godSay10(2, speaker, 4000)
                 6 -> animationInAction.godSay10(1, speaker, 4000)
                 8 -> animationInAction.godSay10(2, speaker, 4000)
+                else -> animationInAction.godSay10(0, speaker, 2000)
+            }
+            2 -> when (counterStep) {
+                // -> animationInAction.godSay20(0, speaker, 4000)
+                else -> animationInAction.godSay20(0, speaker, 2000)
+            }
+            3 -> when (counterStep) {
+                11 -> animationInAction.godSay30(0, speaker, 4000)
+                else -> animationInAction.godSay30(0, speaker, 2000)
+            }
+            4 -> when (counterStep) {
+                10 -> animationInAction.godSay40(1, speaker, 1000)
+
+                // -> animationInAction.godSay40(0, speaker, 4000)
+                else -> animationInAction.godSay40(0, speaker, 2000)
+            }
+            5 -> when (counterStep) {
+                // -> animationInAction.godSay50(0, speaker, 4000)
+                else -> animationInAction.godSay50(0, speaker, 2000)
+            }
+            6 -> when (counterStep) {
+                // -> animationInAction.godSay20(0, speaker, 4000)
+                else -> animationInAction.godSay60(0, speaker, 2000)
+            }
+        }
+    }
+
+    private fun manAnimations(speaker: Speaker, arr: List<String>) {
+        when (arr.size) {
+            1 -> when (counterStep) {
+                // -> animationInAction.manSay20(0, speaker, 1000)
+                else -> animationInAction.manSay10(0, speaker, 2000)
 
             }
+            2 -> when (counterStep) {
+                11-> animationInAction.manSay20(2, speaker, 1000)
+                else -> animationInAction.manSay20(0, speaker, 2000)
 
+            }
+            3 -> when (counterStep) {
+                9 -> animationInAction.manSay30(2, speaker, 1000)
+                else -> animationInAction.manSay30(0, speaker, 2000)
+
+            }
+            4 -> when (counterStep) {
+                5 -> animationInAction.manSay40(3, speaker, 1000)
+                7 -> animationInAction.manSay40(1, speaker, 1000)
+                else -> animationInAction.manSay40(0, speaker, 2000)
+            }
+            5 -> when (counterStep) {
+                3 -> animationInAction.manSay50(3, speaker, 2000)
+                else -> animationInAction.manSay50(0, speaker, 2000)
+            }
+            6 -> when (counterStep) {
+                1 -> animationInAction.manSay60(3, speaker, 2000)
+                else -> animationInAction.manSay60(0, speaker, 2000)
+            }
         }
     }
 
@@ -124,75 +165,78 @@ class AnimationScreen : AppCompatActivity() {
         val kind = speaker.whoSpeake
         val st = speaker.taking
         val arr = st.split("\n")
+        val dur = 2000L
         if (kind == "man") {
             when (arr.size) {
-                1 -> animationInAction.manStatic10(0, speaker)
-                2 -> animationInAction.manStatic20(0, speaker)
-                3 -> animationInAction.manStatic30(0, speaker)
-                4 -> animationInAction.manStatic40(0, speaker)
-                5 -> animationInAction.manStatic50(0, speaker)
-                6 -> animationInAction.manStatic60(0, speaker)
+                1 -> animationInAction.manSay10(0, speaker, dur)
+                2 -> animationInAction.manSay20(0, speaker, dur)
+                3 -> animationInAction.manSay30(0, speaker, dur)
+                4 -> animationInAction.manSay40(0, speaker, dur)
+                5 -> animationInAction.manSay50(0, speaker, dur)
+                6 -> animationInAction.manSay60(0, speaker, dur)
             }
         } else {
             when (arr.size) {
-                1 -> animationInAction.godSay10(0, speaker, 2000)
-                2 -> animationInAction.godStatic20(0, speaker)
-                3 -> animationInAction.godStatic30(0, speaker)
-                4 -> animationInAction.godStatic40(0, speaker)
-                5 -> animationInAction.godStatic50(0, speaker)
-                6 -> animationInAction.godStatic60(0, speaker)
+                1 -> animationInAction.godSay10(0, speaker, dur)
+                2 -> animationInAction.godSay20(0, speaker, dur)
+                3 -> animationInAction.godSay30(0, speaker, dur)
+                4 -> animationInAction.godSay40(0, speaker, dur)
+                5 -> animationInAction.godSay50(0, speaker, dur)
+                6 -> animationInAction.godSay60(0, speaker, dur)
             }
         }
 
     }
 
-    private fun operateGoddy(speaker: Speaker) {
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val size = arr.size
-
-        when (size) {
-            1 -> animationInAction.godTranslaion11A(speaker)
-            2 -> animationInAction.godTranslation20(speaker)
-            3 -> animationInAction.godTranslaion30(arr, counterStep)
-            4 -> when (counterStep) {
-                12 -> animationInAction.godTranslaion40A(speaker)
-                else -> animationInAction.godTranslaion40(speaker)
-
-
-            }
-            5 -> animationInAction.godTranslaion50(arr, counterStep)
-            6 -> animationInAction.godTranslaion60A(speaker)
-        }
-    }
-
-    private fun operateMan(speaker: Speaker) {
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val size = arr.size
-
-
-        when (size) {
-            1 -> animationInAction.manTranslation10(speaker)
-            2 -> animationInAction.manTranslation20A(speaker)
-            3 -> animationInAction.manTranslaion30(speaker)
-            4 -> animationInAction.manTranslaion40(speaker)
-            5 -> animationInAction.manTranslaion50(arr, counterStep)
-        }
-    }
 
     private fun updateTitleSituation() {
         title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
         counter_situation.text = "counter=$counterStep"
     }
 
-    /*  private fun operatAnimation() {
 
-         var arr1= arrayListOf<Int>()
-          arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-         if (arr1.contains(counterStep)) {
-             when (arr.size) {
-                 *//*1 -> animationInAction.manMove20(speaker)
+    /*   private fun operateGoddy(speaker: Speaker) {
+          val st = speaker.taking
+          val arr = st.split("\n")
+          val size = arr.size
+
+          when (size) {
+              1 -> animationInAction.godTranslaion11A(speaker)
+              2 -> animationInAction.godTranslation20(speaker)
+              3 -> animationInAction.godTranslaion30(arr, counterStep)
+              4 -> when (counterStep) {
+                  12 -> animationInAction.godTranslaion40A(speaker)
+                  else -> animationInAction.godTranslaion40(speaker)
+
+
+              }
+              5 -> animationInAction.godTranslaion50(arr, counterStep)
+              6 -> animationInAction.godTranslaion60A(speaker)
+          }
+      }
+
+      private fun operateMan(speaker: Speaker) {
+          val st = speaker.taking
+          val arr = st.split("\n")
+          val size = arr.size
+
+
+          when (size) {
+              1 -> animationInAction.manTranslation10(speaker)
+              2 -> animationInAction.manTranslation20A(speaker)
+              3 -> animationInAction.manTranslaion30(speaker)
+              4 -> animationInAction.manTranslaion40(speaker)
+              5 -> animationInAction.manTranslaion50(arr, counterStep)
+          }
+      }
+
+       private fun operatAnimation() {
+
+           var arr1= arrayListOf<Int>()
+            arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+           if (arr1.contains(counterStep)) {
+               when (arr.size) {
+                   *//*1 -> animationInAction.manMove20(speaker)
                 2, 4, 6, 8 -> animationInAction.godMove11A(speaker)
                 3 -> animationInAction.manStatic50(2, speaker)
                 5 -> animationInAction.manStatic40(2, speaker)

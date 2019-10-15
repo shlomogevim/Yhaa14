@@ -78,6 +78,14 @@ object Util {
             .animate(textView1)
             .scale(0f, 1f)
             .duration(dur)
+            .start()
+    }
+    fun scale12(textView1: TextView,dur: Long) {
+        ViewAnimator
+            .animate(textView1)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView1)
             .swing()
             .start()
     }
@@ -147,6 +155,13 @@ object Util {
             .swing()
             .start()
     }
+    fun scale33(
+        textView1: TextView, textView2: TextView, textView3: TextView,dur: Long
+    ) {
+        rotateAndMove(1, textView1, dur)
+        rotateAndMove(2, textView2, dur)
+        rotateAndMove(3, textView3, dur)
+    }
 
     fun scale40(
         textView1: TextView, textView2: TextView, textView3: TextView,
@@ -203,14 +218,25 @@ object Util {
             .start()
     }
 
+    fun scale13(
+        textView1: TextView,dur: Long
+    ) {
+        rotateAndMove(1, textView1, dur)
+    }
+    fun scale23(textView1: TextView, textView2: TextView,dur: Long
+    ) {
+        rotateAndMove(1, textView1, dur)
+        rotateAndMove(2, textView2, dur)
+    }
+
     fun scale43(
         textView1: TextView, textView2: TextView, textView3: TextView, textView4: TextView,
         dur: Long
     ) {
-        rotateAndMove(1, textView1, 2000)
-        rotateAndMove(2, textView2, 2000)
-        rotateAndMove(3, textView3, 2000)
-        rotateAndMove(4, textView4, 2000)
+        rotateAndMove(1, textView1, dur)
+        rotateAndMove(2, textView2, dur)
+        rotateAndMove(3, textView3, dur)
+        rotateAndMove(4, textView4, dur)
     }
 
     fun scale50(
@@ -295,11 +321,11 @@ object Util {
         textView5: TextView, dur: Long
     ) {
 
-        rotateAndMove(1, textView1, 2000)
-        rotateAndMove(2, textView2, 2000)
-        rotateAndMove(3, textView3, 2000)
-        rotateAndMove(4, textView4, 2000)
-        rotateAndMove(5, textView5, 2000)
+        rotateAndMove(1, textView1, dur)
+        rotateAndMove(2, textView2, dur)
+        rotateAndMove(3, textView3, dur)
+        rotateAndMove(4, textView4, dur)
+        rotateAndMove(5, textView5, dur)
     }
 
     fun scale60(
@@ -388,12 +414,12 @@ object Util {
         textView5: TextView, textView6: TextView, dur: Long
     ) {
 
-        rotateAndMove(1, textView1, 2000)
-        rotateAndMove(2, textView2, 2000)
-        rotateAndMove(3, textView3, 2000)
-        rotateAndMove(4, textView4, 2000)
-        rotateAndMove(5, textView5, 2000)
-        rotateAndMove(6, textView6, 2000)
+        rotateAndMove(1, textView1, dur)
+        rotateAndMove(2, textView2, dur)
+        rotateAndMove(3, textView3, dur)
+        rotateAndMove(4, textView4, dur)
+        rotateAndMove(5, textView5, dur)
+        rotateAndMove(6, textView6, dur)
     }
 
     fun rotateAndMove(ind: Int, textView: TextView, dur: Long) {
