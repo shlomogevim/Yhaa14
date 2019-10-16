@@ -13,8 +13,6 @@ object StyleAnim {
             speaker1 = updateManStyle(counter, speaker)
 
         }
-
-
         return speaker1
     }
 
@@ -22,12 +20,14 @@ object StyleAnim {
     private fun updateGodStyle(counter: Int, speaker: Speaker): Speaker {
         when (counter) {
 
+            2 -> makeStyle(speaker, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20)
+            4 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            6 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            8 -> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+            10 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
             12 -> makeStyle(speaker, "none", "#6ff9ff", 34f, 1, 10, 5, 10, 0)
             14 -> makeStyle(speaker, "none", "#6ff9ff", 22f, 1, 10, 5, 10, 0)
         }
-
-
-
         return speaker
     }
 
@@ -35,13 +35,17 @@ object StyleAnim {
     private fun updateManStyle(counter: Int, speaker: Speaker): Speaker {
         when (counter) {
 
+            1 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
+            3 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
+            5 -> makeStyle(speaker, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+            7 -> makeStyle(speaker, "#000000", "#bdbdbd", 30f, 1, 30, 0, 30, 0)
+            9 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
+            11 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 5)
             13 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
         }
-
-
-
         return speaker
     }
+
 
     fun makeStyle(
         speaker: Speaker,
@@ -66,131 +70,131 @@ object StyleAnim {
     }
 
 
-    fun updateSpeaker1(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorText = "#bdbdbd"
-            colorBack = "#000000"
-            sizeText = 20f
-            styleText = 0
-            paddingLeft = 10
-            paddingTop = 0
-            paddingRight = 10
-            paddingButton = 0
-        }
-        return speaker
-    }
+    /* fun updateSpeaker1(speaker: Speaker): Speaker {
+         with(speaker) {
+             colorText = "#bdbdbd"
+             colorBack = "#000000"
+             sizeText = 20f
+             styleText = 0
+             paddingLeft = 10
+             paddingTop = 0
+             paddingRight = 10
+             paddingButton = 0
+         }
+         return speaker
+     }*/
 
-    fun updateSpeaker2(speaker: Speaker): Speaker {
-        speaker.colorText = "#44000D"
-        speaker.sizeText = 50f
-        speaker.styleText = 1
-        speaker.paddingTop = 20
-        speaker.paddingButton = 20
-        return speaker
-    }
+    /* fun updateSpeaker2(speaker: Speaker): Speaker {
+         speaker.colorText = "#44000D"
+         speaker.sizeText = 50f
+         speaker.styleText = 1
+         speaker.paddingTop = 20
+         speaker.paddingButton = 20
+         return speaker
+     }*/
 
-    fun updateSpeaker4(speaker: Speaker): Speaker {
-        speaker.colorText = "#f9a825"
-        speaker.sizeText = 140f
-        speaker.styleText = 1
-        speaker.paddingTop = 80
-        return speaker
-    }
+    /* fun updateSpeaker4(speaker: Speaker): Speaker {
+         speaker.colorText = "#f9a825"
+         speaker.sizeText = 140f
+         speaker.styleText = 1
+         speaker.paddingTop = 80
+         return speaker
+     }*/
 
-    fun updateSpeaker5(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorText = "#e91e63"
-            colorBack = "#ffebee"
-            sizeText = 35f
-            styleText = 1
-            paddingLeft = 80
-            paddingTop = 0
-            paddingRight = 80
-            paddingButton = 0
-        }
-        return speaker
-    }
+    /*  fun updateSpeaker5(speaker: Speaker): Speaker {
+          with(speaker) {
+              colorText = "#e91e63"
+              colorBack = "#ffebee"
+              sizeText = 35f
+              styleText = 1
+              paddingLeft = 80
+              paddingTop = 0
+              paddingRight = 80
+              paddingButton = 0
+          }
+          return speaker
+      }*/
 
-    fun updateSpeaker7(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorText = "#bdbdbd"
-            colorBack = "#000000"
-            sizeText = 30f
-            styleText = 0
-            paddingLeft = 30
-            paddingTop = 0
-            paddingRight = 30
-            paddingButton = 0
-        }
-        return speaker
-    }
+    /* fun updateSpeaker7(speaker: Speaker): Speaker {
+         with(speaker) {
+             colorText = "#bdbdbd"
+             colorBack = "#000000"
+             sizeText = 30f
+             styleText = 0
+             paddingLeft = 30
+             paddingTop = 0
+             paddingRight = 30
+             paddingButton = 0
+         }
+         return speaker
+     }*/
 
 
-    fun updateSpeaker8(speaker: Speaker): Speaker {
-        speaker.colorText = "#44000D"
-        speaker.sizeText = 40f
-        speaker.styleText = 1
-        speaker.paddingTop = 20
-        speaker.paddingButton = 20
-        return speaker
-    }
+    /* fun updateSpeaker8(speaker: Speaker): Speaker {
+         speaker.colorText = "#44000D"
+         speaker.sizeText = 40f
+         speaker.styleText = 1
+         speaker.paddingTop = 20
+         speaker.paddingButton = 20
+         return speaker
+     }*/
 
-    fun updateSpeaker10(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorBack = "#e3f2fd"
-            colorText = "#1e88e5"
-            sizeText = 28f
-            styleText = 1
-            paddingTop = 5
-            paddingButton = 0
-            paddingRight = 10
-            paddingLeft = 10
-        }
-        return speaker
-    }
+    /*  fun updateSpeaker10(speaker: Speaker): Speaker {
+          with(speaker) {
+              colorBack = "#e3f2fd"
+              colorText = "#1e88e5"
+              sizeText = 28f
+              styleText = 1
+              paddingTop = 5
+              paddingButton = 0
+              paddingRight = 10
+              paddingLeft = 10
+          }
+          return speaker
+      }*/
 
-    fun updateSpeaker11(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorBack = "#e3f2fd"
-            colorText = "#1e88e5"
-            sizeText = 28f
-            styleText = 1
-            paddingTop = 5
-            paddingButton = 0
-            paddingRight = 10
-            paddingLeft = 10
-        }
-        return speaker
-    }
+    /* fun updateSpeaker11(speaker: Speaker): Speaker {
+         with(speaker) {
+             colorBack = "#e3f2fd"
+             colorText = "#1e88e5"
+             sizeText = 28f
+             styleText = 1
+             paddingTop = 5
+             paddingButton = 0
+             paddingRight = 10
+             paddingLeft = 10
+         }
+         return speaker
+     }*/
 
-    fun updateSpeaker12(speaker: Speaker): Speaker {
-        with(speaker) {
-            //colorBack = "#e3f2fd"
-            colorText = "#6ff9ff"
-            sizeText = 34f
-            styleText = 1
-            paddingTop = 5
-            paddingButton = 0
-            paddingRight = 10
-            paddingLeft = 10
-        }
-        return speaker
-    }
+    /* fun updateSpeaker12(speaker: Speaker): Speaker {
+         with(speaker) {
+             //colorBack = "#e3f2fd"
+             colorText = "#6ff9ff"
+             sizeText = 34f
+             styleText = 1
+             paddingTop = 5
+             paddingButton = 0
+             paddingRight = 10
+             paddingLeft = 10
+         }
+         return speaker
+     }*/
 
-    fun updateSpeaker13(speaker: Speaker): Speaker {
-        with(speaker) {
-            colorText = "#bdbdbd"
-            colorBack = "#000000"
-            sizeText = 20f
-            styleText = 0
-            paddingLeft = 10
-            paddingTop = 0
-            paddingRight = 10
-            paddingButton = 0
-        }
-        return speaker
-    }
-
+    /* fun updateSpeaker13(speaker: Speaker): Speaker {
+         with(speaker) {
+             colorText = "#bdbdbd"
+             colorBack = "#000000"
+             sizeText = 20f
+             styleText = 0
+             paddingLeft = 10
+             paddingTop = 0
+             paddingRight = 10
+             paddingButton = 0
+         }
+         return speaker
+     }
+ */
 
 /*  private fun updateSpeaker14(speaker: Speaker): Speaker {
       speaker.colorText = "#bdbdbd"

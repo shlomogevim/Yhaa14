@@ -70,7 +70,7 @@ class AnimationAction(context: Context, val view: View) {
     }
 
 
-   fun godSay10(ind: Int, speaker: Speaker, dur: Long) {
+    fun godSay10(ind: Int, speaker: Speaker, dur: Long) {
         initAllGogTextview()
         val st = speaker.taking
         val arr = st.split("\n")
@@ -301,28 +301,7 @@ class AnimationAction(context: Context, val view: View) {
 
 
 
-    fun manTranslation10(speaker: Speaker) {
-        initAllManTextview()
-        var st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[0], speaker)
-        ViewAnimator
-            .animate(textView10)
-            // .translationX(-wi / 2, 0f)
-            // .translationY(-hi, 0f)
-            .scale(0f, 1f)
-            .duration(2000)
-            .start()
-    }
 
-    fun manMove20(speaker: Speaker) {
-        initAllManTextview()
-        var st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[1], speaker)
-        val textView11 = styleTextView(man2, arr[0], speaker)
-        Util.move1(textView10, textView11)
-    }
 
     fun manStatic10(ind: Int, speaker: Speaker) {
         initAllManTextview()

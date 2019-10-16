@@ -56,46 +56,27 @@ class AnimationScreen : AppCompatActivity() {
                 generalOperation()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האין סוף להגיב", Toast.LENGTH_LONG).show()
-
             }
-
         }
-
     }
+
     private fun updateListSpeakerStyle() {
 
         for (ind in 0 until speakList.size) {
-            when (ind) {
-                /*1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
-                2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
-                4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
-                5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
-                7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
-                8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
-                10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])*/
-                // 12 -> speakerList[ind] = StyleAnim.updateSpeaker12(speakerList[ind])
-               // 12,13,14 -> speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
-            }
-            if (ind>11){
-                speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
-            }
+            speakList[ind] = StyleAnim.updateNewStyle(ind, speakList[ind])
         }
     }
 
-    private fun generalOperation() {
+      private fun generalOperation() {
         counterStep++
 
-        counterStep = 14                //################################
+        // counterStep = 16                //################################
 
         manMode = counterStep % 2 != 0
 
         updateTitleSituation()
 
         val speaker = speakList[counterStep]
-
-
-
-        // if (speakList[counterStep].config) {
 
         var st = speaker.taking
 
@@ -106,17 +87,14 @@ class AnimationScreen : AppCompatActivity() {
         } else {
             godAnimations(speaker, arr)
         }
-        /* } else {
-             regularAnimation()
-         }*/
-
         manMode = !manMode
     }
 
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
             1 -> when (counterStep) {
-                2, 4 -> animationInAction.godSay10(2, speaker, 4000)
+                2 -> animationInAction.godSay10(0, speaker, 4000)
+                 4 -> animationInAction.godSay10(2, speaker, 4000)
                 6 -> animationInAction.godSay10(1, speaker, 4000)
                 8 -> animationInAction.godSay10(2, speaker, 4000)
                 else -> animationInAction.godSay10(0, speaker, 2000)
@@ -149,12 +127,12 @@ class AnimationScreen : AppCompatActivity() {
     private fun manAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
             1 -> when (counterStep) {
-                13-> animationInAction.manSay10(2, speaker, 1000)
+                13 -> animationInAction.manSay10(2, speaker, 1000)
                 else -> animationInAction.manSay10(0, speaker, 2000)
 
             }
             2 -> when (counterStep) {
-                11-> animationInAction.manSay20(2, speaker, 1000)
+                11 -> animationInAction.manSay20(2, speaker, 1000)
                 else -> animationInAction.manSay20(0, speaker, 2000)
 
             }
@@ -213,7 +191,28 @@ class AnimationScreen : AppCompatActivity() {
         counter_situation.text = "counter=$counterStep"
     }
 
+    /*private fun updateListSpeakerStyle() {
 
+          for (ind in 0 until speakList.size) {
+              when (ind) {
+                  *//*1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
+                2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
+                4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
+                5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
+                7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
+                8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
+                10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])*//*
+                // 12 -> speakerList[ind] = StyleAnim.updateSpeaker12(speakerList[ind])
+               // 12,13,14 -> speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
+
+
+            }
+            if (ind>11){
+                speakList[ind] = StyleAnim.updateNewStyle(ind,speakList[ind])
+            }
+        }
+    }
+*/
     /*   private fun operateGoddy(speaker: Speaker) {
           val st = speaker.taking
           val arr = st.split("\n")
