@@ -41,6 +41,26 @@ class AnimationAction(context: Context, val view: View) {
     val shofarFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
 
 
+
+   /* fun manSay100(ind: Int, speaker: Speaker, dur: Long,kindAnim:Int) {
+        initAllManTextview()
+        val st = speaker.taking
+        // val arr = st.split("\n")
+        val textView10 = styleTextView(man1, st, speaker,kindAnim)
+        val listOfTextview =
+            arrayListOf(textView10)
+        when (kindAnim) {
+            0 -> Util.scale10A(listOfTextview,dur)
+            1 -> Util.scale11A(listOfTextview,dur)
+            2 -> Util.scale12A(listOfTextview,dur)
+            3 -> Util.scale13A(listOfTextview,dur)
+
+        }
+        fadeDownAllGod(dur)
+    }*/
+
+
+
     private fun styleTextView(tv: TextView, st: String, speaker: Speaker): TextView {
 
         var textView = tv
@@ -121,6 +141,8 @@ class AnimationAction(context: Context, val view: View) {
         }
         fadeDownAllGod(dur)
     }
+
+
     fun godSay20(ind: Int, speaker: Speaker, dur: Long) {
         initAllGogTextview()
         val st = speaker.taking
@@ -254,11 +276,11 @@ class AnimationAction(context: Context, val view: View) {
         initAllManTextview()
         val st = speaker.taking
         val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[4], speaker)
-        val textView11 = styleTextView(man2, arr[3], speaker)
+        val textView10 = styleTextView(man5, arr[0], speaker)
+        val textView11 = styleTextView(man4, arr[1], speaker)
         val textView12 = styleTextView(man3, arr[2], speaker)
-        val textView13 = styleTextView(man4, arr[1], speaker)
-        val textView14 = styleTextView(man5, arr[0], speaker)
+        val textView13 = styleTextView(man2, arr[3], speaker)
+        val textView14 = styleTextView(man1, arr[4], speaker)
         val listOfTextview =
             arrayListOf(textView10, textView11, textView12, textView13, textView14)
         when (ind) {

@@ -75,7 +75,6 @@ class AnimationScreen : AppCompatActivity() {
             counterStep = Page.CURRENT_COUNTER
         }
 
-        // counterStep = 2              //################################
 
         manMode = counterStep % 2 != 0
 
@@ -95,8 +94,10 @@ class AnimationScreen : AppCompatActivity() {
         } else {
             godAnimations(speaker, arr)
         }
-        manMode = !manMode
+        //manMode = !manMode
     }
+
+
 
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
@@ -106,20 +107,24 @@ class AnimationScreen : AppCompatActivity() {
                 6 -> animationInAction.godSay10(1, speaker, 4000)
                 8 -> animationInAction.godSay10(4, speaker, 4000)
                 18 -> animationInAction.godSay10(4, speaker, 4000)
+                28,38,44,52,56,60 -> animationInAction.godSay10(4, speaker, 4000)
                 else -> animationInAction.godSay10(0, speaker, 2000)
             }
             2 -> when (counterStep) {
                 12 -> animationInAction.godSay20(1, speaker, 4000)
+                32 -> animationInAction.godSay20(1, speaker, 2000)
 
                 else -> animationInAction.godSay20(0, speaker, 2000)
             }
             3 -> when (counterStep) {
                 12 -> animationInAction.godSay30(1, speaker, 4000)
                 26 -> animationInAction.godSay30(0, speaker, 4000)
+                40 -> animationInAction.godSay30(1, speaker, 4000)
                 else -> animationInAction.godSay30(0, speaker, 2000)
             }
             4 -> when (counterStep) {
                 10 -> animationInAction.godSay40(1, speaker, 1000)
+                42 -> animationInAction.godSay40(1, speaker, 1000)
 
                 // -> animationInAction.godSay40(0, speaker, 4000)
                 else -> animationInAction.godSay40(0, speaker, 2000)
@@ -140,6 +145,8 @@ class AnimationScreen : AppCompatActivity() {
             1 -> when (counterStep) {
                 13 -> animationInAction.manSay10(2, speaker, 1000)
                 25 -> animationInAction.manSay10(3, speaker, 4000)
+                49 -> animationInAction.manSay10(0, speaker, 4000)
+                55 -> animationInAction.manSay10(3, speaker, 2000)
                 else -> animationInAction.manSay10(0, speaker, 2000)
 
             }
@@ -149,12 +156,18 @@ class AnimationScreen : AppCompatActivity() {
                 17 -> animationInAction.manSay20(3, speaker, 2500)
                 23 -> animationInAction.manSay20(2, speaker, 2500)
                 25 -> animationInAction.manSay20(3, speaker, 3500)
+                37 -> animationInAction.manSay20(3, speaker, 2500)
+                59 -> animationInAction.manSay20(1, speaker, 2000)
+
                 else -> animationInAction.manSay20(0, speaker, 2000)
 
             }
             3 -> when (counterStep) {
                 5 -> animationInAction.manSay30(2, speaker, 1000)
                 9 -> animationInAction.manSay30(2, speaker, 1000)
+                39 -> animationInAction.manSay30(3, speaker, 1500)
+                41 -> animationInAction.manSay30(1, speaker, 1500)
+                47 -> animationInAction.manSay30(3, speaker, 1500)
                 else -> animationInAction.manSay30(0, speaker, 2000)
 
             }
@@ -164,6 +177,8 @@ class AnimationScreen : AppCompatActivity() {
             }
             5 -> when (counterStep) {
                 3 -> animationInAction.manSay50(3, speaker, 2000)
+                27 -> animationInAction.manSay50(2, speaker, 1000)
+                43 -> animationInAction.manSay50(3, speaker, 1000)
                 else -> animationInAction.manSay50(0, speaker, 2000)
             }
             6 -> when (counterStep) {

@@ -21,13 +21,35 @@ object StyleAnim {
             100 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
             101 -> makeStyle(speaker, "none", "#1e88e5", 45f, 1, 10, 20, 10, 20)
             110 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            111 -> makeStyle(speaker, "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
+            112 -> makeStyle(speaker, "none", "#f9a825", 30f, 1, 10, 80, 10, 20)
             120-> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
             130 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
             140 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
             141 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+        }
+    }
+
+
+    private fun getManContant(styleVersion: Int, speaker: Speaker) {
+        when (styleVersion) {
+            100 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+            110 -> makeStyle(speaker, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+            120 -> makeStyle(speaker, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+            130 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+            131 -> makeStyle(speaker, "none", "#ffffff", 30f, 1, 10, 5, 10, 5)
+            140 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            150 -> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+            151 -> makeStyle(speaker, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
+            152 -> makeStyle(speaker, "none", "#ffffff", 28f, 1, 10, 20, 10, 20)
+            153 -> makeStyle(speaker, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
+            160 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
+            170 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+            171 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
 
         }
     }
+
 
     private fun updateGodStyle(counter: Int, speaker: Speaker): Speaker {
         when (counter) {
@@ -45,26 +67,25 @@ object StyleAnim {
             22 -> getGodContant(120, speaker)
             24 -> getGodContant(100, speaker)
             26 -> getGodContant(120, speaker)
+            28 -> getGodContant(100, speaker)
+            30 -> getGodContant(120, speaker)
+            32 -> getGodContant(100, speaker)
+            34 -> getGodContant(140, speaker)
+            36 -> getGodContant(130, speaker)
+            38 -> getGodContant(111, speaker)
+            40 -> getGodContant(120, speaker)
+            42 -> getGodContant(120, speaker)
+            44 -> getGodContant(111, speaker)
+            46 -> getGodContant(130, speaker)
+            48 -> getGodContant(100, speaker)
+            50 -> getGodContant(130, speaker)
+            52 -> getGodContant(100, speaker)
+            54 -> getGodContant(111, speaker)
+            56 -> getGodContant(110, speaker)
+            58 -> getGodContant(100, speaker)
+            60 -> getGodContant(110, speaker)
         }
         return speaker
-    }
-
-    private fun getManContant(styleVersion: Int, speaker: Speaker) {
-        when (styleVersion) {
-            100 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
-            110 -> makeStyle(speaker, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
-            120 -> makeStyle(speaker, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
-            130 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
-            140 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
-            150 -> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
-            151 -> makeStyle(speaker, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
-            152 -> makeStyle(speaker, "#e3f2fd", "#44000D", 28f, 1, 10, 20, 10, 20)
-            153 -> makeStyle(speaker, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
-            160 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
-            170 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
-            171 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
-
-        }
     }
 
     private fun updateManStyle(counter: Int, speaker: Speaker): Speaker {
@@ -84,6 +105,22 @@ object StyleAnim {
             23 -> getManContant(150, speaker)
             25 -> getManContant(151, speaker)
             27 -> getManContant(151, speaker)
+            29 -> getManContant(170, speaker)
+            31 -> getManContant(170, speaker)
+            33 -> getManContant(110, speaker)
+            35 -> getManContant(160, speaker)
+            37 -> getManContant(100, speaker)
+            39 -> getManContant(110, speaker)
+            41 -> getManContant(152, speaker)
+            43 -> getManContant(120, speaker)
+            45 -> getManContant(152, speaker)
+            47 -> getManContant(131, speaker)
+            49 -> getManContant(170, speaker)
+            51 -> getManContant(131, speaker)
+            53 -> getManContant(131, speaker)
+            55 -> getManContant(110, speaker)
+            57 -> getManContant(170, speaker)
+            59 -> getManContant(170, speaker)
 
         }
         return speaker
