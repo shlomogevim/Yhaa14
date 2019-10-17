@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_3.AnimationAction
+import com.example.yhaa14.utils.Page
 import com.example.yhaa14.utils.Speaker
 import kotlinx.android.synthetic.main.activity_animation_screen.*
 import kotlinx.android.synthetic.main.current_position_layout.*
@@ -67,14 +68,17 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
-      private fun generalOperation() {
+    private fun generalOperation() {
         counterStep++
 
-        // counterStep = 16                //################################
+        if (Page.CURRENT_COUNTER != 0) {
+            counterStep = Page.CURRENT_COUNTER
+        }
+
+        // counterStep = 2              //################################
 
         manMode = counterStep % 2 != 0
 
-        updateTitleSituation()
 
         val speaker = speakList[counterStep]
 
@@ -82,6 +86,10 @@ class AnimationScreen : AppCompatActivity() {
 
 
         val arr = st.split("\n")
+
+        updateTitleSituation(arr.size)
+
+
         if (speaker.whoSpeake == "man") {
             manAnimations(speaker, arr)
         } else {
@@ -94,17 +102,20 @@ class AnimationScreen : AppCompatActivity() {
         when (arr.size) {
             1 -> when (counterStep) {
                 2 -> animationInAction.godSay10(0, speaker, 4000)
-                 4 -> animationInAction.godSay10(2, speaker, 4000)
+                4 -> animationInAction.godSay10(0, speaker, 3000)
                 6 -> animationInAction.godSay10(1, speaker, 4000)
-                8 -> animationInAction.godSay10(2, speaker, 4000)
+                8 -> animationInAction.godSay10(4, speaker, 4000)
+                18 -> animationInAction.godSay10(4, speaker, 4000)
                 else -> animationInAction.godSay10(0, speaker, 2000)
             }
             2 -> when (counterStep) {
-                // -> animationInAction.godSay20(0, speaker, 4000)
+                12 -> animationInAction.godSay20(1, speaker, 4000)
+
                 else -> animationInAction.godSay20(0, speaker, 2000)
             }
             3 -> when (counterStep) {
                 12 -> animationInAction.godSay30(1, speaker, 4000)
+                26 -> animationInAction.godSay30(0, speaker, 4000)
                 else -> animationInAction.godSay30(0, speaker, 2000)
             }
             4 -> when (counterStep) {
@@ -128,21 +139,26 @@ class AnimationScreen : AppCompatActivity() {
         when (arr.size) {
             1 -> when (counterStep) {
                 13 -> animationInAction.manSay10(2, speaker, 1000)
+                25 -> animationInAction.manSay10(3, speaker, 4000)
                 else -> animationInAction.manSay10(0, speaker, 2000)
 
             }
             2 -> when (counterStep) {
-                11 -> animationInAction.manSay20(2, speaker, 1000)
+                11 -> animationInAction.manSay20(3, speaker, 4000)
+                15 -> animationInAction.manSay20(3, speaker, 2500)
+                17 -> animationInAction.manSay20(3, speaker, 2500)
+                23 -> animationInAction.manSay20(2, speaker, 2500)
+                25 -> animationInAction.manSay20(3, speaker, 3500)
                 else -> animationInAction.manSay20(0, speaker, 2000)
 
             }
             3 -> when (counterStep) {
+                5 -> animationInAction.manSay30(2, speaker, 1000)
                 9 -> animationInAction.manSay30(2, speaker, 1000)
                 else -> animationInAction.manSay30(0, speaker, 2000)
 
             }
             4 -> when (counterStep) {
-                5 -> animationInAction.manSay40(3, speaker, 1000)
                 7 -> animationInAction.manSay40(1, speaker, 1000)
                 else -> animationInAction.manSay40(0, speaker, 2000)
             }
@@ -186,9 +202,11 @@ class AnimationScreen : AppCompatActivity() {
     }
 
 
-    private fun updateTitleSituation() {
-        title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
-        counter_situation.text = "counter=$counterStep"
+    private fun updateTitleSituation(lines: Int) {
+        //title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
+        title_situation.text = "LinesNum->$lines"
+        //counter_situation.text = "counter=$counterStep"
+        counter_situation.text = counterStep.toString()
     }
 
     /*private fun updateListSpeakerStyle() {

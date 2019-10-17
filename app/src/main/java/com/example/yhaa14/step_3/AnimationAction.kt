@@ -38,6 +38,7 @@ class AnimationAction(context: Context, val view: View) {
     val shulikFont = Typeface.createFromAsset(context.assets, "fonts/shmulik.ttf")
     val stamFont = Typeface.createFromAsset(context.assets, "fonts/stam.ttf")
     val drugFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
+    val shofarFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
 
 
     private fun styleTextView(tv: TextView, st: String, speaker: Speaker): TextView {
@@ -61,6 +62,7 @@ class AnimationAction(context: Context, val view: View) {
                 3 -> textView.typeface = shulikFont
                 4 -> textView.typeface = stamFont
                 5 -> textView.typeface = drugFont
+                6 -> textView.typeface = shofarFont
             }
             textView.setPadding(paddingLeft, paddingTop, paddingRight, paddingButton)
         }
@@ -75,6 +77,7 @@ class AnimationAction(context: Context, val view: View) {
         val st = speaker.taking
         val arr = st.split("\n")
         val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView10A = styleTextView(god1A, arr[0], speaker)
         val listOfTextview =
             arrayListOf(textView10)
         when (ind) {
@@ -82,10 +85,26 @@ class AnimationAction(context: Context, val view: View) {
             1 -> Util.scale11A(listOfTextview,dur)
             2 -> Util.scale12A(listOfTextview,dur)
             3 -> Util.scale13A(listOfTextview,dur)
+            4->Util.move1god(textView10,textView10A,dur)
 
         }
         fadeDownAllMan(dur)
     }
+/*
+} fun godStatic10(ind: Int, speaker: Speaker) {
+    initAllGogTextview()
+    val st = speaker.taking
+    val arr = st.split("\n")
+    val textView10 = styleTextView(god1, arr[0], speaker)
+    when (ind) {
+        0 -> Util.scale10(textView10, 1000)
+        1 -> Util.scale11(textView10, 1000)
+        2 -> {
+            val textView10A = styleTextView(god1A, arr[0], speaker)
+            Util.move1god(textView10, textView10A, 1000)
+        }
+    }
+}*/
     fun manSay10(ind: Int, speaker: Speaker, dur: Long) {
         initAllManTextview()
         val st = speaker.taking
@@ -106,8 +125,8 @@ class AnimationAction(context: Context, val view: View) {
         initAllGogTextview()
         val st = speaker.taking
         val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[1], speaker)
-        val textView11 = styleTextView(god2, arr[0], speaker)
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
         val listOfTextview =
             arrayListOf(textView10, textView11)
         when (ind) {
@@ -122,8 +141,8 @@ class AnimationAction(context: Context, val view: View) {
         initAllManTextview()
         val st = speaker.taking
         val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[1], speaker)
-        val textView11 = styleTextView(man2, arr[0], speaker)
+        val textView10 = styleTextView(man2, arr[0], speaker)
+        val textView11 = styleTextView(man1, arr[1], speaker)
         val listOfTextview =
             arrayListOf(textView10, textView11)
         when (ind) {
@@ -156,9 +175,9 @@ class AnimationAction(context: Context, val view: View) {
         initAllManTextview()
         val st = speaker.taking
         val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[2], speaker)
+        val textView10 = styleTextView(man3, arr[0], speaker)
         val textView11 = styleTextView(man2, arr[1], speaker)
-        val textView12 = styleTextView(man3, arr[0], speaker)
+        val textView12 = styleTextView(man1, arr[2], speaker)
         val listOfTextview =
             arrayListOf(textView10, textView11, textView12)
         when (ind) {
@@ -193,10 +212,10 @@ class AnimationAction(context: Context, val view: View) {
         initAllManTextview()
         val st = speaker.taking
         val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[3], speaker)
-        val textView11 = styleTextView(man2, arr[2], speaker)
-        val textView12 = styleTextView(man3, arr[1], speaker)
-        val textView13 = styleTextView(man4, arr[0], speaker)
+        val textView10 = styleTextView(man4, arr[0], speaker)
+        val textView11 = styleTextView(man3, arr[1], speaker)
+        val textView12 = styleTextView(man2, arr[2], speaker)
+        val textView13 = styleTextView(man1, arr[3], speaker)
         val listOfTextview =
             arrayListOf(textView10, textView11, textView12, textView13)
         when (ind) {

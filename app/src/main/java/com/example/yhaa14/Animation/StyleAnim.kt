@@ -16,32 +16,75 @@ object StyleAnim {
         return speaker1
     }
 
+    private fun getGodContant(styleVersion: Int, speaker: Speaker) {
+        when (styleVersion) {
+            100 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+            101 -> makeStyle(speaker, "none", "#1e88e5", 45f, 1, 10, 20, 10, 20)
+            110 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            120-> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+            130 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
+            140 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+            141 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+
+        }
+    }
 
     private fun updateGodStyle(counter: Int, speaker: Speaker): Speaker {
         when (counter) {
 
-            2 -> makeStyle(speaker, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20)
+            2 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
             4 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
             6 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
             8 -> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
             10 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
-            12 -> makeStyle(speaker, "none", "#6ff9ff", 34f, 1, 10, 5, 10, 0)
-            14 -> makeStyle(speaker, "none", "#6ff9ff", 22f, 1, 10, 5, 10, 0)
+            12 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+            14 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+            16 -> getGodContant(101, speaker)
+            18 -> getGodContant(110, speaker)
+            20 -> getGodContant(120, speaker)
+            22 -> getGodContant(120, speaker)
+            24 -> getGodContant(100, speaker)
+            26 -> getGodContant(120, speaker)
         }
         return speaker
     }
 
+    private fun getManContant(styleVersion: Int, speaker: Speaker) {
+        when (styleVersion) {
+            100 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+            110 -> makeStyle(speaker, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+            120 -> makeStyle(speaker, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+            130 -> makeStyle(speaker, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+            140 -> makeStyle(speaker, "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+            150 -> makeStyle(speaker, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+            151 -> makeStyle(speaker, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
+            152 -> makeStyle(speaker, "#e3f2fd", "#44000D", 28f, 1, 10, 20, 10, 20)
+            153 -> makeStyle(speaker, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
+            160 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
+            170 -> makeStyle(speaker, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+            171 -> makeStyle(speaker, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+
+        }
+    }
 
     private fun updateManStyle(counter: Int, speaker: Speaker): Speaker {
         when (counter) {
 
-            1 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
-            3 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
+            1 -> makeStyle(speaker, "#000000", "#bdbdbd", 25f, 3, 10, 10, 10, 10)
+            3 -> makeStyle(speaker, "#000000", "#bdbdbd", 30f, 0, 40, 0, 40, 0)
             5 -> makeStyle(speaker, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
-            7 -> makeStyle(speaker, "#000000", "#bdbdbd", 30f, 1, 30, 0, 30, 0)
-            9 -> makeStyle(speaker, "#000000", "#bdbdbd", 20f, 0, 10, 0, 10, 0)
-            11 -> makeStyle(speaker, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 5)
+            7 -> makeStyle(speaker, "#000000", "#bdbdbd", 27f, 1, 30, 30, 30, 0)
+            9 -> makeStyle(speaker, "#000000", "#bdbdbd", 26f, 0, 10, 0, 10, 0)
+            11 -> makeStyle(speaker, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
             13 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+            15 -> makeStyle(speaker, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+            17 -> getManContant(110, speaker)
+            19 -> getManContant(151, speaker)
+            21 -> getManContant(170, speaker)
+            23 -> getManContant(150, speaker)
+            25 -> getManContant(151, speaker)
+            27 -> getManContant(151, speaker)
+
         }
         return speaker
     }

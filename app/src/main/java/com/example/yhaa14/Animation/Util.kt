@@ -171,17 +171,8 @@ object Util {
             .scale(0f, 1f)
             .duration(dur)
             .thenAnimate(arr[2])
-            .scale(0f, 1f)
-            .duration(dur)
-            .onStop {
-                ViewAnimator
-                    .animate(arr[2])
-                    .scale(1f, 0f, 1f)
-                    .repeatCount(1)
-                    .duration(1000)
-                    .start()
-            }
-            .duration(dur)
+            .scale(0f, 1f,0f,1f)
+            .duration(dur*2)
             .start()
     }
     fun scale33A(arr:List<TextView>,dur:Long){

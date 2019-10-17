@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <TextView
         android:id="@+id/title_situation"
         android:layout_width="wrap_content"
@@ -10,6 +11,8 @@
         android:layout_marginTop="2dp"
         android:elevation="1dp"
         android:text="Man=true round=15"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,9 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:elevation="1dp"
         android:text="counter=0"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_situation" />
