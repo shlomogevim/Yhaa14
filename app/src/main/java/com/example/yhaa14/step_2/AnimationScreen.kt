@@ -1,5 +1,6 @@
 package com.example.yhaa14.step_2
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,39 +28,75 @@ class AnimationScreen : AppCompatActivity() {
     private lateinit var speakList: ArrayList<Speaker>
 
     private var manMode = true
-    private var counterStep = 0
+    private var counterStep = 1
     private var stringStep = ""
 
     lateinit var animationInAction: AnimationAction
+
+    val PREFS_NAME="myPrefs"
+    val CURRENT_SPEAKER="currentSpeaker"
+     lateinit var myPref:SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation_screen)
 
+        myPref=getSharedPreferences(PREFS_NAME,0)
+        editor=myPref.edit()
+
+
+//        editor.putInt(CURRENT_SPEAKER,0)
+//        editor.commit()
+
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
         counterStep = intent.getIntExtra(COUNTER, 0)
         updateListSpeakerStyle()
-        if (counterStep < 0) counterStep = 0
+
+
 
         animationInAction = AnimationAction(this, mainLayout)
+
+
+
         generalOperation()
+
         goddy.setOnClickListener {
             if (!manMode) {
-                generalOperation()
+               addToCounter()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האדם לדבר", Toast.LENGTH_LONG).show()
             }
         }
 
         man.setOnClickListener {
-            //operateMan(manList[round])
             if (manMode) {
-                generalOperation()
+                addToCounter()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האין סוף להגיב", Toast.LENGTH_LONG).show()
             }
         }
+        nextButton.setOnClickListener {
+            addToCounter()
+        }
+        previousButton.setOnClickListener {
+            counterStep--
+            if (counterStep<1) counterStep=1
+
+            editor.putInt(CURRENT_SPEAKER,counterStep)
+            editor.commit()
+
+            generalOperation()
+        }
     }
+    private fun addToCounter(){
+        counterStep++
+        editor.putInt(CURRENT_SPEAKER,counterStep)
+        editor.commit()
+        generalOperation()
+    }
+
+
 
     private fun updateListSpeakerStyle() {
 
@@ -68,22 +105,16 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
+
     private fun generalOperation() {
-        counterStep++
 
-        if (Page.CURRENT_COUNTER != 0) {
-            counterStep = Page.CURRENT_COUNTER
-        }
+        counterStep=myPref.getInt(CURRENT_SPEAKER,1)
+        if (counterStep < 1) counterStep = 1
 
-
-        manMode = counterStep % 2 != 0
-
+        manMode = counterStep % 2 == 0
 
         val speaker = speakList[counterStep]
-
         var st = speaker.taking
-
-
         val arr = st.split("\n")
 
         updateTitleSituation(arr.size)
@@ -94,7 +125,6 @@ class AnimationScreen : AppCompatActivity() {
         } else {
             godAnimations(speaker, arr)
         }
-        //manMode = !manMode
     }
 
 
