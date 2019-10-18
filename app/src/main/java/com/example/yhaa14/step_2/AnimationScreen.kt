@@ -104,6 +104,11 @@ class AnimationScreen : AppCompatActivity() {
         counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
         if (counterStep < 1) counterStep = 1
 
+        counterStep=1
+
+
+
+
         manMode = counterStep % 2 != 0
 
         val speaker = speakList[counterStep]
