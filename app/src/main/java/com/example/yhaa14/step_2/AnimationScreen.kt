@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_3.AnimationAction
-import com.example.yhaa14.utils.Page
 import com.example.yhaa14.utils.Speaker
+import com.example.yhaa14.utils.Talker
 import kotlinx.android.synthetic.main.activity_animation_screen.*
 import kotlinx.android.synthetic.main.current_position_layout.*
 import kotlinx.android.synthetic.main.god_layout.*
@@ -19,38 +19,38 @@ class AnimationScreen : AppCompatActivity() {
     companion object {
         const val COUNTER = "counter"
         const val SPEAKER = "speaker"
+        const val TALKER = "talker"
     }
 
-    private lateinit var orderList: ArrayList<String>
-    private lateinit var godList: ArrayList<String>
-    private lateinit var manList: ArrayList<String>
-
     private lateinit var speakList: ArrayList<Speaker>
+    private lateinit var talkList: ArrayList<Talker>
 
     private var manMode = true
     private var counterStep = 1
-    private var stringStep = ""
 
     lateinit var animationInAction: AnimationAction
 
-    val PREFS_NAME="myPrefs"
-    val CURRENT_SPEAKER="currentSpeaker"
-     lateinit var myPref:SharedPreferences
+    val PREFS_NAME = "myPrefs"
+    val CURRENT_SPEAKER = "currentSpeaker"
+    lateinit var myPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation_screen)
 
-        myPref=getSharedPreferences(PREFS_NAME,0)
-        editor=myPref.edit()
+        myPref = getSharedPreferences(PREFS_NAME, 0)
+        editor = myPref.edit()
 
 
 //        editor.putInt(CURRENT_SPEAKER,0)
 //        editor.commit()
 
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
-        counterStep = intent.getIntExtra(COUNTER, 0)
+        talkList = intent.getSerializableExtra(TALKER) as ArrayList<Talker>
+
+
+       // counterStep = intent.getIntExtra(COUNTER, 0)
         updateListSpeakerStyle()
 
 
@@ -63,7 +63,7 @@ class AnimationScreen : AppCompatActivity() {
 
         goddy.setOnClickListener {
             if (!manMode) {
-               addToCounter()
+                addToCounter()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האדם לדבר", Toast.LENGTH_LONG).show()
             }
@@ -81,21 +81,21 @@ class AnimationScreen : AppCompatActivity() {
         }
         previousButton.setOnClickListener {
             counterStep--
-            if (counterStep<1) counterStep=1
+            if (counterStep < 1) counterStep = 1
 
-            editor.putInt(CURRENT_SPEAKER,counterStep)
+            editor.putInt(CURRENT_SPEAKER, counterStep)
             editor.commit()
 
             generalOperation()
         }
     }
-    private fun addToCounter(){
+
+    private fun addToCounter() {
         counterStep++
-        editor.putInt(CURRENT_SPEAKER,counterStep)
+        editor.putInt(CURRENT_SPEAKER, counterStep)
         editor.commit()
         generalOperation()
     }
-
 
 
     private fun updateListSpeakerStyle() {
@@ -103,12 +103,16 @@ class AnimationScreen : AppCompatActivity() {
         for (ind in 0 until speakList.size) {
             speakList[ind] = StyleAnim.updateNewStyle(ind, speakList[ind])
         }
+
+        for (ind in 0 until talkList.size) {
+            talkList[ind] = StyleAnim.updateNewTalkerStyle(talkList[ind])
+        }
     }
 
 
     private fun generalOperation() {
 
-        counterStep=myPref.getInt(CURRENT_SPEAKER,1)
+        counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
         if (counterStep < 1) counterStep = 1
 
         manMode = counterStep % 2 == 0
@@ -117,7 +121,8 @@ class AnimationScreen : AppCompatActivity() {
         var st = speaker.taking
         val arr = st.split("\n")
 
-        updateTitleSituation(arr.size)
+        val talker=talkList[counterStep]
+        updateTitleTalkerSituation(talker)
 
 
         if (speaker.whoSpeake == "man") {
@@ -127,7 +132,14 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
+    private fun updateTitleTalkerSituation(talker: Talker) {
 
+        var st = talker.taking
+        val arr = st.split("\n")
+        val lines=arr.size
+        title_situation.text = "LinesNum->$lines"
+        counter_situation.text = counterStep.toString()
+    }
 
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
@@ -137,7 +149,7 @@ class AnimationScreen : AppCompatActivity() {
                 6 -> animationInAction.godSay10(1, speaker, 4000)
                 8 -> animationInAction.godSay10(4, speaker, 4000)
                 18 -> animationInAction.godSay10(4, speaker, 4000)
-                28,38,44,52,56,60 -> animationInAction.godSay10(4, speaker, 4000)
+                28, 38, 44, 52, 56, 60 -> animationInAction.godSay10(4, speaker, 4000)
                 else -> animationInAction.godSay10(0, speaker, 2000)
             }
             2 -> when (counterStep) {

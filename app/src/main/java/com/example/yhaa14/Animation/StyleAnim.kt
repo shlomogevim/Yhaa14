@@ -1,8 +1,55 @@
 package com.example.yhaa14.Animation
 
 import com.example.yhaa14.utils.Speaker
+import com.example.yhaa14.utils.Talker
 
 object StyleAnim {
+
+    fun updateNewTalkerStyle(talker: Talker): Talker {
+
+        var talker1 = Talker()
+
+        if (talker.whoSpeake == "god") {
+            talker1 = updateGodTalkStyle(talker)
+        } else {
+            talker1 = updateManTalkStyle(talker)
+        }
+
+        return talker1
+    }
+
+    private fun updateManTalkStyle(talker: Talker): Talker {
+        with(talker) {
+            when (counter) {
+                1 -> {
+                    styleNum = 100
+                    animNum=10
+                }
+                else -> {
+                    styleNum = 100
+                    animNum=10
+                }
+            }
+        }
+        return talker
+    }
+
+    private fun updateGodTalkStyle(talker: Talker): Talker {
+        with(talker) {
+            when (counter) {
+                1 -> {
+                    styleNum = 200
+                    animNum=20
+                }
+                else -> {
+                    styleNum = 200
+                    animNum=20
+                }
+            }
+        }
+        return talker
+    }
+
 
     fun updateNewStyle(counter: Int, speaker: Speaker): Speaker {
         var speaker1 = Speaker()

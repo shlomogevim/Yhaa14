@@ -8,17 +8,19 @@ import com.example.yhaa14.R
 import com.example.yhaa14.step_2.AnimationScreen
 import com.example.yhaa14.step_2.AnimationScreen.Companion.COUNTER
 import com.example.yhaa14.step_2.AnimationScreen.Companion.SPEAKER
+import com.example.yhaa14.step_2.AnimationScreen.Companion.TALKER
 import com.example.yhaa14.utils.Speaker
+import com.example.yhaa14.utils.Talker
 
 class MainActivity : AppCompatActivity() {
 
-
-    //val CURRENT_FILE = "text30.txt"
     val CURRENT_FILE = "text/text8.txt"
+
     val ADAM = "-אדם-"
     val GOD = "-אלוהים-"
 
     lateinit var speakerList: ArrayList<Speaker>
+    lateinit var talkerList: ArrayList<Talker>
     private var counter = 0
 
 
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         getData()
-       // updateListSpeakerStyle()
+        getTalkData()
         sendData()
     }
 
@@ -37,10 +39,65 @@ class MainActivity : AppCompatActivity() {
 
 
         intent1.putExtra(SPEAKER, speakerList)
-        intent1.putExtra(COUNTER, counter - 1)
+
+        intent1.putExtra(TALKER,talkerList)
+
+       // intent1.putExtra(COUNTER, counter - 1)
 
         startActivity(intent1)
     }
+    private fun getTalkData() {
+        var count = 0
+        var text = applicationContext.assets.open(CURRENT_FILE).bufferedReader().use {
+            it.readText()
+        }
+        text = text.replace("\r", "")
+        var list1 = text.split(ADAM)
+
+        speakerList = arrayListOf()
+        talkerList= arrayListOf()
+
+        var speaker = Speaker()
+        var talker=Talker()
+
+        speakerList.add(count, speaker)
+        talkerList.add(count,talker)
+
+        for (element in list1) {
+            if (element != "" && element.length > 25) {
+                var list2 = element.split(GOD)
+                val st1 = improveString(list2[0])
+                val st2 = improveString(list2[1])
+                count++
+
+                speaker = Speaker()
+                speaker.whoSpeake = "man"
+                speaker.taking = st1
+                speakerList.add(count, speaker)
+
+                talker = Talker()
+                talker.whoSpeake = "man"
+                talker.taking = st1
+                talker.counter=counter
+                talkerList.add(count,talker)
+
+                count++
+
+                speaker = Speaker()
+                speaker.whoSpeake = "god"
+                speaker.taking = st2
+                speakerList.add(count, speaker)
+
+                talker = Talker()
+                talker.whoSpeake = "god"
+                talker.taking = st2
+                talker.counter=counter
+                talkerList.add(count,talker)
+            }
+        }
+
+    }
+
 
     private fun getData() {
         var count = 0

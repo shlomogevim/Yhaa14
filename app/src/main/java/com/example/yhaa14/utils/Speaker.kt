@@ -15,8 +15,7 @@ data class Speaker (
      var paddingLeft:Int=0,
      var paddingTop:Int=0,
      var paddingRight:Int=0,
-     var paddingButton:Int=0,
-     var config:Boolean=false
+     var paddingButton:Int=0
 
 ):Serializable
 
