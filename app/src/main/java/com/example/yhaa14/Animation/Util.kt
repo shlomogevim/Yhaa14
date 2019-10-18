@@ -296,13 +296,13 @@ object Util {
     }
 
 
-    fun scale60A(arr:List<TextView>,dur:Long){
+    fun scale60A(arr: ArrayList<TextView?>, dur:Long){
         for (index in 0..5){
-            ttScale(arr[index],dur)
+            arr[index]?.let { ttScale(it,dur) }
         }
     }
 
-    fun scale61A(arr:List<TextView>,dur:Long){
+    fun scale61A(arr: ArrayList<TextView?>, dur:Long){
         ViewAnimator
             .animate(arr[0])
             .scale(0f, 1f)
@@ -324,7 +324,7 @@ object Util {
             .duration(dur)
             .start()
     }
-    fun scale62A(arr:List<TextView>,dur:Long) {
+    fun scale62A(arr: ArrayList<TextView?>, dur:Long) {
         ViewAnimator
             .animate(arr[0])
             .scale(0f, 1f)
@@ -353,9 +353,9 @@ object Util {
             .duration(dur)
             .start()
     }
-    fun scale63A(arr:List<TextView>,dur:Long){
+    fun scale63A(arr: ArrayList<TextView?>, dur:Long){
         for (index in 0..5){
-            rotateAndMove(index+1,arr[index],dur)
+            arr[index]?.let { rotateAndMove(index+1, it,dur) }
         }
     }
 

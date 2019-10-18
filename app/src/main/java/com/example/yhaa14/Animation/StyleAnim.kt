@@ -19,7 +19,7 @@ object StyleAnim {
     }
 
     private fun updateManTalkStyle(talker: Talker): Talker {
-        with(talker) {
+       /* with(talker) {
             when (counter) {
                 1 -> {
                     styleNum = 100
@@ -30,12 +30,12 @@ object StyleAnim {
                     animNum=10
                 }
             }
-        }
+        }*/
         return talker
     }
 
     private fun updateGodTalkStyle(talker: Talker): Talker {
-        with(talker) {
+        /*with(talker) {
             when (counter) {
                 1 -> {
                     styleNum = 200
@@ -46,7 +46,7 @@ object StyleAnim {
                     animNum=20
                 }
             }
-        }
+        }*/
         return talker
     }
 

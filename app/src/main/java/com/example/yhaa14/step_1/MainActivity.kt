@@ -3,10 +3,8 @@ package com.example.yhaa14.step_1
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_2.AnimationScreen
-import com.example.yhaa14.step_2.AnimationScreen.Companion.COUNTER
 import com.example.yhaa14.step_2.AnimationScreen.Companion.SPEAKER
 import com.example.yhaa14.step_2.AnimationScreen.Companion.TALKER
 import com.example.yhaa14.utils.Speaker
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent1)
     }
     private fun getTalkData() {
-        var count = 0
+        var countItem = 0
         var text = applicationContext.assets.open(CURRENT_FILE).bufferedReader().use {
             it.readText()
         }
@@ -60,39 +58,37 @@ class MainActivity : AppCompatActivity() {
         var speaker = Speaker()
         var talker=Talker()
 
-        speakerList.add(count, speaker)
-        talkerList.add(count,talker)
+        speakerList.add(countItem, speaker)
+        talkerList.add(countItem,talker)
 
         for (element in list1) {
             if (element != "" && element.length > 25) {
                 var list2 = element.split(GOD)
                 val st1 = improveString(list2[0])
                 val st2 = improveString(list2[1])
-                count++
+                countItem++
 
                 speaker = Speaker()
                 speaker.whoSpeake = "man"
                 speaker.taking = st1
-                speakerList.add(count, speaker)
+                speakerList.add(countItem, speaker)
 
                 talker = Talker()
                 talker.whoSpeake = "man"
                 talker.taking = st1
-                talker.counter=counter
-                talkerList.add(count,talker)
+                talkerList.add(talker)
 
-                count++
+                countItem++
 
                 speaker = Speaker()
                 speaker.whoSpeake = "god"
                 speaker.taking = st2
-                speakerList.add(count, speaker)
+                speakerList.add(countItem, speaker)
 
                 talker = Talker()
                 talker.whoSpeake = "god"
                 talker.taking = st2
-                talker.counter=counter
-                talkerList.add(count,talker)
+                talkerList.add(talker)
             }
         }
 

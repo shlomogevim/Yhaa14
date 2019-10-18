@@ -9,20 +9,31 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import com.example.yhaa14.Animation.Util
+import com.example.yhaa14.utils.Page
 import com.example.yhaa14.utils.Speaker
+import com.example.yhaa14.utils.StyleObject
+import com.example.yhaa14.utils.Talker
 import com.github.florent37.viewanimator.ViewAnimator
 import kotlinx.android.synthetic.main.god_layout.view.*
 import kotlinx.android.synthetic.main.man_layout.view.*
 
 
 class AnimationAction(context: Context, val view: View) {
+    var tv0: TextView? = null
+    var tv1: TextView? = null
+    var tv2: TextView? = null
+    var tv3: TextView? = null
+    var tv4: TextView? = null
+    var tv5: TextView? = null
 
+    val arrTextView = arrayOf(tv0, tv1, tv2, tv3, tv4, tv5)
+
+    var man0: TextView = view.manSpeaking0
     var man1: TextView = view.manSpeaking1
     var man2: TextView = view.manSpeaking2
     var man3: TextView = view.manSpeaking3
     var man4: TextView = view.manSpeaking4
     var man5: TextView = view.manSpeaking5
-    var man6: TextView = view.manSpeaking6
     var god1: TextView = view.godSpeaking1
     var god1A: TextView = view.godSpeaking1A
     var god2: TextView = view.godSpeaking2
@@ -41,26 +52,360 @@ class AnimationAction(context: Context, val view: View) {
     val shofarFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
 
 
+    fun manTalk(talker: Talker) {
+        initAllManTextview()
+        val animKind = talker.styleNum
+        val st = talker.taking
+        val arr = st.split("\n")
 
-   /* fun manSay100(ind: Int, speaker: Speaker, dur: Long,kindAnim:Int) {
+
+        tv0 = styleTextViewTalk(man0, arr[0], animKind)
+        tv1 = styleTextViewTalk(man1, arr[1], animKind)
+        tv2 = styleTextViewTalk(man2, arr[2], animKind)
+        tv3 = styleTextViewTalk(man3, arr[3], animKind)
+        tv4 = styleTextViewTalk(man4, arr[4], animKind)
+        tv5 = styleTextViewTalk(man5, arr[5], animKind)
+
+        val listOfTextview =
+            arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5)
+        val dur = talker.dur
+        when (talker.animNum) {
+            0 -> Util.scale60A(listOfTextview, dur)
+            1 -> Util.scale61A(listOfTextview, dur)
+            2 -> Util.scale62A(listOfTextview, dur)
+            3 -> Util.scale63A(listOfTextview, dur)
+
+        }
+        fadeDownAllGod(dur)
+    }
+
+
+    /*     fun manTalk(talker: Talker) {
+         initAllManTextview()
+         val num=talker.styleNum
+         val st = talker.taking
+         val arr = st.split("\n")
+         val textView10 = styleTextViewTalk(man0, arr[0], num)
+         val textView11 = styleTextViewTalk(man1, arr[1], num)
+         val textView12 = styleTextViewTalk(man2, arr[2], num)
+         val textView13 = styleTextViewTalk(man3, arr[3], num)
+         val textView14 = styleTextViewTalk(man4, arr[4], num)
+         val textView15 = styleTextViewTalk(man5, arr[5], num)
+
+           val listOfTextview =
+               arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
+       val dur=talker.dur
+           when (talker.animNum) {
+               0 -> Util.scale60A(listOfTextview,dur)
+               1 -> Util.scale61A(listOfTextview,dur)
+               2 -> Util.scale62A(listOfTextview,dur)
+               3 -> Util.scale63A(listOfTextview,dur)
+
+           }
+           fadeDownAllGod(dur)
+     }*/
+    /*fun manSay60(ind: Int, speaker: Speaker, dur: Long) {
         initAllManTextview()
         val st = speaker.taking
-        // val arr = st.split("\n")
-        val textView10 = styleTextView(man1, st, speaker,kindAnim)
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[5], speaker)
+        val textView11 = styleTextView(man2, arr[4], speaker)
+        val textView12 = styleTextView(man3, arr[3], speaker)
+        val textView13 = styleTextView(man4, arr[2], speaker)
+        val textView14 = styleTextView(man5, arr[1], speaker)
+        val textView15 = styleTextView(man6, arr[0], speaker)
         val listOfTextview =
-            arrayListOf(textView10)
-        when (kindAnim) {
-            0 -> Util.scale10A(listOfTextview,dur)
-            1 -> Util.scale11A(listOfTextview,dur)
-            2 -> Util.scale12A(listOfTextview,dur)
-            3 -> Util.scale13A(listOfTextview,dur)
+            arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
+        when (ind) {
+            0 -> Util.scale60A(listOfTextview,dur)
+            1 -> Util.scale61A(listOfTextview,dur)
+            2 -> Util.scale62A(listOfTextview,dur)
+            3 -> Util.scale63A(listOfTextview,dur)
 
         }
         fadeDownAllGod(dur)
     }*/
 
+    private fun findStyleObject(index: Int): StyleObject {
+        var style1 = StyleObject()
+        var bo = true
+        var i = 0
+        while (bo && i < Page.styleArray.size) {
+
+            if (Page.styleArray[i].num == index) {
+                style1 = Page.styleArray[i]
+                bo = false
+            }
+            i++
+        }
+        return style1
+    }
+
+    private fun styleTextViewTalk(tv: TextView, st: String, num: Int): TextView {
+
+        var textView = tv
+        val style = findStyleObject(num)
+
+        with(style) {
+            if (colorBack == "none") {
+                textView.setBackgroundResource(android.R.color.transparent)
+            } else {
+                textView.setBackgroundColor(parseColor(colorBack))
+            }
+            textView.setTextColor(parseColor(colorText))
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeText)
+            when (styleText) {
+                0 -> textView.typeface = Typeface.SANS_SERIF
+                1 -> textView.typeface = ankaFont
+                2 -> textView.typeface = danaFont
+                3 -> textView.typeface = shulikFont
+                4 -> textView.typeface = stamFont
+                5 -> textView.typeface = drugFont
+                6 -> textView.typeface = shofarFont
+            }
+            textView.setPadding(paddingLeft, paddingTop, paddingRight, paddingButton)
+            textView.text = st
+        }
+        return textView
+    }
 
 
+
+    fun godSay10(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView10A = styleTextView(god1A, arr[0], speaker)
+        val listOfTextview =
+            arrayListOf(textView10)
+        when (ind) {
+            0 -> Util.scale10A(listOfTextview, dur)
+            1 -> Util.scale11A(listOfTextview, dur)
+            2 -> Util.scale12A(listOfTextview, dur)
+            3 -> Util.scale13A(listOfTextview, dur)
+            4 -> Util.move1god(textView10, textView10A, dur)
+
+        }
+        fadeDownAllMan(dur)
+    }
+
+
+    fun manSay10(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        // val arr = st.split("\n")
+        val textView10 = styleTextView(man1, st, speaker)
+        val listOfTextview =
+            arrayListOf(textView10)
+        when (ind) {
+            0 -> Util.scale10A(listOfTextview, dur)
+            1 -> Util.scale11A(listOfTextview, dur)
+            2 -> Util.scale12A(listOfTextview, dur)
+            3 -> Util.scale13A(listOfTextview, dur)
+
+        }
+        fadeDownAllGod(dur)
+    }
+
+
+    fun godSay20(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11)
+        when (ind) {
+            0 -> Util.scale20A(listOfTextview, dur)
+            1 -> Util.scale21A(listOfTextview, dur)
+            2 -> Util.scale22A(listOfTextview, dur)
+            3 -> Util.scale23A(listOfTextview, dur)
+        }
+        fadeDownAllMan(dur)
+    }
+
+    fun manSay20(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man2, arr[0], speaker)
+        val textView11 = styleTextView(man1, arr[1], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11)
+        when (ind) {
+            0 -> Util.scale20A(listOfTextview, dur)
+            1 -> Util.scale21A(listOfTextview, dur)
+            2 -> Util.scale22A(listOfTextview, dur)
+            3 -> Util.scale23A(listOfTextview, dur)
+        }
+        fadeDownAllGod(dur)
+    }
+
+    fun godSay30(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12)
+        when (ind) {
+            0 -> Util.scale30A(listOfTextview, dur)
+            1 -> Util.scale31A(listOfTextview, dur)
+            2 -> Util.scale32A(listOfTextview, dur)
+            3 -> Util.scale33A(listOfTextview, dur)
+
+        }
+        fadeDownAllMan(dur)
+    }
+
+    fun manSay30(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man3, arr[0], speaker)
+        val textView11 = styleTextView(man2, arr[1], speaker)
+        val textView12 = styleTextView(man1, arr[2], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12)
+        when (ind) {
+            0 -> Util.scale30A(listOfTextview, dur)
+            1 -> Util.scale31A(listOfTextview, dur)
+            2 -> Util.scale32A(listOfTextview, dur)
+            3 -> Util.scale33A(listOfTextview, dur)
+
+        }
+        fadeDownAllGod(dur)
+    }
+
+    fun godSay40(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[0], speaker)
+        val textView11 = styleTextView(god2, arr[1], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[3], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13)
+        when (ind) {
+            0 -> Util.scale40A(listOfTextview, dur)
+            1 -> Util.scale41A(listOfTextview, dur)
+            2 -> Util.scale42A(listOfTextview, dur)
+            3 -> Util.scale43A(listOfTextview, dur)
+        }
+        fadeDownAllMan(dur)
+    }
+
+    fun manSay40(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man4, arr[0], speaker)
+        val textView11 = styleTextView(man3, arr[1], speaker)
+        val textView12 = styleTextView(man2, arr[2], speaker)
+        val textView13 = styleTextView(man1, arr[3], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13)
+        when (ind) {
+            0 -> Util.scale40A(listOfTextview, dur)
+            1 -> Util.scale41A(listOfTextview, dur)
+            2 -> Util.scale42A(listOfTextview, dur)
+            3 -> Util.scale43A(listOfTextview, dur)
+        }
+        fadeDownAllGod(dur)
+    }
+
+
+    fun godSay50(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[4], speaker)
+        val textView11 = styleTextView(god2, arr[3], speaker)
+        val textView12 = styleTextView(god3, arr[2], speaker)
+        val textView13 = styleTextView(god4, arr[1], speaker)
+        val textView14 = styleTextView(god5, arr[0], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13, textView14)
+        when (ind) {
+            0 -> Util.scale50A(listOfTextview, dur)
+            1 -> Util.scale51A(listOfTextview, dur)
+            2 -> Util.scale52A(listOfTextview, dur)
+            3 -> Util.scale53A(listOfTextview, dur)
+
+        }
+        fadeDownAllMan(dur)
+    }
+
+    fun manSay50(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man5, arr[0], speaker)
+        val textView11 = styleTextView(man4, arr[1], speaker)
+        val textView12 = styleTextView(man3, arr[2], speaker)
+        val textView13 = styleTextView(man2, arr[3], speaker)
+        val textView14 = styleTextView(man1, arr[4], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13, textView14)
+        when (ind) {
+            0 -> Util.scale50A(listOfTextview, dur)
+            1 -> Util.scale51A(listOfTextview, dur)
+            2 -> Util.scale52A(listOfTextview, dur)
+            3 -> Util.scale53A(listOfTextview, dur)
+
+        }
+        fadeDownAllGod(dur)
+    }
+
+    fun godSay60(ind: Int, speaker: Speaker, dur: Long) {
+        initAllGogTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(god1, arr[5], speaker)
+        val textView11 = styleTextView(god2, arr[4], speaker)
+        val textView12 = styleTextView(god3, arr[3], speaker)
+        val textView13 = styleTextView(god4, arr[2], speaker)
+        val textView14 = styleTextView(god5, arr[1], speaker)
+        val textView15 = styleTextView(god6, arr[0], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
+      /*  when (ind) {
+            0 -> Util.scale60A(listOfTextview, dur)
+            1 -> Util.scale61A(listOfTextview, dur)
+            2 -> Util.scale62A(listOfTextview, dur)
+            3 -> Util.scale63A(listOfTextview, dur)
+
+        }*/
+        fadeDownAllMan(dur)
+    }
+
+
+    fun manSay60(ind: Int, speaker: Speaker, dur: Long) {
+        initAllManTextview()
+        val st = speaker.taking
+        val arr = st.split("\n")
+        val textView10 = styleTextView(man1, arr[5], speaker)
+        val textView11 = styleTextView(man2, arr[4], speaker)
+        val textView12 = styleTextView(man3, arr[3], speaker)
+        val textView13 = styleTextView(man4, arr[2], speaker)
+        val textView14 = styleTextView(man5, arr[1], speaker)
+        val textView15 = styleTextView(man0, arr[0], speaker)
+        val listOfTextview =
+            arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
+       /* when (ind) {
+            0 -> Util.scale60A(listOfTextview, dur)
+            1 -> Util.scale61A(listOfTextview, dur)
+            2 -> Util.scale62A(listOfTextview, dur)
+            3 -> Util.scale63A(listOfTextview, dur)
+
+        }*/
+        fadeDownAllGod(dur)
+    }
     private fun styleTextView(tv: TextView, st: String, speaker: Speaker): TextView {
 
         var textView = tv
@@ -90,258 +435,6 @@ class AnimationAction(context: Context, val view: View) {
 
         return textView
     }
-
-
-    fun godSay10(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[0], speaker)
-        val textView10A = styleTextView(god1A, arr[0], speaker)
-        val listOfTextview =
-            arrayListOf(textView10)
-        when (ind) {
-            0 -> Util.scale10A(listOfTextview,dur)
-            1 -> Util.scale11A(listOfTextview,dur)
-            2 -> Util.scale12A(listOfTextview,dur)
-            3 -> Util.scale13A(listOfTextview,dur)
-            4->Util.move1god(textView10,textView10A,dur)
-
-        }
-        fadeDownAllMan(dur)
-    }
-/*
-} fun godStatic10(ind: Int, speaker: Speaker) {
-    initAllGogTextview()
-    val st = speaker.taking
-    val arr = st.split("\n")
-    val textView10 = styleTextView(god1, arr[0], speaker)
-    when (ind) {
-        0 -> Util.scale10(textView10, 1000)
-        1 -> Util.scale11(textView10, 1000)
-        2 -> {
-            val textView10A = styleTextView(god1A, arr[0], speaker)
-            Util.move1god(textView10, textView10A, 1000)
-        }
-    }
-}*/
-    fun manSay10(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        // val arr = st.split("\n")
-        val textView10 = styleTextView(man1, st, speaker)
-        val listOfTextview =
-            arrayListOf(textView10)
-        when (ind) {
-            0 -> Util.scale10A(listOfTextview,dur)
-            1 -> Util.scale11A(listOfTextview,dur)
-            2 -> Util.scale12A(listOfTextview,dur)
-            3 -> Util.scale13A(listOfTextview,dur)
-
-        }
-        fadeDownAllGod(dur)
-    }
-
-
-    fun godSay20(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[0], speaker)
-        val textView11 = styleTextView(god2, arr[1], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11)
-        when (ind) {
-            0 -> Util.scale20A(listOfTextview,dur)
-            1 -> Util.scale21A(listOfTextview,dur)
-            2 -> Util.scale22A(listOfTextview,dur)
-            3 -> Util.scale23A(listOfTextview,dur)
-        }
-        fadeDownAllMan(dur)
-    }
-    fun manSay20(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man2, arr[0], speaker)
-        val textView11 = styleTextView(man1, arr[1], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11)
-        when (ind) {
-            0 -> Util.scale20A(listOfTextview,dur)
-            1 -> Util.scale21A(listOfTextview,dur)
-            2 -> Util.scale22A(listOfTextview,dur)
-            3 -> Util.scale23A(listOfTextview,dur)
-        }
-        fadeDownAllGod(dur)
-    }
-    fun godSay30(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[0], speaker)
-        val textView11 = styleTextView(god2, arr[1], speaker)
-        val textView12 = styleTextView(god3, arr[2], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12)
-        when (ind) {
-            0 -> Util.scale30A(listOfTextview,dur)
-            1 -> Util.scale31A(listOfTextview,dur)
-            2 -> Util.scale32A(listOfTextview,dur)
-            3 -> Util.scale33A(listOfTextview,dur)
-
-        }
-        fadeDownAllMan(dur)
-    }
-    fun manSay30(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man3, arr[0], speaker)
-        val textView11 = styleTextView(man2, arr[1], speaker)
-        val textView12 = styleTextView(man1, arr[2], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12)
-        when (ind) {
-            0 -> Util.scale30A(listOfTextview,dur)
-            1 -> Util.scale31A(listOfTextview,dur)
-            2 -> Util.scale32A(listOfTextview,dur)
-            3 -> Util.scale33A(listOfTextview,dur)
-
-        }
-        fadeDownAllGod(dur)
-    }
-
-    fun godSay40(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[0], speaker)
-        val textView11 = styleTextView(god2, arr[1], speaker)
-        val textView12 = styleTextView(god3, arr[2], speaker)
-        val textView13 = styleTextView(god4, arr[3], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13)
-        when (ind) {
-            0 -> Util.scale40A(listOfTextview,dur)
-            1 -> Util.scale41A(listOfTextview,dur)
-            2 -> Util.scale42A(listOfTextview,dur)
-            3 -> Util.scale43A(listOfTextview,dur)
-        }
-        fadeDownAllMan(dur)
-    }
-    fun manSay40(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man4, arr[0], speaker)
-        val textView11 = styleTextView(man3, arr[1], speaker)
-        val textView12 = styleTextView(man2, arr[2], speaker)
-        val textView13 = styleTextView(man1, arr[3], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13)
-        when (ind) {
-            0 -> Util.scale40A(listOfTextview,dur)
-            1 -> Util.scale41A(listOfTextview,dur)
-            2 -> Util.scale42A(listOfTextview,dur)
-            3 -> Util.scale43A(listOfTextview,dur)
-        }
-        fadeDownAllGod(dur)
-    }
-
-
-
-
-    fun godSay50(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[4], speaker)
-        val textView11 = styleTextView(god2, arr[3], speaker)
-        val textView12 = styleTextView(god3, arr[2], speaker)
-        val textView13 = styleTextView(god4, arr[1], speaker)
-        val textView14 = styleTextView(god5, arr[0], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13, textView14)
-        when (ind) {
-            0 -> Util.scale50A(listOfTextview,dur)
-            1 -> Util.scale51A(listOfTextview,dur)
-            2 -> Util.scale52A(listOfTextview,dur)
-            3 -> Util.scale53A(listOfTextview,dur)
-
-        }
-        fadeDownAllMan(dur)
-    }
-    fun manSay50(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man5, arr[0], speaker)
-        val textView11 = styleTextView(man4, arr[1], speaker)
-        val textView12 = styleTextView(man3, arr[2], speaker)
-        val textView13 = styleTextView(man2, arr[3], speaker)
-        val textView14 = styleTextView(man1, arr[4], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13, textView14)
-        when (ind) {
-            0 -> Util.scale50A(listOfTextview,dur)
-            1 -> Util.scale51A(listOfTextview,dur)
-            2 -> Util.scale52A(listOfTextview,dur)
-            3 -> Util.scale53A(listOfTextview,dur)
-
-        }
-        fadeDownAllGod(dur)
-    }
-
-    fun godSay60(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(god1, arr[5], speaker)
-        val textView11 = styleTextView(god2, arr[4], speaker)
-        val textView12 = styleTextView(god3, arr[3], speaker)
-        val textView13 = styleTextView(god4, arr[2], speaker)
-        val textView14 = styleTextView(god5, arr[1], speaker)
-        val textView15 = styleTextView(god6, arr[0], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
-        when (ind) {
-            0 -> Util.scale60A(listOfTextview,dur)
-            1 -> Util.scale61A(listOfTextview,dur)
-            2 -> Util.scale62A(listOfTextview,dur)
-            3 -> Util.scale63A(listOfTextview,dur)
-
-        }
-        fadeDownAllMan(dur)
-    }
-
-
-
-    fun manSay60(ind: Int, speaker: Speaker, dur: Long) {
-        initAllManTextview()
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val textView10 = styleTextView(man1, arr[5], speaker)
-        val textView11 = styleTextView(man2, arr[4], speaker)
-        val textView12 = styleTextView(man3, arr[3], speaker)
-        val textView13 = styleTextView(man4, arr[2], speaker)
-        val textView14 = styleTextView(man5, arr[1], speaker)
-        val textView15 = styleTextView(man6, arr[0], speaker)
-        val listOfTextview =
-            arrayListOf(textView10, textView11, textView12, textView13, textView14, textView15)
-        when (ind) {
-            0 -> Util.scale60A(listOfTextview,dur)
-            1 -> Util.scale61A(listOfTextview,dur)
-            2 -> Util.scale62A(listOfTextview,dur)
-            3 -> Util.scale63A(listOfTextview,dur)
-
-        }
-        fadeDownAllGod(dur)
-    }
-
-
-
-
 
 
     fun manStatic10(ind: Int, speaker: Speaker) {
@@ -416,7 +509,6 @@ class AnimationAction(context: Context, val view: View) {
     }
 
 
-
     fun manStatic60(ind: Int, speaker: Speaker) {
         initAllManTextview()
         val st = speaker.taking
@@ -426,7 +518,7 @@ class AnimationAction(context: Context, val view: View) {
         val textView12 = styleTextView(man3, arr[3], speaker)
         val textView13 = styleTextView(man4, arr[2], speaker)
         val textView14 = styleTextView(man5, arr[1], speaker)
-        val textView15 = styleTextView(man6, arr[0], speaker)
+        val textView15 = styleTextView(man0, arr[0], speaker)
         when (ind) {
             0 -> Util.scale60(
                 textView15,
@@ -503,7 +595,9 @@ class AnimationAction(context: Context, val view: View) {
                 1000
             )
         }
-    } fun godStatic10(ind: Int, speaker: Speaker) {
+    }
+
+    fun godStatic10(ind: Int, speaker: Speaker) {
         initAllGogTextview()
         val st = speaker.taking
         val arr = st.split("\n")
@@ -1206,7 +1300,7 @@ class AnimationAction(context: Context, val view: View) {
 
     fun fadeDownAllMan(dur: Long) {
         ViewAnimator
-            .animate(man1, man2, man3, man4, man5, man6)
+            .animate(man1, man2, man3, man4, man5, man0)
             .alpha(1f, 0f)
             .duration(dur)
             .start()
@@ -1214,7 +1308,7 @@ class AnimationAction(context: Context, val view: View) {
 
     fun initAllManTextview() {
         ViewAnimator
-            .animate(man1, man2, man3, man4, man5, man6)
+            .animate(man1, man2, man3, man4, man5, man0)
             .scale(0f)
             .alpha(1f)
             .duration(1)

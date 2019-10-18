@@ -34,28 +34,28 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/manSpeaking6"
+            android:id="@+id/manSpeaking0"
             style="@style/SimpleOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            tools:text="Man Speaking6" />
+            tools:text="Man Speaking0" />
 
         <TextView
-            android:id="@+id/manSpeaking5"
+            android:id="@+id/manSpeaking1"
             style="@style/SimpleOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            tools:text="Man Speaking5" />
+            tools:text="Man Speaking1" />
 
         <TextView
-            android:id="@+id/manSpeaking4"
+            android:id="@+id/manSpeaking2"
             style="@style/SimpleOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            tools:text="Man Speaking4" />
+            tools:text="Man Speaking2" />
 
         <TextView
             android:id="@+id/manSpeaking3"
@@ -67,22 +67,22 @@
             tools:text="Man Speaking3" />
 
         <TextView
-            android:id="@+id/manSpeaking2"
+            android:id="@+id/manSpeaking4"
             style="@style/SimpleOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:typeface="normal"
-            tools:text="Man Speaking2" />
+            tools:text="Man Speaking4" />
 
         <TextView
-            android:id="@+id/manSpeaking1"
+            android:id="@+id/manSpeaking5"
             style="@style/SimpleOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:typeface="normal"
-            tools:text="Man Speaking1" />
+            tools:text="Man Speaking5" />
 
     </LinearLayout>
 

@@ -4,6 +4,7 @@ class Page  {
     companion object {
 
         val CURRENT_COUNTER = 60
+        val styleArray=ArrayList<StyleObject>()
 
     }
 

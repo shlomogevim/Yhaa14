@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_3.AnimationAction
+import com.example.yhaa14.utils.Page
 import com.example.yhaa14.utils.Speaker
+import com.example.yhaa14.utils.StyleObject
 import com.example.yhaa14.utils.Talker
 import kotlinx.android.synthetic.main.activity_animation_screen.*
 import kotlinx.android.synthetic.main.current_position_layout.*
@@ -46,12 +48,20 @@ class AnimationScreen : AppCompatActivity() {
 //        editor.putInt(CURRENT_SPEAKER,0)
 //        editor.commit()
 
+        @Suppress("UNCHECKED_CAST")
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
+        @Suppress("UNCHECKED_CAST")
         talkList = intent.getSerializableExtra(TALKER) as ArrayList<Talker>
 
 
-       // counterStep = intent.getIntExtra(COUNTER, 0)
+        // counterStep = intent.getIntExtra(COUNTER, 0)
+
+
+        createStyleList()
+
         updateListSpeakerStyle()
+
+        updateTalkList()
 
 
 
@@ -89,6 +99,64 @@ class AnimationScreen : AppCompatActivity() {
             generalOperation()
         }
     }
+    private fun generalOperation() {
+
+        counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
+        if (counterStep < 1) counterStep = 1
+
+        manMode = counterStep % 2 != 0
+
+        val speaker = speakList[counterStep]
+        var st = speaker.taking
+        val arr = st.split("\n")
+
+        val talker = talkList[counterStep]
+
+        updateTitleTalkerSituation(talker)
+
+
+
+        if (talker.whoSpeake == "man") {
+            animationInAction.manTalk(talker)
+        } else {
+            // godAnimationsTalk(talker)
+        }
+    }
+
+    private fun findStyleObject(index: Int): StyleObject {
+        var style1 = StyleObject()
+        var bo = true
+        var i = 0
+        while (bo && i < Page.styleArray.size) {
+
+            if (Page.styleArray[i].num == index) {
+                style1 = Page.styleArray[i]
+                bo = false
+            }
+        }
+        return style1
+    }
+
+    private fun createStyleList() {
+        val manStyle1 = StyleObject(210, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+        val manStyle2 = StyleObject(220, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+        val manStyle3 = StyleObject(221, "#000000", "#bdbdbd", 34f, 1, 10, 5, 10, 5)
+        val manStyle4 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+        val manStyle5 = StyleObject(240, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+        val manStyle6 = StyleObject(250, "none", "#ffffff", 30f, 1, 10, 5, 10, 5)
+        val manStyle7 = StyleObject(260, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+        val manStyle8 = StyleObject(270, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
+        val manStyle9 = StyleObject(280, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+        val manStyle10 = StyleObject(281, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+        //val manStyle11 = StyleObject()
+
+
+        var list = listOf<StyleObject>(
+            manStyle1,manStyle2,manStyle3,manStyle4,manStyle5,manStyle6,manStyle7,
+            manStyle8,manStyle9,manStyle10
+        )
+        Page.styleArray.addAll(list)
+    }
 
     private fun addToCounter() {
         counterStep++
@@ -104,42 +172,39 @@ class AnimationScreen : AppCompatActivity() {
             speakList[ind] = StyleAnim.updateNewStyle(ind, speakList[ind])
         }
 
-        for (ind in 0 until talkList.size) {
-            talkList[ind] = StyleAnim.updateNewTalkerStyle(talkList[ind])
+    }
+
+    private fun updateTalkList() {
+
+        for (ind in 1 until talkList.size) {
+            talkList[ind] = enterValueToTalkList(ind,talkList[ind])
         }
     }
 
-
-    private fun generalOperation() {
-
-        counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
-        if (counterStep < 1) counterStep = 1
-
-        manMode = counterStep % 2 == 0
-
-        val speaker = speakList[counterStep]
-        var st = speaker.taking
-        val arr = st.split("\n")
-
-        val talker=talkList[counterStep]
-        updateTitleTalkerSituation(talker)
-
-
-        if (speaker.whoSpeake == "man") {
-            manAnimations(speaker, arr)
-        } else {
-            godAnimations(speaker, arr)
+    fun enterValueToTalkList(ind:Int,talker: Talker):Talker{
+        when (ind){
+            1->{talker.styleNum=220;talker.animNum=3;talker.dur=2000}
         }
+
+
+
+        return talker
     }
+
+
+
+
 
     private fun updateTitleTalkerSituation(talker: Talker) {
 
         var st = talker.taking
         val arr = st.split("\n")
-        val lines=arr.size
+        val lines = arr.size
         title_situation.text = "LinesNum->$lines"
         counter_situation.text = counterStep.toString()
     }
+
+
 
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
