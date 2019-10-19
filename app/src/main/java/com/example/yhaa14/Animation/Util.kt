@@ -358,7 +358,22 @@ object Util {
             arr[index]?.let { rotateAndMove(index+1, it,dur) }
         }
     }
+    fun god10A(arr: ArrayList<TextView?>, dur:Long){
 
+        ViewAnimator
+            .animate(arr[0])
+            .translationX(-wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 1f)
+            .andAnimate(arr[6])
+            .translationX(wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+
+
+    }
 
 
 

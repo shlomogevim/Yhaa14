@@ -36,6 +36,7 @@ class AnimationScreen : AppCompatActivity() {
     val CURRENT_SPEAKER = "currentSpeaker"
     lateinit var myPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
+    private var buttonPosition=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,7 @@ class AnimationScreen : AppCompatActivity() {
         editor = myPref.edit()
         animationInAction = AnimationAction(this, mainLayout)
         buttonZom()
+        buttonPosition=false
 
 //        editor.putInt(CURRENT_SPEAKER,0)
 //        editor.commit()
@@ -53,7 +55,7 @@ class AnimationScreen : AppCompatActivity() {
         @Suppress("UNCHECKED_CAST")
         talkList = intent.getSerializableExtra(TALKER) as ArrayList<Talker>
 
-        // counterStep = intent.getIntExtra(COUNTER, 0)
+       //  counterStep = intent.getIntExtra(CURRENT_SPEAKER,0)
 
         createStyleList()      // create the original  styleArray and store it in Page.styleArray
 
@@ -67,7 +69,7 @@ class AnimationScreen : AppCompatActivity() {
         counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
         if (counterStep < 1) counterStep = 1
 
-        counterStep=1
+        if (!buttonPosition) counterStep=2             //*********************
 
         manMode = counterStep % 2 != 0
 
@@ -77,28 +79,49 @@ class AnimationScreen : AppCompatActivity() {
         if (talker.whoSpeake == "man") {
             animationInAction.manTalk(talker)
         } else {
-            // godAnimationsTalk(talker)
+            animationInAction.godTalk(talker)
         }
+        buttonPosition=false
     }
 
 
-    private fun createStyleList() {
-        val manStyle1 = StyleObject(210, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
-        val manStyle2 = StyleObject(220, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
-        val manStyle3 = StyleObject(221, "#000000", "#bdbdbd", 34f, 1, 10, 5, 10, 5)
-        val manStyle4 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
-        val manStyle5 = StyleObject(240, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
-        val manStyle6 = StyleObject(250, "none", "#ffffff", 30f, 1, 10, 5, 10, 5)
-        val manStyle7 = StyleObject(260, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
-        val manStyle8 = StyleObject(270, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
-        val manStyle9 = StyleObject(280, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
-        val manStyle10 = StyleObject(281, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
-        //val manStyle11 = StyleObject()
+    fun enterValueToTalkList(ind:Int,talker: Talker):Talker{
+        when (ind){
+            1->{talker.styleNum=221;talker.animNum=1;talker.dur=1000}
+            2->{talker.styleNum=421;talker.animNum=4;talker.dur=4000}
 
+            else->{talker.styleNum=200;talker.animNum=0;talker.dur=2000}
+        }
+        return talker
+    }
+    private fun createStyleList() {
+        val m100 = StyleObject(210, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+        val m101 = StyleObject(211, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0)
+        val m110 = StyleObject(220, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+        val m111 = StyleObject(221, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5)
+        val m120 = StyleObject(221, "#bdbdbd", "#44000D", 34f, 1, 10, 5, 10, 5)
+        val m130 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+        val m140 = StyleObject(240, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+        val m150 = StyleObject(250, "none", "#ffffff", 30f, 1, 10, 5, 10, 5)
+        val m160 = StyleObject(260, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+        val m170 = StyleObject(270, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
+        val m180 = StyleObject(280, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+        val m190 = StyleObject(281, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+        //val m11 = StyleObject()
+        val m400 = StyleObject(410, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+        val m401 = StyleObject(411, "none", "#1e88e5", 45f, 1, 10, 20, 10, 20)
+        val m410 = StyleObject(420,  "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
+        val m411 = StyleObject(421,  "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
+        val m412 = StyleObject(422,  "none", "#f9a825", 20f, 1, 10, 80, 10, 20)
+        val m420 = StyleObject(430, "none", "#f9a825", 30f, 1, 10, 80, 10, 20)
+        val m440 = StyleObject(440,  "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+        val m450 = StyleObject(450, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
+        val m460 = StyleObject(460, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
+        val m461 = StyleObject(461, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
 
         var list = listOf<StyleObject>(
-            manStyle1,manStyle2,manStyle3,manStyle4,manStyle5,manStyle6,manStyle7,
-            manStyle8,manStyle9,manStyle10
+            m100,m101,m110,m111,m120,m130,m140,m150,m160,m170,m180,m190,
+            m400,m401,m410,m411,m412,m420,m440,m450,m460,m461
         )
         Page.styleArray.addAll(list)
     }
@@ -111,16 +134,6 @@ class AnimationScreen : AppCompatActivity() {
             talkList[ind] = enterValueToTalkList(ind,talkList[ind])
         }
     }
-
-    fun enterValueToTalkList(ind:Int,talker: Talker):Talker{
-        when (ind){
-            1->{talker.styleNum=220;talker.animNum=3;talker.dur=2000}
-
-            else->{talker.styleNum=200;talker.animNum=0;talker.dur=2000}
-        }
-        return talker
-    }
-
     private fun updateTitleTalkerSituation(talker: Talker) {
 
         var st = talker.taking
@@ -130,10 +143,18 @@ class AnimationScreen : AppCompatActivity() {
         counter_situation.text = counterStep.toString()
     }
 
+    private fun nextStep(){
+        counterStep++
+        editor.putInt(CURRENT_SPEAKER,counterStep)
+        editor.commit()
+    }
     private fun buttonZom() {
+
         goddy.setOnClickListener {
             if (!manMode) {
-                addToCounter()
+                buttonPosition=true
+                nextStep()
+                generalOperation()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האדם לדבר", Toast.LENGTH_LONG).show()
             }
@@ -141,13 +162,17 @@ class AnimationScreen : AppCompatActivity() {
 
         man.setOnClickListener {
             if (manMode) {
-                addToCounter()
+                buttonPosition=true
+                nextStep()
+                generalOperation()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האין סוף להגיב", Toast.LENGTH_LONG).show()
             }
         }
         nextButton.setOnClickListener {
-            addToCounter()
+            buttonPosition=true
+            nextStep()
+            generalOperation()
         }
         previousButton.setOnClickListener {
             counterStep--
@@ -156,6 +181,7 @@ class AnimationScreen : AppCompatActivity() {
             editor.putInt(CURRENT_SPEAKER, counterStep)
             editor.commit()
 
+            buttonPosition=true
             generalOperation()
         }
     }
