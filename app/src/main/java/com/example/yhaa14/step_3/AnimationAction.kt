@@ -58,7 +58,6 @@ class AnimationAction(context: Context, val view: View) {
         val st = talker.taking
         val arr = st.split("\n")
 
-
         tv0 = styleTextViewTalk(man0, arr[0], animKind)
         tv1 = styleTextViewTalk(man1, arr[1], animKind)
         tv2 = styleTextViewTalk(man2, arr[2], animKind)
