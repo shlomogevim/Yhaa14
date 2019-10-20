@@ -36,16 +36,16 @@ class AnimationScreen : AppCompatActivity() {
     val CURRENT_SPEAKER = "currentSpeaker"
     lateinit var myPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    private var buttonPosition=false
+    var operateList= arrayListOf<List<Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation_screen)
         myPref = getSharedPreferences(PREFS_NAME, 0)
         editor = myPref.edit()
+        counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
         animationInAction = AnimationAction(this, mainLayout)
         buttonZom()
-        buttonPosition=false
 
 //        editor.putInt(CURRENT_SPEAKER,0)
 //        editor.commit()
@@ -54,8 +54,6 @@ class AnimationScreen : AppCompatActivity() {
         speakList = intent.getSerializableExtra(SPEAKER) as ArrayList<Speaker>
         @Suppress("UNCHECKED_CAST")
         talkList = intent.getSerializableExtra(TALKER) as ArrayList<Talker>
-
-       //  counterStep = intent.getIntExtra(CURRENT_SPEAKER,0)
 
         createStyleList()      // create the original  styleArray and store it in Page.styleArray
 
@@ -66,10 +64,10 @@ class AnimationScreen : AppCompatActivity() {
 
 
     private fun generalOperation() {
-        counterStep = myPref.getInt(CURRENT_SPEAKER, 1)
+
         if (counterStep < 1) counterStep = 1
 
-        if (!buttonPosition) counterStep=2             //*********************
+       //  counterStep=1            //*********************
 
         manMode = counterStep % 2 != 0
 
@@ -81,79 +79,109 @@ class AnimationScreen : AppCompatActivity() {
         } else {
             animationInAction.godTalk(talker)
         }
-        buttonPosition=false
+    }
+
+    fun initOperateValue(){
+        operateList.add(0,arrayListOf(210,1,1000))
+        operateList.add(1,arrayListOf(210,3,4000))
+        operateList.add(2,arrayListOf(421,4,4000))
+        operateList.add(3,arrayListOf(210,1,1000))
+        operateList.add(4,arrayListOf(422,1,1000))
+        operateList.add(5,arrayListOf(210,3,2000))
+        operateList.add(6,arrayListOf(421,4,4000))
+        operateList.add(7,arrayListOf(220,2,1000))
+        operateList.add(8,arrayListOf(240,2,4000))
+        operateList.add(9,arrayListOf(210,3,2000))
+        operateList.add(10,arrayListOf(280,0,4000))
+
     }
 
 
-    fun enterValueToTalkList(ind:Int,talker: Talker):Talker{
-        when (ind){
-            1->{talker.styleNum=221;talker.animNum=1;talker.dur=1000}
-            2->{talker.styleNum=421;talker.animNum=4;talker.dur=4000}
+    fun enterValueToTalkList(ind: Int, talker: Talker): Talker {
 
-            else->{talker.styleNum=200;talker.animNum=0;talker.dur=2000}
+
+        if (ind<operateList.size) {
+
+            val item = operateList[ind]
+                talker.styleNum = item[0]
+                talker.animNum = item[1]
+                talker.dur = item[2].toLong()
+        }else{
+            if (talker.whoSpeake=="name"){
+                talker.styleNum = 210
+                talker.animNum = 3
+                talker.dur = 2000L
+            }
+            if (talker.whoSpeake=="god"){
+                talker.styleNum = 420
+                talker.animNum = 2
+                talker.dur = 2000L
+            }
+
         }
         return talker
     }
+
     private fun createStyleList() {
-        val m100 = StyleObject(210, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
-        val m101 = StyleObject(211, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0)
-        val m110 = StyleObject(220, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
-        val m111 = StyleObject(221, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5)
+        val m100 = StyleObject(200, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+        val m101 = StyleObject(210, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0)
+        val m110 = StyleObject(211, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+        val m111 = StyleObject(220, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5)
         val m120 = StyleObject(221, "#bdbdbd", "#44000D", 34f, 1, 10, 5, 10, 5)
         val m130 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
-        val m140 = StyleObject(240, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
-        val m150 = StyleObject(250, "none", "#ffffff", 30f, 1, 10, 5, 10, 5)
-        val m160 = StyleObject(260, "none", "#44000D", 40f, 1, 20, 20, 20, 20)
-        val m170 = StyleObject(270, "#e3f2fd", "#44000D", 40f, 1, 10, 20, 10, 20)
-        val m180 = StyleObject(280, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
-        val m190 = StyleObject(281, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+        val m140 = StyleObject(240, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20)
+        val m150 = StyleObject(250, "none", "#ffffff", 28f, 1, 10, 5, 10, 5)
+        val m160 = StyleObject(260, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
+        val m170 = StyleObject(270, "#e3f2fd", "#44000D", 28f, 1, 10, 20, 10, 20)
+        val m180 = StyleObject(280, "none", "#6ff9ff", 28f, 1, 10, 5, 10, 0)
+        val m190 = StyleObject(281, "none", "#6ff9ff", 28f, 1, 10, 5, 10, 0)
         //val m11 = StyleObject()
-        val m400 = StyleObject(410, "none", "#1e88e5", 60f, 1, 10, 20, 10, 20)
+        val m400 = StyleObject(410)
         val m401 = StyleObject(411, "none", "#1e88e5", 45f, 1, 10, 20, 10, 20)
-        val m410 = StyleObject(420,  "none", "#f9a825", 140f, 1, 10, 80, 10, 20)
-        val m411 = StyleObject(421,  "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
-        val m412 = StyleObject(422,  "none", "#f9a825", 20f, 1, 10, 80, 10, 20)
-        val m420 = StyleObject(430, "none", "#f9a825", 30f, 1, 10, 80, 10, 20)
-        val m440 = StyleObject(440,  "none", "#44000D", 40f, 1, 20, 20, 20, 20)
+        val m410 = StyleObject(420, "none", "#f9a825", 28f, 1, 10, 80, 10, 20)
+        val m411 = StyleObject(421, "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
+        val m412 = StyleObject(422, "none", "#f9a825", 160f, 1, 10, 80, 10, 20)
+        val m420 = StyleObject(430)
+        val m440 = StyleObject(440)
         val m450 = StyleObject(450, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
-        val m460 = StyleObject(460, "none", "#6ff9ff", 36f, 1, 10, 5, 10, 0)
-        val m461 = StyleObject(461, "none", "#6ff9ff", 26f, 1, 10, 5, 10, 0)
+        val m460 = StyleObject(460)
+        val m461 = StyleObject(461)
 
         var list = listOf<StyleObject>(
-            m100,m101,m110,m111,m120,m130,m140,m150,m160,m170,m180,m190,
-            m400,m401,m410,m411,m412,m420,m440,m450,m460,m461
+            m100, m101, m110, m111, m120, m130, m140, m150, m160, m170, m180, m190,
+            m400, m401, m410, m411, m412, m420, m440, m450, m460, m461
         )
         Page.styleArray.addAll(list)
     }
 
 
     private fun updateTalkList() {
-        //updateListSpeakerStyle()     // it just for the old version of Speakers
-
+        initOperateValue()
         for (ind in 1 until talkList.size) {
-            talkList[ind] = enterValueToTalkList(ind,talkList[ind])
+            talkList[ind] = enterValueToTalkList(ind, talkList[ind])
         }
     }
+
     private fun updateTitleTalkerSituation(talker: Talker) {
 
         var st = talker.taking
         val arr = st.split("\n")
         val lines = arr.size
-        title_situation.text = "LinesNum->$lines"
-        counter_situation.text = counterStep.toString()
+        //title_situation.text = "LinesNum->$lines"
+        // counter_situation.text = counterStep.toString()
+        val text =
+            ">${counterStep}< NumLine->$lines style->${talker.styleNum} anim->${talker.animNum} duration->${talker.dur} ${talker.whoSpeake}"
+        tvAnimatinKind.text = text
     }
 
-    private fun nextStep(){
-        counterStep++
-        editor.putInt(CURRENT_SPEAKER,counterStep)
-        editor.commit()
-    }
+// 2->{talker.styleNum=421;talker.animNum=4;talker.dur=4000}
+
+
     private fun buttonZom() {
 
         goddy.setOnClickListener {
-            if (!manMode) {
-                buttonPosition=true
-                nextStep()
+            if (manMode) {
+                counterStep++
                 generalOperation()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האדם לדבר", Toast.LENGTH_LONG).show()
@@ -161,40 +189,34 @@ class AnimationScreen : AppCompatActivity() {
         }
 
         man.setOnClickListener {
-            if (manMode) {
-                buttonPosition=true
-                nextStep()
+            if (!manMode) {
+                counterStep++
                 generalOperation()
             } else {
                 Toast.makeText(this, "נסה שוב, זה התור של האין סוף להגיב", Toast.LENGTH_LONG).show()
             }
         }
         nextButton.setOnClickListener {
-            buttonPosition=true
-            nextStep()
+            counterStep++
             generalOperation()
         }
         previousButton.setOnClickListener {
             counterStep--
             if (counterStep < 1) counterStep = 1
-
-            editor.putInt(CURRENT_SPEAKER, counterStep)
-            editor.commit()
-
-            buttonPosition=true
             generalOperation()
         }
+        saveButton.setOnClickListener {
+            editor.putInt(CURRENT_SPEAKER, counterStep)
+            editor.commit()
+        }
     }
+
     private fun addToCounter() {
         counterStep++
         editor.putInt(CURRENT_SPEAKER, counterStep)
         editor.commit()
         generalOperation()
     }
-
-
-
-
 
 
     private fun updateListSpeakerStyle() {
@@ -204,6 +226,7 @@ class AnimationScreen : AppCompatActivity() {
         }
 
     }
+
     private fun findStyleObject(index: Int): StyleObject {
         var style1 = StyleObject()
         var bo = true
@@ -217,6 +240,7 @@ class AnimationScreen : AppCompatActivity() {
         }
         return style1
     }
+
     private fun godAnimations(speaker: Speaker, arr: List<String>) {
         when (arr.size) {
             1 -> when (counterStep) {
@@ -342,11 +366,11 @@ class AnimationScreen : AppCompatActivity() {
         counter_situation.text = counterStep.toString()
     }
 
-    /*private fun updateListSpeakerStyle() {
+/*private fun updateListSpeakerStyle() {
 
-          for (ind in 0 until speakList.size) {
-              when (ind) {
-                  *//*1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
+      for (ind in 0 until speakList.size) {
+          when (ind) {
+              *//*1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
                 2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
                 4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
                 5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
@@ -364,48 +388,48 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 */
-    /*   private fun operateGoddy(speaker: Speaker) {
-          val st = speaker.taking
-          val arr = st.split("\n")
-          val size = arr.size
+/*   private fun operateGoddy(speaker: Speaker) {
+      val st = speaker.taking
+      val arr = st.split("\n")
+      val size = arr.size
 
-          when (size) {
-              1 -> animationInAction.godTranslaion11A(speaker)
-              2 -> animationInAction.godTranslation20(speaker)
-              3 -> animationInAction.godTranslaion30(arr, counterStep)
-              4 -> when (counterStep) {
-                  12 -> animationInAction.godTranslaion40A(speaker)
-                  else -> animationInAction.godTranslaion40(speaker)
+      when (size) {
+          1 -> animationInAction.godTranslaion11A(speaker)
+          2 -> animationInAction.godTranslation20(speaker)
+          3 -> animationInAction.godTranslaion30(arr, counterStep)
+          4 -> when (counterStep) {
+              12 -> animationInAction.godTranslaion40A(speaker)
+              else -> animationInAction.godTranslaion40(speaker)
 
 
-              }
-              5 -> animationInAction.godTranslaion50(arr, counterStep)
-              6 -> animationInAction.godTranslaion60A(speaker)
           }
+          5 -> animationInAction.godTranslaion50(arr, counterStep)
+          6 -> animationInAction.godTranslaion60A(speaker)
       }
+  }
 
-      private fun operateMan(speaker: Speaker) {
-          val st = speaker.taking
-          val arr = st.split("\n")
-          val size = arr.size
+  private fun operateMan(speaker: Speaker) {
+      val st = speaker.taking
+      val arr = st.split("\n")
+      val size = arr.size
 
 
-          when (size) {
-              1 -> animationInAction.manTranslation10(speaker)
-              2 -> animationInAction.manTranslation20A(speaker)
-              3 -> animationInAction.manTranslaion30(speaker)
-              4 -> animationInAction.manTranslaion40(speaker)
-              5 -> animationInAction.manTranslaion50(arr, counterStep)
-          }
+      when (size) {
+          1 -> animationInAction.manTranslation10(speaker)
+          2 -> animationInAction.manTranslation20A(speaker)
+          3 -> animationInAction.manTranslaion30(speaker)
+          4 -> animationInAction.manTranslaion40(speaker)
+          5 -> animationInAction.manTranslaion50(arr, counterStep)
       }
+  }
 
-       private fun operatAnimation() {
+   private fun operatAnimation() {
 
-           var arr1= arrayListOf<Int>()
-            arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-           if (arr1.contains(counterStep)) {
-               when (arr.size) {
-                   *//*1 -> animationInAction.manMove20(speaker)
+       var arr1= arrayListOf<Int>()
+        arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+       if (arr1.contains(counterStep)) {
+           when (arr.size) {
+               *//*1 -> animationInAction.manMove20(speaker)
                 2, 4, 6, 8 -> animationInAction.godMove11A(speaker)
                 3 -> animationInAction.manStatic50(2, speaker)
                 5 -> animationInAction.manStatic40(2, speaker)
