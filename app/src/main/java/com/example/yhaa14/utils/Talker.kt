@@ -7,5 +7,6 @@ class Talker(
     var taking: String = "tadam",
     var styleNum: Int = 0,
     var animNum: Int = 0,
-    var dur: Long = 1000
+    var dur: Long = 1000,
+    var textSize:Float=28f
 ) : Serializable

@@ -5,7 +5,7 @@ import com.example.yhaa14.utils.Talker
 
 object StyleAnim {
 
-    fun updateNewTalkerStyle(talker: Talker): Talker {
+    /*fun updateNewTalkerStyle(talker: Talker): Talker {
 
         var talker1 = Talker()
 
@@ -16,7 +16,7 @@ object StyleAnim {
         }
 
         return talker1
-    }
+    }*/
 
     private fun updateManTalkStyle(talker: Talker): Talker {
        /* with(talker) {
@@ -51,7 +51,7 @@ object StyleAnim {
     }
 
 
-    fun updateNewStyle(counter: Int, speaker: Speaker): Speaker {
+    /*fun updateNewStyle(counter: Int, speaker: Speaker): Speaker {
         var speaker1 = Speaker()
 
         if (speaker.whoSpeake == "god") {
@@ -62,7 +62,7 @@ object StyleAnim {
         }
         return speaker1
     }
-
+*/
 
     private fun getGodContant(styleVersion: Int, speaker: Speaker) {
         when (styleVersion) {

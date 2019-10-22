@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yhaa14.Animation.StyleAnim
 import com.example.yhaa14.R
 import com.example.yhaa14.step_3.AnimationAction
 import com.example.yhaa14.utils.Page
@@ -37,7 +36,8 @@ class AnimationScreen : AppCompatActivity() {
     val CURRENT_SPEAKER = "currentSpeakertext10"
     lateinit var myPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    var operateList = arrayListOf<List<Int>>()
+    //  var operateList = arrayListOf<List<Int>>()
+    var operateList1 = arrayListOf<List<Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,7 +68,7 @@ class AnimationScreen : AppCompatActivity() {
 
         if (counterStep < 1) counterStep = 1
 
-          //counterStep=33            //*********************
+        //   counterStep = 1           //*********************
 
         manMode = counterStep % 2 != 0
 
@@ -82,135 +82,142 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
-    fun initOperateValuetext8() {
-        operateList.add(0, arrayListOf(210, 1, 1000))
-        operateList.add(1, arrayListOf(210, 3, 4000))
-        operateList.add(2, arrayListOf(421, 4, 4000))
-        operateList.add(3, arrayListOf(210, 1, 1000))
-        operateList.add(4, arrayListOf(422, 1, 1000))
-        operateList.add(5, arrayListOf(210, 3, 2000))
-        operateList.add(6, arrayListOf(421, 4, 4000))
-        operateList.add(7, arrayListOf(220, 2, 1000))
-        operateList.add(8, arrayListOf(240, 2, 4000))
-        operateList.add(9, arrayListOf(210, 3, 2000))
-        operateList.add(10, arrayListOf(280, 0, 4000))
+    /* fun initOperateValuetext8() {
+         operateList.add(0, arrayListOf(210, 1, 1000))
+         operateList.add(1, arrayListOf(210, 3, 4000))
+         operateList.add(2, arrayListOf(421, 4, 4000))
+         operateList.add(3, arrayListOf(210, 1, 1000))
+         operateList.add(4, arrayListOf(422, 1, 1000))
+         operateList.add(5, arrayListOf(210, 3, 2000))
+         operateList.add(6, arrayListOf(421, 4, 4000))
+         operateList.add(7, arrayListOf(220, 2, 1000))
+         operateList.add(8, arrayListOf(240, 2, 4000))
+         operateList.add(9, arrayListOf(210, 3, 2000))
+         operateList.add(10, arrayListOf(280, 0, 4000))
+
+     }*/
+
+    fun initFileText10() {
+        var para = ""
+        for (counter in 0..78) {
+            when (counter) {
+                0 -> para = "210, 1, 1000,28"
+                1 -> para = "221, 3, 3500,34"
+                2 -> para = "402, 4, 4000,160"
+                3 -> para = "210, 3, 2000,24"
+                4 -> para = "400, 1, 2000,28"
+                5 -> para = "210, 3, 2000,24"
+                6 -> para = "401, 1, 2000,80"
+                7 -> para = "220, 2, 1000,20"
+                8 -> para = "240, 2, 2000,20"
+                9 -> para = "210, 3, 2000,24"
+                10 -> para = "240, 2, 2000,20"
+                11 -> para = "210, 3, 2000,24"
+                12 -> para = "240, 2, 2000,20"
+                13 -> para = "210, 2, 2000,28"
+                14 -> para = "281, 4, 3000,80"
+                15 -> para = "250, 1, 3000,28"
+                16 -> para = "402, 1, 3000,160"
+                17 -> para = "210, 3, 2000,24"
+                18 -> para = "282, 4, 3000,50"
+                19 -> para = "210, 3, 2000,24"
+                20 -> para = "403, 4, 3000,210"
+                21 -> para = "250, 1, 3000,28"
+                22 -> para = "250, 2, 3000,28"
+                23 -> para = "210, 3, 2000,24"
+                25 -> para = "210, 3, 2000,24"
+                24 -> para = "241, 1, 3000,35"
+                26 -> para = "241, 1, 3000,35"
+                27 -> para = "210, 3, 2000,24"
+                28 -> para = "270, 0, 4000,28"
+                29 -> para = "210, 3, 2000,24"
+                30 -> para = "401, 1, 2000,80"
+                31 -> para = "210, 0, 1500,28"
+                32 -> para = "410, 0, 1500,28"
+                33 -> para = "210, 3, 2000,24"
+                34 -> para = "402, 0, 1500,160"
+                35 -> para = "210, 3, 2000,24"
+                36 -> para = "402, 0, 1500,160"
+                37 -> para = "210, 3, 2000,24"
+                38 -> para = "240, 1, 2000,20"
+                39 -> para = "210, 3, 2000,24"
+                40 -> para = "402, 0, 1500,160"
+                41 -> para = "210, 3, 2000,28"
+                42 -> para = "241, 1, 3000,35"
+                43 -> para = "220, 1, 2000,20"
+                44 -> para = "420, 1, 3000,28"
+                45 -> para = "200, 3, 2000,24"
+                46 -> para = "420, 1, 3000,28"
+                47 -> para = "210, 3, 2000,24"
+                48 -> para = "281, 4, 3000,80"
+                49 -> para = "210, 0, 1500,28"
+                50 -> para = "283, 1, 2000,30"
+                51 -> para = "210, 3, 2000,28"
+                52 -> para = "400, 3, 2000,28"
+                53 -> para = "210, 3, 2000,28"
+                54 -> para = "402, 4, 3000,160"
+                55 -> para = "210, 3, 2000,28"
+                56 -> para = "4021, 0, 3000,1000"
+                57 -> para = "270, 3, 2000,28"
+                58 -> para = "401, 4, 4000,80"
+                59 -> para = "210, 2, 2000,28"
+                60 -> para = "241, 2, 2000,35"
+                61 -> para = "200, 3, 2000,28"
+                62 -> para = "240, 0, 3000,28"
+                63 -> para = "210,3,2500,24"
+                64 -> para = "241,2,2500,35"
+                65 -> para = "220,1,2500,20"
+                66 -> para = "401,4,2500,80"
+                67 -> para = "210,3,2500,28"
+                68 -> para = "240,2,2500,28"
+                69 -> para = "220,3,2500,28"
+                70 -> para = "282,2,2500,50"
+                71 -> para = "220,2,2500,20"
+                72 -> para = "420,2,2500,20"
+                73 -> para = "220,3,2500,28"
+                74 -> para = "402,4,2500,160"
+                75 -> para = "220,1,2500,28"
+                76 -> para = "401,4,2500,80"
+                77 -> para = "220,1,2500,28"
+                78 -> para = "401,4,2500,80"
+                else -> para = "210, 1, 1000,28"
+            }
+            var ar = para.split(",")
+            operateList1.add(
+                counter,
+                arrayListOf(
+                    ar[0].trim().toInt(),
+                    ar[1].trim().toInt(),
+                    ar[2].trim().toInt(),
+                    ar[3].trim().toInt()
+                )
+            )
+
+        }
 
     }
-
-    fun initOperateValuetext10() {
-        operateList.add(0, arrayListOf(210, 1, 1000))
-        operateList.add(1, arrayListOf(221, 3, 3500))
-        operateList.add(2, arrayListOf(402, 4, 4000))
-        operateList.add(3, arrayListOf(210, 3, 2000))
-        operateList.add(4, arrayListOf(400, 1, 2000))
-        operateList.add(5, arrayListOf(210, 3, 2000))
-        operateList.add(6, arrayListOf(401, 4, 4000))
-        operateList.add(7, arrayListOf(220, 2, 1000))
-        operateList.add(8, arrayListOf(240, 2, 2000))
-        operateList.add(9, arrayListOf(210, 3, 2000))
-        operateList.add(10, arrayListOf(402, 4, 2000))
-        operateList.add(11, arrayListOf(210, 3, 2000))
-        operateList.add(12, arrayListOf(240, 2, 2000))
-        operateList.add(13, arrayListOf(210, 2, 2000))
-        operateList.add(14, arrayListOf(281, 4, 3000))
-        operateList.add(15, arrayListOf(250, 1, 3000))
-        operateList.add(16, arrayListOf(402, 1, 3000))
-        operateList.add(17, arrayListOf(210, 3, 2000))
-        operateList.add(18, arrayListOf(282, 4, 3000))
-        operateList.add(19, arrayListOf(210, 3, 2000))
-        operateList.add(20, arrayListOf(403, 4, 3000))
-        operateList.add(21, arrayListOf(250, 1, 2000))
-        operateList.add(22, arrayListOf(250, 2, 3000))
-        operateList.add(23, arrayListOf(210, 3, 2000))
-        operateList.add(24, arrayListOf(241, 1, 3000))
-        operateList.add(25, arrayListOf(210, 3, 2000))
-        operateList.add(26, arrayListOf(241, 1, 3000))
-        operateList.add(27, arrayListOf(210, 3, 2000))
-        operateList.add(28, arrayListOf(270, 0, 4000))
-        operateList.add(29, arrayListOf(210, 3, 2000))
-        operateList.add(30, arrayListOf(401, 4, 2000))
-        operateList.add(31, arrayListOf(210, 0, 1500))
-        operateList.add(32, arrayListOf(410, 0, 1500))
-        operateList.add(33, arrayListOf(210, 3, 1500))
-        operateList.add(34, arrayListOf(402, 0, 1500))
-        operateList.add(35, arrayListOf(210, 3, 2000))
-        operateList.add(36, arrayListOf(402, 0, 1500))
-        operateList.add(37, arrayListOf(210, 3, 2000))
-        operateList.add(38, arrayListOf(240, 1, 2000))
-        operateList.add(39, arrayListOf(210, 3, 2000))
-        operateList.add(40, arrayListOf(402, 0, 1500))
-        operateList.add(41, arrayListOf(210, 3, 2000))
-        operateList.add(42, arrayListOf(241, 1, 2000))
-        operateList.add(43, arrayListOf(220, 1, 2000))
-        operateList.add(43, arrayListOf(220, 1, 2000))
-        operateList.add(44, arrayListOf(420, 1, 3000))
-        operateList.add(45, arrayListOf(200, 3, 2000))
-        operateList.add(46, arrayListOf(420, 1, 3000))
-        operateList.add(47, arrayListOf(210, 3, 2000))
-        operateList.add(48, arrayListOf(281, 0, 3000))
-        operateList.add(49, arrayListOf(210, 0, 2000))
-        operateList.add(50, arrayListOf(283, 1, 2000))
-        operateList.add(51, arrayListOf(210, 3, 2000))
-        operateList.add(52, arrayListOf(400, 3, 2000))
-        operateList.add(53, arrayListOf(210, 3, 2000))
-        operateList.add(54, arrayListOf(402, 4, 3000))
-        operateList.add(55, arrayListOf(210, 3, 2000))
-        operateList.add(56, arrayListOf(4021, 0, 3000))
-        operateList.add(57, arrayListOf(270, 3, 2000))
-        operateList.add(58, arrayListOf(401, 4, 4000))
-        operateList.add(59, arrayListOf(210, 2, 2000))
-        operateList.add(60, arrayListOf(241, 2, 2000))
-        operateList.add(61, arrayListOf(200, 3, 2000))
-        operateList.add(62, arrayListOf(240, 0, 3000))
-
-        input(63,"21032500")
-        input(64,"24122500")
-        input(65,"22012500")
-        input(66,"40142500")
-        input(67,"21032500")
-        input(68,"24022500")
-        input(69,"22032500")
-        input(70,"28222500")
-        input(71,"22022500")
-        input(72,"42022500")
-        input(73,"22032500")
-        input(74,"40242500")
-        input(75,"22012500")
-        input(76,"40142500")
-        input(77,"22012500")
-        input(78,"40142500")
-
-    }
-
-
-
-    private fun input(speaker: Int,animeStyle: String ) {
-        val str1=animeStyle.subSequence(0,3).toString().toInt()
-        val str2=animeStyle.subSequence(3,4).toString().toInt()
-        val str3=animeStyle.subSequence(4,8).toString().toInt()
-        operateList.add(speaker, arrayListOf(str1, str2, str3))
-    }
-
 
     fun enterValueToTalkList(ind: Int, talker: Talker): Talker {
 
-
-        if (ind < operateList.size) {
-
-            val item = operateList[ind]
+        if (ind < operateList1.size) {
+            val item = operateList1[ind]
             talker.styleNum = item[0]
             talker.animNum = item[1]
             talker.dur = item[2].toLong()
+            talker.textSize = item[3].toFloat()
         } else {
             if (talker.whoSpeake == "man") {
                 talker.styleNum = 210
                 talker.animNum = 3
                 talker.dur = 2000L
+                talker.textSize = 28f
             }
             if (talker.whoSpeake == "god") {
                 talker.styleNum = 400
                 talker.animNum = 2
                 talker.dur = 2000L
+                talker.textSize = 48f
+
             }
 
         }
@@ -245,33 +252,24 @@ class AnimationScreen : AppCompatActivity() {
 
 
         var list = listOf<StyleObject>(
-            m200,
-            m210,
-            m211,
-            m220,
-            m221,
-            m222,
+            m200, m210, m211,
+            m220, m221, m222,
             m230,
-            m240,
-            m241,
+            m240, m241,
             m250,
             m260,
             m270,
-            m280,
-            m281,
-            m282,m283,
-            m400,
-            m401,
-            m402,m4021,
-            m403,
-            m410,m420
+            m280, m281, m282, m283,
+            m400, m401, m402, m4021, m403,
+            m410, m420
         )
         Page.styleArray.addAll(list)
     }
 
 
     private fun updateTalkList() {
-        initOperateValuetext10()
+        // initOperateValuetext10()
+        initFileText10()
         for (ind in 1 until talkList.size) {
             talkList[ind] = enterValueToTalkList(ind, talkList[ind])
         }
@@ -327,153 +325,139 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
-    private fun addToCounter() {
-        counterStep++
-        editor.putInt(CURRENT_SPEAKER, counterStep)
-        editor.commit()
-        generalOperation()
-    }
 
 
-    private fun updateListSpeakerStyle() {
+    /* private fun findStyleObject(index: Int): StyleObject {
+         var style1 = StyleObject()
+         var bo = true
+         var i = 0
+         while (bo && i < Page.styleArray.size) {
 
-        for (ind in 0 until speakList.size) {
-            speakList[ind] = StyleAnim.updateNewStyle(ind, speakList[ind])
-        }
+             if (Page.styleArray[i].num == index) {
+                 style1 = Page.styleArray[i]
+                 bo = false
+             }
+         }
+         return style1
+     }
 
-    }
+      private fun godAnimations(speaker: Speaker, arr: List<String>) {
+          when (arr.size) {
+              1 -> when (counterStep) {
+                  2 -> animationInAction.godSay10(0, speaker, 4000)
+                  4 -> animationInAction.godSay10(0, speaker, 3000)
+                  6 -> animationInAction.godSay10(1, speaker, 4000)
+                  8 -> animationInAction.godSay10(4, speaker, 4000)
+                  18 -> animationInAction.godSay10(4, speaker, 4000)
+                  28, 38, 44, 52, 56, 60 -> animationInAction.godSay10(4, speaker, 4000)
+                  else -> animationInAction.godSay10(0, speaker, 2000)
+              }
+              2 -> when (counterStep) {
+                  12 -> animationInAction.godSay20(1, speaker, 4000)
+                  32 -> animationInAction.godSay20(1, speaker, 2000)
 
-    private fun findStyleObject(index: Int): StyleObject {
-        var style1 = StyleObject()
-        var bo = true
-        var i = 0
-        while (bo && i < Page.styleArray.size) {
+                  else -> animationInAction.godSay20(0, speaker, 2000)
+              }
+              3 -> when (counterStep) {
+                  12 -> animationInAction.godSay30(1, speaker, 4000)
+                  26 -> animationInAction.godSay30(0, speaker, 4000)
+                  40 -> animationInAction.godSay30(1, speaker, 4000)
+                  else -> animationInAction.godSay30(0, speaker, 2000)
+              }
+              4 -> when (counterStep) {
+                  10 -> animationInAction.godSay40(1, speaker, 1000)
+                  42 -> animationInAction.godSay40(1, speaker, 1000)
 
-            if (Page.styleArray[i].num == index) {
-                style1 = Page.styleArray[i]
-                bo = false
-            }
-        }
-        return style1
-    }
+                  // -> animationInAction.godSay40(0, speaker, 4000)
+                  else -> animationInAction.godSay40(0, speaker, 2000)
+              }
+              5 -> when (counterStep) {
+                  // -> animationInAction.godSay50(0, speaker, 4000)
+                  else -> animationInAction.godSay50(0, speaker, 2000)
+              }
+              6 -> when (counterStep) {
+                  // -> animationInAction.godSay20(0, speaker, 4000)
+                  else -> animationInAction.godSay60(3, speaker, 4000)
+              }
+          }
+      }
 
-    private fun godAnimations(speaker: Speaker, arr: List<String>) {
-        when (arr.size) {
-            1 -> when (counterStep) {
-                2 -> animationInAction.godSay10(0, speaker, 4000)
-                4 -> animationInAction.godSay10(0, speaker, 3000)
-                6 -> animationInAction.godSay10(1, speaker, 4000)
-                8 -> animationInAction.godSay10(4, speaker, 4000)
-                18 -> animationInAction.godSay10(4, speaker, 4000)
-                28, 38, 44, 52, 56, 60 -> animationInAction.godSay10(4, speaker, 4000)
-                else -> animationInAction.godSay10(0, speaker, 2000)
-            }
-            2 -> when (counterStep) {
-                12 -> animationInAction.godSay20(1, speaker, 4000)
-                32 -> animationInAction.godSay20(1, speaker, 2000)
+      private fun manAnimations(speaker: Speaker, arr: List<String>) {
+          when (arr.size) {
+              1 -> when (counterStep) {
+                  13 -> animationInAction.manSay10(2, speaker, 1000)
+                  25 -> animationInAction.manSay10(3, speaker, 4000)
+                  49 -> animationInAction.manSay10(0, speaker, 4000)
+                  55 -> animationInAction.manSay10(3, speaker, 2000)
+                  else -> animationInAction.manSay10(0, speaker, 2000)
 
-                else -> animationInAction.godSay20(0, speaker, 2000)
-            }
-            3 -> when (counterStep) {
-                12 -> animationInAction.godSay30(1, speaker, 4000)
-                26 -> animationInAction.godSay30(0, speaker, 4000)
-                40 -> animationInAction.godSay30(1, speaker, 4000)
-                else -> animationInAction.godSay30(0, speaker, 2000)
-            }
-            4 -> when (counterStep) {
-                10 -> animationInAction.godSay40(1, speaker, 1000)
-                42 -> animationInAction.godSay40(1, speaker, 1000)
+              }
+              2 -> when (counterStep) {
+                  11 -> animationInAction.manSay20(3, speaker, 4000)
+                  15 -> animationInAction.manSay20(3, speaker, 2500)
+                  17 -> animationInAction.manSay20(3, speaker, 2500)
+                  23 -> animationInAction.manSay20(2, speaker, 2500)
+                  25 -> animationInAction.manSay20(3, speaker, 3500)
+                  37 -> animationInAction.manSay20(3, speaker, 2500)
+                  59 -> animationInAction.manSay20(1, speaker, 2000)
 
-                // -> animationInAction.godSay40(0, speaker, 4000)
-                else -> animationInAction.godSay40(0, speaker, 2000)
-            }
-            5 -> when (counterStep) {
-                // -> animationInAction.godSay50(0, speaker, 4000)
-                else -> animationInAction.godSay50(0, speaker, 2000)
-            }
-            6 -> when (counterStep) {
-                // -> animationInAction.godSay20(0, speaker, 4000)
-                else -> animationInAction.godSay60(3, speaker, 4000)
-            }
-        }
-    }
+                  else -> animationInAction.manSay20(0, speaker, 2000)
 
-    private fun manAnimations(speaker: Speaker, arr: List<String>) {
-        when (arr.size) {
-            1 -> when (counterStep) {
-                13 -> animationInAction.manSay10(2, speaker, 1000)
-                25 -> animationInAction.manSay10(3, speaker, 4000)
-                49 -> animationInAction.manSay10(0, speaker, 4000)
-                55 -> animationInAction.manSay10(3, speaker, 2000)
-                else -> animationInAction.manSay10(0, speaker, 2000)
+              }
+              3 -> when (counterStep) {
+                  5 -> animationInAction.manSay30(2, speaker, 1000)
+                  9 -> animationInAction.manSay30(2, speaker, 1000)
+                  39 -> animationInAction.manSay30(3, speaker, 1500)
+                  41 -> animationInAction.manSay30(1, speaker, 1500)
+                  47 -> animationInAction.manSay30(3, speaker, 1500)
+                  else -> animationInAction.manSay30(0, speaker, 2000)
 
-            }
-            2 -> when (counterStep) {
-                11 -> animationInAction.manSay20(3, speaker, 4000)
-                15 -> animationInAction.manSay20(3, speaker, 2500)
-                17 -> animationInAction.manSay20(3, speaker, 2500)
-                23 -> animationInAction.manSay20(2, speaker, 2500)
-                25 -> animationInAction.manSay20(3, speaker, 3500)
-                37 -> animationInAction.manSay20(3, speaker, 2500)
-                59 -> animationInAction.manSay20(1, speaker, 2000)
+              }
+              4 -> when (counterStep) {
+                  7 -> animationInAction.manSay40(1, speaker, 1000)
+                  else -> animationInAction.manSay40(0, speaker, 2000)
+              }
+              5 -> when (counterStep) {
+                  3 -> animationInAction.manSay50(3, speaker, 2000)
+                  27 -> animationInAction.manSay50(2, speaker, 1000)
+                  43 -> animationInAction.manSay50(3, speaker, 1000)
+                  else -> animationInAction.manSay50(0, speaker, 2000)
+              }
+              6 -> when (counterStep) {
+                  1 -> animationInAction.manSay60(3, speaker, 2000)
+                  else -> animationInAction.manSay60(0, speaker, 2000)
+              }
+          }
+      }*/
 
-                else -> animationInAction.manSay20(0, speaker, 2000)
+    /* private fun regularAnimation() {
+         val speaker = speakList[counterStep]
+         val kind = speaker.whoSpeake
+         val st = speaker.taking
+         val arr = st.split("\n")
+         val dur = 2000L
+         if (kind == "man") {
+             when (arr.size) {
+                 1 -> animationInAction.manSay10(0, speaker, dur)
+                 2 -> animationInAction.manSay20(0, speaker, dur)
+                 3 -> animationInAction.manSay30(0, speaker, dur)
+                 4 -> animationInAction.manSay40(0, speaker, dur)
+                 5 -> animationInAction.manSay50(0, speaker, dur)
+                 6 -> animationInAction.manSay60(0, speaker, dur)
+             }
+         } else {
+             when (arr.size) {
+                 1 -> animationInAction.godSay10(0, speaker, dur)
+                 2 -> animationInAction.godSay20(0, speaker, dur)
+                 3 -> animationInAction.godSay30(0, speaker, dur)
+                 4 -> animationInAction.godSay40(0, speaker, dur)
+                 5 -> animationInAction.godSay50(0, speaker, dur)
+                 6 -> animationInAction.godSay60(0, speaker, dur)
+             }
+         }
 
-            }
-            3 -> when (counterStep) {
-                5 -> animationInAction.manSay30(2, speaker, 1000)
-                9 -> animationInAction.manSay30(2, speaker, 1000)
-                39 -> animationInAction.manSay30(3, speaker, 1500)
-                41 -> animationInAction.manSay30(1, speaker, 1500)
-                47 -> animationInAction.manSay30(3, speaker, 1500)
-                else -> animationInAction.manSay30(0, speaker, 2000)
-
-            }
-            4 -> when (counterStep) {
-                7 -> animationInAction.manSay40(1, speaker, 1000)
-                else -> animationInAction.manSay40(0, speaker, 2000)
-            }
-            5 -> when (counterStep) {
-                3 -> animationInAction.manSay50(3, speaker, 2000)
-                27 -> animationInAction.manSay50(2, speaker, 1000)
-                43 -> animationInAction.manSay50(3, speaker, 1000)
-                else -> animationInAction.manSay50(0, speaker, 2000)
-            }
-            6 -> when (counterStep) {
-                1 -> animationInAction.manSay60(3, speaker, 2000)
-                else -> animationInAction.manSay60(0, speaker, 2000)
-            }
-        }
-    }
-
-    private fun regularAnimation() {
-        val speaker = speakList[counterStep]
-        val kind = speaker.whoSpeake
-        val st = speaker.taking
-        val arr = st.split("\n")
-        val dur = 2000L
-        if (kind == "man") {
-            when (arr.size) {
-                1 -> animationInAction.manSay10(0, speaker, dur)
-                2 -> animationInAction.manSay20(0, speaker, dur)
-                3 -> animationInAction.manSay30(0, speaker, dur)
-                4 -> animationInAction.manSay40(0, speaker, dur)
-                5 -> animationInAction.manSay50(0, speaker, dur)
-                6 -> animationInAction.manSay60(0, speaker, dur)
-            }
-        } else {
-            when (arr.size) {
-                1 -> animationInAction.godSay10(0, speaker, dur)
-                2 -> animationInAction.godSay20(0, speaker, dur)
-                3 -> animationInAction.godSay30(0, speaker, dur)
-                4 -> animationInAction.godSay40(0, speaker, dur)
-                5 -> animationInAction.godSay50(0, speaker, dur)
-                6 -> animationInAction.godSay60(0, speaker, dur)
-            }
-        }
-
-    }
-
+     }
+ */
 
     private fun updateTitleSituation(lines: Int) {
         //title_situation.text = "madMode=$manMode round=${(counterStep - 1) / 2}"
