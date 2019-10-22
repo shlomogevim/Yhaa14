@@ -53,22 +53,7 @@ class AnimationAction(context: Context, val view: View) {
     val shofarFont = Typeface.createFromAsset(context.assets, "fonts/drug.ttf")
 
 
-    fun manTalk(talker: Talker) {
-        initAllManTextview()
-        configManTextView(talker)
 
-        val listOfTextview =
-            arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5)
-        val dur = talker.dur
-        when (talker.animNum) {
-            0 -> Util.scale60A(listOfTextview, dur)
-            1 -> Util.scale61A(listOfTextview, dur)
-            2 -> Util.scale62A(listOfTextview, dur)
-            3 -> Util.scale63A(listOfTextview, dur)
-
-        }
-        fadeDownAllGod(dur)
-    }
 
     private fun configManTextView(talker: Talker) {
         val animKind = talker.styleNum
@@ -109,7 +94,22 @@ class AnimationAction(context: Context, val view: View) {
             tv0 = styleTextViewTalk(man5, arr[0], animKind)
         }
     }
+    fun manTalk(talker: Talker) {
+        initAllManTextview()
+        configManTextView(talker)
 
+        val listOfTextview =
+            arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5)
+        val dur = talker.dur
+        when (talker.animNum) {
+            0 -> Util.scale60A(listOfTextview, dur)
+            1 -> Util.scale61A(listOfTextview, dur)
+            2 -> Util.scale62A(listOfTextview, dur)
+            3 -> Util.scale63A(listOfTextview, dur)
+
+        }
+        fadeDownAllGod(dur)
+    }
     fun godTalk(talker: Talker) {
         initAllGodTextview()
         val animKind = talker.styleNum
@@ -141,12 +141,7 @@ class AnimationAction(context: Context, val view: View) {
 
 
     fun initAllManTextview() {
-        /*man5.text=null
-        man4.text=null
-        man3.text=null
-        man2.text=null
-        man1.text=null*/
-        ViewAnimator
+         ViewAnimator
             .animate(man1, man2, man3, man4, man5, man0)
             .scale(0f)
             .alpha(1f)
@@ -155,18 +150,29 @@ class AnimationAction(context: Context, val view: View) {
     }
 
     fun initAllGodTextview() {
-        god0A.text = null
-        god1.text = null
-        god2.text = null
-        god3.text = null
-        god4.text = null
-        god5.text = null
 
         ViewAnimator
             .animate(god0, god0A, god1, god2, god3, god4, god5)
             .scale(0f)
             .alpha(1f)
             .duration(1)
+            .start()
+    }
+    fun fadeDownAllMan(dur: Long) {
+
+        ViewAnimator
+            .animate(man1, man2, man3, man4, man5, man0)
+            .alpha( 0f)
+            .duration(dur)
+            .start()
+    }
+
+
+    fun fadeDownAllGod(dur: Long) {
+        ViewAnimator
+            .animate(god0, god1, god0A, god2, god3, god4, god5)
+            .alpha( 0f)
+            .duration(dur)
             .start()
     }
 
@@ -262,7 +268,7 @@ class AnimationAction(context: Context, val view: View) {
 
 
     fun godSay10(ind: Int, speaker: Speaker, dur: Long) {
-        initAllGogTextview()
+       initAllGogTextview()
         val st = speaker.taking
         val arr = st.split("\n")
         val textView10 = styleTextView(god1, arr[0], speaker)
@@ -1389,22 +1395,7 @@ class AnimationAction(context: Context, val view: View) {
             .start()
     }
 
-    fun fadeDownAllMan(dur: Long) {
-        ViewAnimator
-            .animate(man1, man2, man3, man4, man5, man0)
-            .alpha(1f, 0f)
-            .duration(dur)
-            .start()
-    }
 
-
-    fun fadeDownAllGod(dur: Long) {
-        ViewAnimator
-            .animate(god0, god1, god0A, god2, god3, god4, god5)
-            .alpha(1f, 0f)
-            .duration(dur)
-            .start()
-    }
 
 
 }

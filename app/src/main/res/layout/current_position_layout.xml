@@ -38,8 +38,8 @@
         android:text="Next"
         android:textSize="14sp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvAnimatinKind"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/previousButton"
@@ -47,9 +47,9 @@
         android:layout_height="wrap_content"
         android:text="Prev"
         android:textSize="14sp"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tvAnimatinKind"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/saveButton"
@@ -58,8 +58,8 @@
         android:text="Save"
         android:textSize="14sp"
         android:visibility="visible"
-        app:layout_constraintStart_toEndOf="@+id/previousButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvAnimatinKind"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvAnimatinKind"

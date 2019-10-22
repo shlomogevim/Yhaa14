@@ -66,7 +66,7 @@ object Util {
     }
 
     private fun ttScale(textView: TextView, dur: Long) {
-        ViewAnimator.animate(textView).scale(0f, 1f).duration(dur).start()
+        ViewAnimator.animate(textView).scale( 0f,1f).duration(dur).start()
     }
 
 
@@ -95,7 +95,7 @@ object Util {
 */
 
     fun scale10A(arr: List<TextView>, dur: Long) {
-        ttScale(arr[0], dur)
+       // ttScale(arr[0], dur)
     }
 
     fun scale11A(arr: List<TextView>, dur: Long) {

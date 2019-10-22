@@ -12,7 +12,8 @@ import com.example.yhaa14.utils.Talker
 
 class MainActivity : AppCompatActivity() {
 
-    val CURRENT_FILE = "text/text8.txt"
+   // val CURRENT_FILE = "text/text8.txt"
+    val CURRENT_FILE = "text/text10.txt"
 
     val ADAM = "-אדם-"
     val GOD = "-אלוהים-"
@@ -38,12 +39,13 @@ class MainActivity : AppCompatActivity() {
 
         intent1.putExtra(SPEAKER, speakerList)
 
-        intent1.putExtra(TALKER,talkerList)
+        intent1.putExtra(TALKER, talkerList)
 
-       // intent1.putExtra(COUNTER, counter - 1)
+        // intent1.putExtra(COUNTER, counter - 1)
 
         startActivity(intent1)
     }
+
     private fun getTalkData() {
         var countItem = 0
         var text = applicationContext.assets.open(CURRENT_FILE).bufferedReader().use {
@@ -53,19 +55,20 @@ class MainActivity : AppCompatActivity() {
         var list1 = text.split(ADAM)
 
         speakerList = arrayListOf()
-        talkerList= arrayListOf()
+        talkerList = arrayListOf()
 
         var speaker = Speaker()
-        var talker=Talker()
+        var talker = Talker()
 
         speakerList.add(countItem, speaker)
-        talkerList.add(countItem,talker)
+        talkerList.add(countItem, talker)
 
         for (element in list1) {
-            if (element != "" && element.length > 25) {
+          //  if (element != "" && element.length > 25) {
+            if (element != "") {
                 var list2 = element.split(GOD)
-                val st1 = improveString(list2[0])
-                val st2 = improveString(list2[1])
+                var st1 = improveString(list2[0])
+                var st2 = improveString(list2[1])
                 countItem++
 
                 speaker = Speaker()
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                 talker = Talker()
                 talker.whoSpeake = "man"
+                st1=improveSt(st1)
                 talker.taking = st1
                 talkerList.add(talker)
 
@@ -83,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 speaker = Speaker()
                 speaker.whoSpeake = "god"
                 speaker.taking = st2
+                st2=improveSt(st2)
                 speakerList.add(countItem, speaker)
 
                 talker = Talker()
@@ -92,6 +97,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+    fun improveSt(st:String):String{
+        var stt1=st.trim()
+       /* var stt=st
+        val st1="\n"
+        val count = st.count{ st1.contains(it) }
+        if (count==1){
+            stt=st.replace(st1,"")
+        }*/
+        return stt1
     }
 
 
@@ -127,8 +142,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun improveString(st: String) = st.substring(1, st.length - 1)
 
-   /* private fun updateListSpeakerStyle() {
-        *//*var arr1 = arrayListOf<Int>()
+    /* private fun updateListSpeakerStyle() {
+         *//*var arr1 = arrayListOf<Int>()
         arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8)*//*
         for (ind in 0 until speakerList.size) {
             when (ind) {

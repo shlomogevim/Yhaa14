@@ -33,10 +33,11 @@ class AnimationScreen : AppCompatActivity() {
     lateinit var animationInAction: AnimationAction
 
     val PREFS_NAME = "myPrefs"
-    val CURRENT_SPEAKER = "currentSpeaker"
+    // val CURRENT_SPEAKER = "currentSpeaker"
+    val CURRENT_SPEAKER = "currentSpeakertext10"
     lateinit var myPref: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
-    var operateList= arrayListOf<List<Int>>()
+    var operateList = arrayListOf<List<Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +68,7 @@ class AnimationScreen : AppCompatActivity() {
 
         if (counterStep < 1) counterStep = 1
 
-       //  counterStep=1            //*********************
+          //counterStep=33            //*********************
 
         manMode = counterStep % 2 != 0
 
@@ -81,39 +82,133 @@ class AnimationScreen : AppCompatActivity() {
         }
     }
 
-    fun initOperateValue(){
-        operateList.add(0,arrayListOf(210,1,1000))
-        operateList.add(1,arrayListOf(210,3,4000))
-        operateList.add(2,arrayListOf(421,4,4000))
-        operateList.add(3,arrayListOf(210,1,1000))
-        operateList.add(4,arrayListOf(422,1,1000))
-        operateList.add(5,arrayListOf(210,3,2000))
-        operateList.add(6,arrayListOf(421,4,4000))
-        operateList.add(7,arrayListOf(220,2,1000))
-        operateList.add(8,arrayListOf(240,2,4000))
-        operateList.add(9,arrayListOf(210,3,2000))
-        operateList.add(10,arrayListOf(280,0,4000))
+    fun initOperateValuetext8() {
+        operateList.add(0, arrayListOf(210, 1, 1000))
+        operateList.add(1, arrayListOf(210, 3, 4000))
+        operateList.add(2, arrayListOf(421, 4, 4000))
+        operateList.add(3, arrayListOf(210, 1, 1000))
+        operateList.add(4, arrayListOf(422, 1, 1000))
+        operateList.add(5, arrayListOf(210, 3, 2000))
+        operateList.add(6, arrayListOf(421, 4, 4000))
+        operateList.add(7, arrayListOf(220, 2, 1000))
+        operateList.add(8, arrayListOf(240, 2, 4000))
+        operateList.add(9, arrayListOf(210, 3, 2000))
+        operateList.add(10, arrayListOf(280, 0, 4000))
 
+    }
+
+    fun initOperateValuetext10() {
+        operateList.add(0, arrayListOf(210, 1, 1000))
+        operateList.add(1, arrayListOf(221, 3, 3500))
+        operateList.add(2, arrayListOf(402, 4, 4000))
+        operateList.add(3, arrayListOf(210, 3, 2000))
+        operateList.add(4, arrayListOf(400, 1, 2000))
+        operateList.add(5, arrayListOf(210, 3, 2000))
+        operateList.add(6, arrayListOf(401, 4, 4000))
+        operateList.add(7, arrayListOf(220, 2, 1000))
+        operateList.add(8, arrayListOf(240, 2, 2000))
+        operateList.add(9, arrayListOf(210, 3, 2000))
+        operateList.add(10, arrayListOf(402, 4, 2000))
+        operateList.add(11, arrayListOf(210, 3, 2000))
+        operateList.add(12, arrayListOf(240, 2, 2000))
+        operateList.add(13, arrayListOf(210, 2, 2000))
+        operateList.add(14, arrayListOf(281, 4, 3000))
+        operateList.add(15, arrayListOf(250, 1, 3000))
+        operateList.add(16, arrayListOf(402, 1, 3000))
+        operateList.add(17, arrayListOf(210, 3, 2000))
+        operateList.add(18, arrayListOf(282, 4, 3000))
+        operateList.add(19, arrayListOf(210, 3, 2000))
+        operateList.add(20, arrayListOf(403, 4, 3000))
+        operateList.add(21, arrayListOf(250, 1, 2000))
+        operateList.add(22, arrayListOf(250, 2, 3000))
+        operateList.add(23, arrayListOf(210, 3, 2000))
+        operateList.add(24, arrayListOf(241, 1, 3000))
+        operateList.add(25, arrayListOf(210, 3, 2000))
+        operateList.add(26, arrayListOf(241, 1, 3000))
+        operateList.add(27, arrayListOf(210, 3, 2000))
+        operateList.add(28, arrayListOf(270, 0, 4000))
+        operateList.add(29, arrayListOf(210, 3, 2000))
+        operateList.add(30, arrayListOf(401, 4, 2000))
+        operateList.add(31, arrayListOf(210, 0, 1500))
+        operateList.add(32, arrayListOf(410, 0, 1500))
+        operateList.add(33, arrayListOf(210, 3, 1500))
+        operateList.add(34, arrayListOf(402, 0, 1500))
+        operateList.add(35, arrayListOf(210, 3, 2000))
+        operateList.add(36, arrayListOf(402, 0, 1500))
+        operateList.add(37, arrayListOf(210, 3, 2000))
+        operateList.add(38, arrayListOf(240, 1, 2000))
+        operateList.add(39, arrayListOf(210, 3, 2000))
+        operateList.add(40, arrayListOf(402, 0, 1500))
+        operateList.add(41, arrayListOf(210, 3, 2000))
+        operateList.add(42, arrayListOf(241, 1, 2000))
+        operateList.add(43, arrayListOf(220, 1, 2000))
+        operateList.add(43, arrayListOf(220, 1, 2000))
+        operateList.add(44, arrayListOf(420, 1, 3000))
+        operateList.add(45, arrayListOf(200, 3, 2000))
+        operateList.add(46, arrayListOf(420, 1, 3000))
+        operateList.add(47, arrayListOf(210, 3, 2000))
+        operateList.add(48, arrayListOf(281, 0, 3000))
+        operateList.add(49, arrayListOf(210, 0, 2000))
+        operateList.add(50, arrayListOf(283, 1, 2000))
+        operateList.add(51, arrayListOf(210, 3, 2000))
+        operateList.add(52, arrayListOf(400, 3, 2000))
+        operateList.add(53, arrayListOf(210, 3, 2000))
+        operateList.add(54, arrayListOf(402, 4, 3000))
+        operateList.add(55, arrayListOf(210, 3, 2000))
+        operateList.add(56, arrayListOf(4021, 0, 3000))
+        operateList.add(57, arrayListOf(270, 3, 2000))
+        operateList.add(58, arrayListOf(401, 4, 4000))
+        operateList.add(59, arrayListOf(210, 2, 2000))
+        operateList.add(60, arrayListOf(241, 2, 2000))
+        operateList.add(61, arrayListOf(200, 3, 2000))
+        operateList.add(62, arrayListOf(240, 0, 3000))
+
+        input(63,"21032500")
+        input(64,"24122500")
+        input(65,"22012500")
+        input(66,"40142500")
+        input(67,"21032500")
+        input(68,"24022500")
+        input(69,"22032500")
+        input(70,"28222500")
+        input(71,"22022500")
+        input(72,"42022500")
+        input(73,"22032500")
+        input(74,"40242500")
+        input(75,"22012500")
+        input(76,"40142500")
+        input(77,"22012500")
+        input(78,"40142500")
+
+    }
+
+
+
+    private fun input(speaker: Int,animeStyle: String ) {
+        val str1=animeStyle.subSequence(0,3).toString().toInt()
+        val str2=animeStyle.subSequence(3,4).toString().toInt()
+        val str3=animeStyle.subSequence(4,8).toString().toInt()
+        operateList.add(speaker, arrayListOf(str1, str2, str3))
     }
 
 
     fun enterValueToTalkList(ind: Int, talker: Talker): Talker {
 
 
-        if (ind<operateList.size) {
+        if (ind < operateList.size) {
 
             val item = operateList[ind]
-                talker.styleNum = item[0]
-                talker.animNum = item[1]
-                talker.dur = item[2].toLong()
-        }else{
-            if (talker.whoSpeake=="name"){
+            talker.styleNum = item[0]
+            talker.animNum = item[1]
+            talker.dur = item[2].toLong()
+        } else {
+            if (talker.whoSpeake == "man") {
                 talker.styleNum = 210
                 talker.animNum = 3
                 talker.dur = 2000L
             }
-            if (talker.whoSpeake=="god"){
-                talker.styleNum = 420
+            if (talker.whoSpeake == "god") {
+                talker.styleNum = 400
                 talker.animNum = 2
                 talker.dur = 2000L
             }
@@ -123,43 +218,64 @@ class AnimationScreen : AppCompatActivity() {
     }
 
     private fun createStyleList() {
-        val m100 = StyleObject(200, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
-        val m101 = StyleObject(210, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0)
-        val m110 = StyleObject(211, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
-        val m111 = StyleObject(220, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5)
-        val m120 = StyleObject(221, "#bdbdbd", "#44000D", 34f, 1, 10, 5, 10, 5)
-        val m130 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
-        val m140 = StyleObject(240, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20)
-        val m150 = StyleObject(250, "none", "#ffffff", 28f, 1, 10, 5, 10, 5)
-        val m160 = StyleObject(260, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
-        val m170 = StyleObject(270, "#e3f2fd", "#44000D", 28f, 1, 10, 20, 10, 20)
-        val m180 = StyleObject(280, "none", "#6ff9ff", 28f, 1, 10, 5, 10, 0)
-        val m190 = StyleObject(281, "none", "#6ff9ff", 28f, 1, 10, 5, 10, 0)
+        val m200 = StyleObject(200, "#ffffff", "#000000", 24f, 1, 10, 0, 10, 0)
+        val m210 = StyleObject(210, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0)
+        val m211 = StyleObject(211, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5)
+        val m220 = StyleObject(220, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5)
+        val m221 = StyleObject(221, "#bdbdbd", "#000000", 34f, 1, 10, 5, 10, 5)
+        val m222 = StyleObject(222, "#bdbdbd", "#000000", 44f, 1, 10, 5, 10, 5)
+        val m230 = StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0)
+        val m240 = StyleObject(240, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20)
+        val m241 = StyleObject(241, "none", "#1e88e5", 35f, 1, 10, 20, 10, 20)
+        val m250 = StyleObject(250, "none", "#ffffff", 28f, 1, 10, 5, 10, 5)
+        val m260 = StyleObject(260, "none", "#44000D", 28f, 1, 20, 20, 20, 20)
+        val m270 = StyleObject(270, "#e3f2fd", "#44000D", 28f, 1, 10, 20, 10, 20)
+        val m280 = StyleObject(280, "none", "#6ff9ff", 28f, 1, 10, 5, 10, 0)
+        val m281 = StyleObject(281, "none", "#6ff9ff", 80f, 1, 10, 5, 10, 0)
+        val m282 = StyleObject(282, "none", "#6ff9ff", 50f, 1, 10, 5, 10, 0)
+        val m283 = StyleObject(283, "none", "#6ff9ff", 30f, 1, 10, 5, 10, 0)
         //val m11 = StyleObject()
-        val m400 = StyleObject(410)
-        val m401 = StyleObject(411, "none", "#1e88e5", 45f, 1, 10, 20, 10, 20)
-        val m410 = StyleObject(420, "none", "#f9a825", 28f, 1, 10, 80, 10, 20)
-        val m411 = StyleObject(421, "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
-        val m412 = StyleObject(422, "none", "#f9a825", 160f, 1, 10, 80, 10, 20)
-        val m420 = StyleObject(430)
-        val m440 = StyleObject(440)
-        val m450 = StyleObject(450, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 10)
-        val m460 = StyleObject(460)
-        val m461 = StyleObject(461)
+        val m400 = StyleObject(400, "none", "#f9a825", 28f, 1, 10, 80, 10, 20)
+        val m401 = StyleObject(401, "none", "#f9a825", 80f, 1, 10, 80, 10, 20)
+        val m402 = StyleObject(402, "none", "#f9a825", 160f, 1, 10, 80, 10, 20)
+        val m4021 = StyleObject(4021, "none", "#f9a825", 100f, 1, 10, 0, 10, 0)
+        val m403 = StyleObject(403, "none", "#f9a825", 210f, 1, 10, 80, 10, 20)
+        val m410 = StyleObject(410, "#e3f2fd", "#1e88e5", 28f, 1, 10, 5, 10, 5)
+        val m420 = StyleObject(420, "#e3f2fd", "#f9a825", 28f, 1, 10, 20, 10, 20)
+
 
         var list = listOf<StyleObject>(
-            m100, m101, m110, m111, m120, m130, m140, m150, m160, m170, m180, m190,
-            m400, m401, m410, m411, m412, m420, m440, m450, m460, m461
+            m200,
+            m210,
+            m211,
+            m220,
+            m221,
+            m222,
+            m230,
+            m240,
+            m241,
+            m250,
+            m260,
+            m270,
+            m280,
+            m281,
+            m282,m283,
+            m400,
+            m401,
+            m402,m4021,
+            m403,
+            m410,m420
         )
         Page.styleArray.addAll(list)
     }
 
 
     private fun updateTalkList() {
-        initOperateValue()
+        initOperateValuetext10()
         for (ind in 1 until talkList.size) {
             talkList[ind] = enterValueToTalkList(ind, talkList[ind])
         }
+
     }
 
     private fun updateTitleTalkerSituation(talker: Talker) {
