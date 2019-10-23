@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/src/main/assets/text.txt" charset="windows-1255" />
-    <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text.txt" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text.txt" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text10.txt" charset="windows-1255" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text11.txt" charset="windows-1255" />
+    <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text12t.txt" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/app/src/main/assets/text/text8.txt" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/app/src/main/assets/text10.txt" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/app/src/main/assets/text30.txt" charset="windows-1255" />

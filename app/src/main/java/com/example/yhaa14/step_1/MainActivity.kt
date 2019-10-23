@@ -13,7 +13,9 @@ import com.example.yhaa14.utils.Talker
 class MainActivity : AppCompatActivity() {
 
    // val CURRENT_FILE = "text/text8.txt"
-    val CURRENT_FILE = "text/text10.txt"
+  // val CURRENT_FILE = "text/text10.txt"
+   val CURRENT_FILE = "text/text11.txt"
+
 
     val ADAM = "-אדם-"
     val GOD = "-אלוהים-"
