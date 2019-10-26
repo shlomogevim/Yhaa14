@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yhaa14.R
 import com.example.yhaa14.step_2.AnimationScreen
-import com.example.yhaa14.step_2.AnimationScreen.Companion.SPEAKER
+import com.example.yhaa14.step_2.AnimationScreen.Companion.STYLE
 import com.example.yhaa14.step_2.AnimationScreen.Companion.TALKER
 import com.example.yhaa14.utils.Speaker
 import com.example.yhaa14.utils.Talker
@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
    // val CURRENT_FILE = "text/text8.txt"
   // val CURRENT_FILE = "text/text10.txt"
    val CURRENT_FILE = "text/text11.txt"
+   val STYLE_FILE = "style/style11.txt"
 
 
     val ADAM = "-אדם-"
@@ -22,31 +23,52 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var speakerList: ArrayList<Speaker>
     lateinit var talkerList: ArrayList<Talker>
-    private var counter = 0
+    var operateList = arrayListOf<List<Int>>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        getData()
         getTalkData()
+        getStyleData()
         sendData()
     }
-
-
     private fun sendData() {
-        val intent1 = Intent(this, AnimationScreen::class.java)
+        val intent = Intent(this, AnimationScreen::class.java)
 
+        intent.putExtra(TALKER, talkerList)
+        intent.putExtra(STYLE, operateList)
 
-        intent1.putExtra(SPEAKER, speakerList)
-
-        intent1.putExtra(TALKER, talkerList)
-
-        // intent1.putExtra(COUNTER, counter - 1)
-
-        startActivity(intent1)
+        startActivity(intent)
     }
+
+    private fun getStyleData() {
+        var countStyle=1
+        var text = applicationContext.assets.open(STYLE_FILE).bufferedReader().use {
+            it.readText()
+        }
+        text = text.replace("\r", "")
+        var list = text.split("#")
+        operateList= arrayListOf()
+        operateList.add(0, arrayListOf())
+        for (element in list){
+            if (element!=""){
+                var ar = element.split(",")
+                operateList.add(
+                    countStyle,
+                    arrayListOf(
+                        ar[0].trim().toInt(),
+                        ar[1].trim().toInt(),
+                        ar[2].trim().toInt(),
+                        ar[3].trim().toInt()
+                    )
+                )
+                countStyle++
+            }
+        }
+
+    }
+
 
     private fun getTalkData() {
         var countItem = 0
@@ -56,13 +78,12 @@ class MainActivity : AppCompatActivity() {
         text = text.replace("\r", "")
         var list1 = text.split(ADAM)
 
-        speakerList = arrayListOf()
+       // speakerList = arrayListOf()
         talkerList = arrayListOf()
 
         var speaker = Speaker()
         var talker = Talker()
 
-        speakerList.add(countItem, speaker)
         talkerList.add(countItem, talker)
 
         for (element in list1) {
@@ -73,46 +94,44 @@ class MainActivity : AppCompatActivity() {
                 var st2 = improveString(list2[1])
                 countItem++
 
-                speaker = Speaker()
-                speaker.whoSpeake = "man"
-                speaker.taking = st1
-                speakerList.add(countItem, speaker)
-
                 talker = Talker()
                 talker.whoSpeake = "man"
-                st1=improveSt(st1)
+                st1=st1.trim()
                 talker.taking = st1
+                talker.num=countItem
+                var arr = st1.split("\n")
+                talker.lines = arr.size
                 talkerList.add(talker)
 
-                countItem++
 
-                speaker = Speaker()
-                speaker.whoSpeake = "god"
-                speaker.taking = st2
-                st2=improveSt(st2)
-                speakerList.add(countItem, speaker)
+                countItem++
 
                 talker = Talker()
                 talker.whoSpeake = "god"
                 talker.taking = st2
+                talker.num=countItem
+                arr = st1.split("\n")
+                talker.lines = arr.size
                 talkerList.add(talker)
             }
         }
 
     }
-    fun improveSt(st:String):String{
+    private fun improveString(st: String) = st.substring(1, st.length - 1)
+
+    /*fun improveSt(st:String):String{
         var stt1=st.trim()
-       /* var stt=st
+       *//* var stt=st
         val st1="\n"
         val count = st.count{ st1.contains(it) }
         if (count==1){
             stt=st.replace(st1,"")
-        }*/
+        }*//*
         return stt1
     }
+*/
 
-
-    private fun getData() {
+   /* private fun getData() {
         var count = 0
         var text = applicationContext.assets.open(CURRENT_FILE).bufferedReader().use {
             it.readText()
@@ -140,30 +159,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun improveString(st: String) = st.substring(1, st.length - 1)
-
-    /* private fun updateListSpeakerStyle() {
-         *//*var arr1 = arrayListOf<Int>()
-        arr1 = arrayListOf(1, 2, 3, 4, 5, 6, 7, 8)*//*
-        for (ind in 0 until speakerList.size) {
-            when (ind) {
-                1, 3,9,11 -> speakerList[ind] = StyleAnim.updateSpeaker1(speakerList[ind])
-                2-> speakerList[ind] = StyleAnim.updateSpeaker2(speakerList[ind])    //god
-                4, 6 -> speakerList[ind] = StyleAnim.updateSpeaker4(speakerList[ind])  //god
-                5 -> speakerList[ind] = StyleAnim.updateSpeaker5(speakerList[ind])
-                7 -> speakerList[ind] = StyleAnim.updateSpeaker7(speakerList[ind])
-                8 -> speakerList[ind] = StyleAnim.updateSpeaker8(speakerList[ind])
-                10 -> speakerList[ind] = StyleAnim.updateSpeaker10(speakerList[ind])
-               // 12 -> speakerList[ind] = StyleAnim.updateSpeaker12(speakerList[ind])
-                12,13 -> speakerList[ind] = StyleAnim.updateNewStyle(ind,speakerList[ind])
-            }
-            *//*if (arr1.contains(ind)) {
-                speakerList[ind].config = true
-            }*//*
-        }
     }*/
+
+
+
 }
 
 
