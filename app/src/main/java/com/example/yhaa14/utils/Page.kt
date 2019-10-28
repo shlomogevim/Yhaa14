@@ -44,6 +44,7 @@ object Page {
             StyleObject(210, "#000000", "#ffffff", 24f, 1, 10, 0, 10, 0),
             StyleObject(211, "#000000", "#bdbdbd", 28f, 1, 10, 5, 10, 5),
             StyleObject(212, "#fbc02d", "#ffffff", 28f, 1, 10, 5, 10, 5),
+            StyleObject(213, "#d1c4e9", "#ffffff", 28f, 1, 10, 5, 10, 5),
             StyleObject(220, "#bdbdbd", "#000000", 28f, 1, 10, 5, 10, 5),
             StyleObject(230, "#ffebee", "#e91e63", 35f, 1, 80, 0, 80, 0),
             StyleObject(240, "none", "#1e88e5", 50f, 1, 10, 20, 10, 20),

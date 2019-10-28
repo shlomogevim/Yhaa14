@@ -36,8 +36,11 @@ class AnimationAction1(context: Context, val view: View) {
     var god4: TextView = view.godSpeaking4
     var god5: TextView = view.godSpeaking5
 
+    var listOfTextview = arrayListOf<TextView?>()
+
 
     private fun initTextview() {
+        tv0=null
         tv0A = null
         tv1 = null
         tv2 = null
@@ -47,22 +50,22 @@ class AnimationAction1(context: Context, val view: View) {
     }
 
     fun excuteTalker(talker: Talker) {
-       // initAllTextview(500)
+        // initAllTextview(500)
         if (talker.whoSpeake == "man") {
             configManTextView1(talker)
-            val listOfTextview = arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5)
+            listOfTextview.clear()
+            listOfTextview = arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5)
             listOfTextview.removeAll(Collections.singleton(null))
             letsMove(talker, listOfTextview, talker.dur)
         }
+
         if (talker.whoSpeake == "god") {
             configGodTextView1(talker)
-            var listOfTextview1 =
-                arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5,tv0A)
-            listOfTextview1.removeAll(Collections.singleton(null))
+            listOfTextview.clear()
+            listOfTextview = arrayListOf(tv0, tv1, tv2, tv3, tv4, tv5, tv0A)
+            listOfTextview.removeAll(Collections.singleton(null))
 
-            //var li1 = arrayListOf(tv0A)
-
-            letsMove(talker, listOfTextview1, talker.dur)
+            letsMove(talker, listOfTextview, talker.dur)
         }
     }
 
@@ -99,31 +102,35 @@ class AnimationAction1(context: Context, val view: View) {
             46 -> Utile1.move_scale_rotate(6, talker, listOfTextview, dur)
 
             50 -> Utile1.apeareOneAfterAnother(0, talker, listOfTextview, dur)
+            506 -> Utile1.apeareOneAfterAnother(506, talker, listOfTextview, dur)
 
-            60 -> Utile1.god10A(listOfTextview, dur)
-
+            60 -> Utile1.godAppearFromTwoPlaces(listOfTextview, dur)
 
         }
     }
 
     private fun configGodTextView1(talker: Talker) {
+        initTextview()
         initGodTextview(1)
         val st = talker.taking
         val arr = st.split("\n")
         val size = arr.size
 
         tv0 = styleTextViewTalk1(god0, arr[0], talker)
-
-        tv0A = styleTextViewTalk1(god0A, arr[0], talker)
-        if (size > 1) tv1 = styleTextViewTalk1(god1, arr[1], talker)
-        if (size > 2) tv2 = styleTextViewTalk1(god2, arr[2], talker)
-        if (size > 3) tv3 = styleTextViewTalk1(god3, arr[3], talker)
-        if (size > 4) tv4 = styleTextViewTalk1(god4, arr[4], talker)
-        if (size > 5) tv5 = styleTextViewTalk1(god5, arr[5], talker)
+        if (talker.animNum == 60) {
+            tv0A = styleTextViewTalk1(god0A, arr[0], talker)
+        } else {
+            if (size > 1) tv1 = styleTextViewTalk1(god1, arr[1], talker)
+            if (size > 2) tv2 = styleTextViewTalk1(god2, arr[2], talker)
+            if (size > 3) tv3 = styleTextViewTalk1(god3, arr[3], talker)
+            if (size > 4) tv4 = styleTextViewTalk1(god4, arr[4], talker)
+            if (size > 5) tv5 = styleTextViewTalk1(god5, arr[5], talker)
+        }
         initManTextview(500)
     }
 
     private fun configManTextView1(talker: Talker) {
+        initTextview()
         initManTextview(1)
         val st = talker.taking
         val arr = st.split("\n")
@@ -203,6 +210,7 @@ class AnimationAction1(context: Context, val view: View) {
         }
         return textView
     }
+
     private fun initGodTextview(dur: Long) {
         ViewAnimator
             .animate(god0, god0A, god1, god2, god3, god4, god5)
@@ -210,6 +218,7 @@ class AnimationAction1(context: Context, val view: View) {
             .duration(dur)
             .start()
     }
+
     private fun initManTextview(dur: Long) {
         ViewAnimator
             .animate(man0, man1, man2, man3, man4, man5)
@@ -316,7 +325,7 @@ class AnimationAction1(context: Context, val view: View) {
             //    3 -> Utile1.scale13(listOfTextview, dur)
 
 
-            4 -> Utile1.god10A(listOfTextview, dur)
+            4 -> Utile1.godAppearFromTwoPlaces(listOfTextview, dur)
             10 -> Utile1.scale_swing(0, talker, listOfTextview, dur)
             11 -> Utile1.scale_swing(1, talker, listOfTextview, dur)
             12 -> Utile1.scale_swing(2, talker, listOfTextview, dur)

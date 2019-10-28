@@ -116,6 +116,7 @@ class AnimationScreen : AppCompatActivity() {
             ">$num<  NumL->$lines style->$styleNum anim->$animNum dur->$dur $whoSpeake"
             tvAnimatinKind.text = text
         }
+        tvPage.text=counterStep.toString()
     }
 
 
@@ -141,6 +142,8 @@ class AnimationScreen : AppCompatActivity() {
         nextButton.setOnClickListener {
             counterStep++
             generalOperation()
+            editor.putInt(CURRENT_SPEAKER, counterStep)
+            editor.commit()
         }
         previousButton.setOnClickListener {
             counterStep--
@@ -156,6 +159,12 @@ class AnimationScreen : AppCompatActivity() {
             editor.putInt(CURRENT_SPEAKER, counterStep)
             editor.commit()
             generalOperation()
+        }
+        mainLayout.setOnClickListener {
+            counterStep++
+            generalOperation()
+            editor.putInt(CURRENT_SPEAKER, counterStep)
+            editor.commit()
         }
     }
     /* private fun createStyleList() {

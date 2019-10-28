@@ -399,7 +399,6 @@ object Utile1 {
     }
 
     fun apeareOneAfterAnother(ind: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
-
         if (ind == 0) {
             if (arr.size == 1) {
                 ViewAnimator
@@ -489,92 +488,47 @@ object Utile1 {
                     .duration(dur)
                     .start()
             }
-
-
-
-            /* ViewAnimator
-                 .animate(arr[0])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[1])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[2])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[3])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[4])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[5])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .start()*/
         }
+        if (ind==506){
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[2])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[3])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[4])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[5])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[5])
+                    .swing()
+                    .start()
+        }
+    }
+    fun godAppearFromTwoPlaces(arr: ArrayList<TextView?>, dur: Long) {
+
+        ViewAnimator
+            .animate(arr[0])
+            .translationX(-wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 1f)
+            .andAnimate(arr[1])
+            .translationX(wi / 2, 0f)
+            .translationY(hi, 0f)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
 
 
-        /* if (ind==1){
-             ViewAnimator
-                 .animate(arr[0])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[1])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[2])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[3])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[4])
-                 .scale(0f, 1f)
-                 .thenAnimate(arr[5])
-                 .scale(0f, 1f)
-                 .onStop {
-                     ViewAnimator
-                         .animate(arr[5])
-                         .scale(1f, 0f, 1f)
-                         .repeatCount(1)
-                         .duration(1000)
-                         .start()
-                 }
-                 .duration(dur)
-                 .start()
-         }*/
-        /* if (ind==3){
-             ViewAnimator
-                 .animate(arr[0])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[1])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[2])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[3])
-                 .scale(0f, 1f)
-                 .duration(dur)
-                 .thenAnimate(arr[4])
-                 .scale(0f, 1f)
-                 .thenAnimate(arr[5])
-                 .scale(0f, 1f)
-                 .onStop {
-                     ViewAnimator
-                         .animate(arr[5])
-                         .swing()
-                         .repeatCount(1)
-                         .duration(1000)
-                         .start()
-                 }
-                 .duration(dur)
-                 .start()
-
-
-         }*/
     }
 
 
@@ -927,22 +881,7 @@ object Utile1 {
     }*/
 
 
-    fun god10A(arr: ArrayList<TextView?>, dur: Long) {
 
-        ViewAnimator
-            .animate(arr[0])
-            .translationX(-wi / 2, 0f)
-            .translationY(hi, 0f)
-            .scale(0f, 1f)
-            .andAnimate(arr[1])
-            .translationX(wi / 2, 0f)
-            .translationY(hi, 0f)
-            .scale(0f, 1f)
-            .duration(dur)
-            .start()
-
-
-    }
 
     fun moveAndRotate3(kind: Int, arr: ArrayList<TextView?>, dur: Long) {
         for (index in 0..5) {
