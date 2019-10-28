@@ -60,18 +60,19 @@ class AnimationScreen : AppCompatActivity() {
 
         if (counterStep < 1) counterStep = 1
 
-            // counterStep = 1           //*********************
+         //  counterStep = 30           //*********************
 
         manMode = counterStep % 2 != 0
 
         val talker = talkList[counterStep]
         updateTitleTalkerSituation(talker)
+        animationInAction1.excuteTalker(talker)
 
-        if (talker.whoSpeake == "man") {
+       /* if (talker.whoSpeake == "man") {
             animationInAction1.manTalk(talker)
         } else {
             animationInAction1.godTalk(talker)
-        }
+        }*/
     }
 
 
@@ -110,13 +111,11 @@ class AnimationScreen : AppCompatActivity() {
 // the idea is to isolate the text item from the style item for ease to correct them
 
     private fun updateTitleTalkerSituation(talker: Talker) {
-
-        var st = talker.taking
-        val arr = st.split("\n")
-        val lines = arr.size
+        with(talker) {
         val text =
-            ">${talker.num}< NumL->$lines style->${talker.styleNum} anim->${talker.animNum} dur->${talker.dur} ${talker.whoSpeake}"
-        tvAnimatinKind.text = text
+            ">$num<  NumL->$lines style->$styleNum anim->$animNum dur->$dur $whoSpeake"
+            tvAnimatinKind.text = text
+        }
     }
 
 
@@ -151,6 +150,12 @@ class AnimationScreen : AppCompatActivity() {
         saveButton.setOnClickListener {
             editor.putInt(CURRENT_SPEAKER, counterStep)
             editor.commit()
+        }
+        init_button.setOnClickListener {
+            counterStep = 1
+            editor.putInt(CURRENT_SPEAKER, counterStep)
+            editor.commit()
+            generalOperation()
         }
     }
     /* private fun createStyleList() {

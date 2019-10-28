@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 talker.whoSpeake = "god"
                 talker.taking = st2
                 talker.num=countItem
-                arr = st1.split("\n")
+                arr = st2.split("\n")
                 talker.lines = arr.size
                 talkerList.add(talker)
             }

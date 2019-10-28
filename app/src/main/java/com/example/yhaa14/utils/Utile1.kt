@@ -8,6 +8,576 @@ object Utile1 {
     var wi: Float = Resources.getSystem().displayMetrics.widthPixels.toFloat()
     var hi: Float = Resources.getSystem().displayMetrics.heightPixels.toFloat()
 
+
+    fun item_scale(ind: Int, textView: TextView, dur: Long) {
+
+        ViewAnimator
+            .animate(textView)
+            .scale(0f, 1f)
+            .duration(dur)
+            .start()
+    }
+
+    fun item_scale_swing(ind: Int, textView: TextView, dur: Long) {
+
+        ViewAnimator
+            .animate(textView)
+            .scale(0f, 1f)
+            .duration(dur)
+            .thenAnimate(textView)
+            .swing()
+            .repeatCount(1)
+            .start()
+    }
+
+    fun item_move(ind: Int, textView: TextView, dur: Long) {
+        var arr = getCordinateAndSpine(ind)
+
+        ViewAnimator
+            .animate(textView)
+            .scale(1f)
+            .duration(1)
+            .thenAnimate(textView)
+            .translationX(arr[0], 0f)
+            .translationY(arr[1], 0f)
+            .duration(dur)
+            .start()
+    }
+
+    fun item_move_swing(ind: Int, textView: TextView, dur: Long) {
+        var arr = getCordinateAndSpine(ind)
+
+        ViewAnimator
+            .animate(textView)
+            .scale(1f)
+            .duration(1)
+            .thenAnimate(textView)
+            .translationX(arr[0], 0f)
+            .translationY(arr[1], 0f)
+            .duration(dur)
+            .thenAnimate(textView)
+            .swing()
+            .repeatCount(1)
+            .start()
+    }
+
+    fun item_move_scale(ind: Int, textView: TextView, dur: Long) {
+        var arr = getCordinateAndSpine(ind)
+
+        ViewAnimator
+            .animate(textView)
+            .scale(0f, 1f)
+            .translationX(arr[0], 0f)
+            .translationY(arr[1], 0f)
+            .duration(dur)
+            .start()
+    }
+
+    fun item_move_scale_rotate(ind: Int, textView: TextView, dur: Long) {
+        var arr = getCordinateAndSpine(ind)
+
+        ViewAnimator
+            .animate(textView)
+            .scale(0f, 1f)
+            .translationX(arr[0], 0f)
+            .translationY(arr[1], 0f)
+            .rotation(arr[2])
+            .duration(dur)
+            .start()
+    }
+
+    fun move_swing(selector: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
+
+        val linesNum = talker.lines
+        if (selector == 0) {
+            for (index in 1..linesNum) {
+                item_move(index, arr[index - 1]!!, dur)
+            }
+        }
+
+        if (selector == 1) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index == 1) {
+                        item_move(index, it, dur)
+                    } else {
+                        item_move_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 2) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 2) {
+                        item_move(index, it, dur)
+                    } else {
+                        item_move_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 3) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 3) {
+                        item_move(index, it, dur)
+                    } else {
+                        item_move_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 4) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 4) {
+                        item_move(index, it, dur)
+                    } else {
+                        item_move_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 5) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 5) {
+                        item_move(index, it, dur)
+                    } else {
+                        item_move_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+    }
+
+    fun scale_swing(selector: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
+
+        val linesNum = talker.lines
+        if (selector == 0) {
+            for (index in 0 until linesNum) {
+                arr[index]?.let { item_scale(index + 1, it, dur) }
+            }
+        }
+
+        if (selector == 1) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index == 1) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 2) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 2) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 3) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 3) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 4) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 4) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 5) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 5) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    fun move_scale(selector: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
+
+        val linesNum = talker.lines
+        if (selector == 0) {
+            for (index in 0 until linesNum) {
+                arr[index]?.let { item_move_scale(index + 1, it, dur) }
+            }
+        }
+
+        if (selector == 1) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index == 1) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 2) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 2) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 3) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 3) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 4) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 4) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 5) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 5) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale(index, it, dur)
+
+                    }
+                }
+            }
+        }
+
+
+        if (selector == 6) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= talker.lines - 1) {
+                        item_move_scale(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+                    }
+                }
+            }
+        }
+    }
+
+    fun move_scale_rotate(selector: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
+
+        val linesNum = talker.lines
+        if (selector == 0) {
+            for (index in 0 until linesNum) {
+                arr[index]?.let { item_move_scale_rotate(index + 1, it, dur) }
+            }
+        }
+
+        if (selector == 1) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index == 1) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale_rotate(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 2) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 2) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale_rotate(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 3) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 3) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale_rotate(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 4) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 4) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale_rotate(index, it, dur)
+
+                    }
+                }
+            }
+        }
+        if (selector == 5) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= 5) {
+                        item_scale(index, it, dur)
+                    } else {
+                        item_move_scale_rotate(index, it, dur)
+
+                    }
+                }
+            }
+        }
+
+
+        if (selector == 6) {
+            for (index in 1..linesNum) {
+                arr[index - 1]?.let {
+                    if (index <= talker.lines - 1) {
+                        item_move_scale_rotate(index, it, dur)
+                    } else {
+                        item_scale_swing(index, it, dur)
+                    }
+                }
+            }
+        }
+    }
+
+    fun apeareOneAfterAnother(ind: Int, talker: Talker, arr: ArrayList<TextView?>, dur: Long) {
+
+        if (ind == 0) {
+            if (arr.size == 1) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+
+            if (arr.size == 2) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+            if (arr.size == 3) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[2])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+            if (arr.size == 4) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[2])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[3])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+            if (arr.size == 5) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[2])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[3])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[4])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+            if (arr.size == 6) {
+                ViewAnimator
+                    .animate(arr[0])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[1])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[2])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[3])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[4])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .thenAnimate(arr[5])
+                    .scale(0f, 1f)
+                    .duration(dur)
+                    .start()
+            }
+
+
+
+            /* ViewAnimator
+                 .animate(arr[0])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[1])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[2])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[3])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[4])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[5])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .start()*/
+        }
+
+
+        /* if (ind==1){
+             ViewAnimator
+                 .animate(arr[0])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[1])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[2])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[3])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[4])
+                 .scale(0f, 1f)
+                 .thenAnimate(arr[5])
+                 .scale(0f, 1f)
+                 .onStop {
+                     ViewAnimator
+                         .animate(arr[5])
+                         .scale(1f, 0f, 1f)
+                         .repeatCount(1)
+                         .duration(1000)
+                         .start()
+                 }
+                 .duration(dur)
+                 .start()
+         }*/
+        /* if (ind==3){
+             ViewAnimator
+                 .animate(arr[0])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[1])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[2])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[3])
+                 .scale(0f, 1f)
+                 .duration(dur)
+                 .thenAnimate(arr[4])
+                 .scale(0f, 1f)
+                 .thenAnimate(arr[5])
+                 .scale(0f, 1f)
+                 .onStop {
+                     ViewAnimator
+                         .animate(arr[5])
+                         .swing()
+                         .repeatCount(1)
+                         .duration(1000)
+                         .start()
+                 }
+                 .duration(dur)
+                 .start()
+
+
+         }*/
+    }
+
+
     private fun ttMove1(
         textView: TextView,
         x0: Float,
@@ -202,7 +772,6 @@ object Utile1 {
     }
 
 
-
     fun ttMoveAndRotateAndSwing1(ind: Int, textView: TextView, dur: Long) {
         var arr = getCordinateAndSpine(ind)
 
@@ -217,141 +786,22 @@ object Utile1 {
             .start()
     }
 
-    fun item_move_scale_rotate(ind: Int, textView: TextView, dur: Long) {
-        var arr = getCordinateAndSpine(ind)
 
-        ViewAnimator
-            .animate(textView)
-            .scale(0f, 1f)
-            .translationX(arr[0], 0f)
-            .translationY(arr[1], 0f)
-            .rotation(arr[2])
-            .duration(dur)
-            .start()
-    }
-    fun item_move_scale(ind: Int, textView: TextView, dur: Long) {
-        var arr = getCordinateAndSpine(ind)
-
-        ViewAnimator
-            .animate(textView)
-            .scale(0f, 1f)
-            .translationX(arr[0], 0f)
-            .translationY(arr[1], 0f)
-            .duration(dur)
-            .start()
-    }
-    fun item_scale(ind: Int, textView: TextView, dur: Long) {
-        var arr = getCordinateAndSpine(ind)
-
-        ViewAnimator
-            .animate(textView)
-            .scale(0f, 1f)
-            .duration(dur)
-            .start()
-    }
-    fun item_scale_swing(ind: Int, textView: TextView, dur: Long) {
-        var arr = getCordinateAndSpine(ind)
-
-        ViewAnimator
-            .animate(textView)
-            .scale(0f, 1f)
-            .duration(dur)
-            .thenAnimate(textView)
-            .swing()
-            .repeatCount(1)
-            .start()
-    }
-
-    fun move_scale_rotate( selector:Int,talker: Talker,arr: ArrayList<TextView?>, dur: Long) {
-
-        val linesNum=talker.lines
-        if (selector==0) {
-            for (index in 0 until linesNum) {
-                arr[index]?.let { item_move_scale_rotate(index + 1, it, dur) }
-            }
-        }
-
-        if (selector==1) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index ==1) {
-                        item_scale(index, it, dur)
-                    } else {
-                        item_move_scale_rotate(index, it, dur)
-
-                    }
-                }
-            }
-        }
-        if (selector==2) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index <=2) {
-                        item_scale(index, it, dur)
-                    } else {
-                        item_move_scale_rotate(index, it, dur)
-
-                    }
-                }
-            }
-        }
-        if (selector==3) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index <=3) {
-                        item_scale(index, it, dur)
-                    } else {
-                        item_move_scale_rotate(index, it, dur)
-
-                    }
-                }
-            }
-        }
-        if (selector==4) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index <=4) {
-                        item_scale(index, it, dur)
-                    } else {
-                        item_move_scale_rotate(index, it, dur)
-
-                    }
-                }
-            }
-        }
-        if (selector==5) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index <=5) {
-                        item_scale(index, it, dur)
-                    } else {
-                        item_move_scale_rotate(index, it, dur)
-
-                    }
-                }
-            }
-        }
-
-
-        if (selector==6) {
-            for (index in 1..linesNum) {
-                arr[index-1]?.let {
-                    if (index <= talker.lines-1) {
-                        item_move_scale_rotate(index , it, dur)
-                    } else {
-                        item_scale_swing(index , it, dur)                    }
-                }
-            }
-        }
-    }
-
-    fun move_scale( selector:Int,arr: ArrayList<TextView?>, dur: Long) {
+    fun move_scale(selector: Int, arr: ArrayList<TextView?>, dur: Long) {
 
         if (selector == 0) {
             for (index in 0 until arr.size) {
-                arr[index]?.let { item_move_scale(index + 1, it, dur) }
+                arr[index]?.let { item_scale(index + 1, it, dur) }
             }
         }
+
+        /*  fun scale10(arr: ArrayList<TextView?>, dur: Long) {
+              for (index in 0..5) {
+                  arr[index]?.let { ttScale1(it, dur) }
+              }
+          } */
+
+
 
         if (selector == 1) {
             for (index in 0 until arr.size) {
@@ -411,47 +861,47 @@ object Utile1 {
     }
 
 
-        fun scale_swing( selector:Int,talker: Talker,arr: ArrayList<TextView?>, dur: Long) {
+    /*   fun scale_swing( selector:Int,talker: Talker,arr: ArrayList<TextView?>, dur: Long) {
 
-            if (selector==0) {
-                for (index in 0 until arr.size) {
-                    arr[index]?.let { item_scale(index + 1, it, dur) }
-                }
-            }
+           if (selector==0) {
+               for (index in 0 until arr.size) {
+                   arr[index]?.let { item_scale(index + 1, it, dur) }
+               }
+           }
 
-            if (selector==1) {
-                for (index in 0 until arr.size) {
-                    arr[index]?.let {
-                        if (index > 0) {
-                            item_scale(index + 1, it, dur)
-                        } else {
-                            item_scale_swing(index + 1, it, dur)
-                        }
-                    }
-                }
-            }
+           if (selector==1) {
+               for (index in 0 until arr.size) {
+                   arr[index]?.let {
+                       if (index > 0) {
+                           item_scale(index + 1, it, dur)
+                       } else {
+                           item_scale_swing(index + 1, it, dur)
+                       }
+                   }
+               }
+           }
 
 
-            if (selector==2) {
-                for (index in 0 until arr.size) {
-                    arr[index]?.let {
-                        if (index == talker.lines-1) {
-                            item_scale_swing(index + 1, it, dur)
-                        } else {
-                            item_scale(index + 1, it, dur)
+           if (selector==2) {
+               for (index in 0 until arr.size) {
+                   arr[index]?.let {
+                       if (index == talker.lines-1) {
+                           item_scale_swing(index + 1, it, dur)
+                       } else {
+                           item_scale(index + 1, it, dur)
 
-                        }
-                    }
-                }
-            }
-            if (selector==3) {
-                for (index in 0 until arr.size) {
-                    arr[index]?.let {
-                            item_scale_swing(index + 1, it, dur)
-                    }
-                }
-            }
-            /*     if (selector==4) {
+                       }
+                   }
+               }
+           }
+           if (selector==3) {
+               for (index in 0 until arr.size) {
+                   arr[index]?.let {
+                           item_scale_swing(index + 1, it, dur)
+                   }
+               }
+           }
+           *//*     if (selector==4) {
                      for (index in 0 until arr.size) {
                          arr[index]?.let {
                              if (index > 3) {
@@ -472,25 +922,9 @@ object Utile1 {
                              }
                          }
                      }
-                 }*/
+                 }*//*
 
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }*/
 
 
     fun god10A(arr: ArrayList<TextView?>, dur: Long) {
@@ -500,7 +934,7 @@ object Utile1 {
             .translationX(-wi / 2, 0f)
             .translationY(hi, 0f)
             .scale(0f, 1f)
-            .andAnimate(arr[6])
+            .andAnimate(arr[1])
             .translationX(wi / 2, 0f)
             .translationY(hi, 0f)
             .scale(0f, 1f)
